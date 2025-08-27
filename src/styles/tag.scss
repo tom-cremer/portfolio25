@@ -1,0 +1,82 @@
+@use "colors" as *;
+@use "fonts" as *;
+
+.tag {
+  width: 80px;
+  border-radius: 6px;
+  padding: 5px 0;
+
+
+  &__text {
+    display: block;
+    text-align: center;
+    font-size: $xs;
+    font-weight: $medium;
+    font-family: $textFont;
+  }
+
+  &--purple {
+    background-color: rgba($purple, 0.2);
+    border: 1px solid $purple;
+    > span {
+      color: $purple;
+    }
+  }
+  &--green {
+    background-color: rgba($green, 0.2);
+    border: 1px solid $green;
+    > span {
+      color: $green;
+    }
+  }
+  &--yellow {
+    background-color: rgba($yellow, 0.2);
+    border: 1px solid $yellow;
+    > span {
+      color: $yellow;
+    }
+  }
+
+    &--red {
+        background-color: rgba($red, 0.2);
+        border: 1px solid $red;
+        > span {
+        color: $red;
+        }
+    }
+
+    &--blue {
+        background-color: rgba($blue, 0.2);
+        border: 1px solid $blue;
+        > span {
+        color: $blue;
+        }
+    }
+
+    &--orange {
+        background-color: rgba($orange, 0.2);
+        border: 1px solid $orange;
+        > span {
+        color: $orange;
+        }
+    }
+
+    &--pink {
+        background-color: rgba($pink, 0.2);
+        border: 1px solid $pink;
+        > span {
+        color: $pink;
+        }
+    }
+
+    &--grey {
+        background-color: rgba($grey, 0.2);
+        border: 1px solid $grey;
+        > span {
+        color: $grey;
+        }
+    }
+
+
+
+}

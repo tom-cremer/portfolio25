@@ -1,0 +1,67 @@
+@use "fonts" as *;
+@use "colors" as *;
+@use "mediaqueries" as *;
+
+.form {
+    padding: 26px;
+    background: $white;
+    border-radius: 20px;
+    border: solid 1px $light-grey;
+
+    &__row {
+        margin-top: 20px;
+    }
+
+    &__group {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    &__label {
+        display: block;
+        font-family: $textFont;
+        font-size: $n;
+        font-weight: $medium;
+        color: $text-color;
+        margin-bottom: 8px;
+
+        &:has(+input[required])::after,
+        &:has(+textarea[required])::after {
+            content: "*";
+            color: $red;
+            margin-left: 4px;
+        }
+
+    }
+
+    &__input, &__textarea {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid $light-grey;
+        border-radius: 8px;
+        font-family: $textFont;
+        font-size: $m;
+        color: $text-color;
+        background: $white;
+        transition: border-color 0.3s ease-in-out;
+
+        &:focus {
+            border-color: $yellow;
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $grey;
+        }
+    }
+
+    &__button {
+        border: none;
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        font-weight: $medium;
+    }
+
+}

@@ -1,0 +1,67 @@
+@use "colors" as *;
+@use "fonts" as *;
+
+// Button
+.button {
+  text-decoration: none;
+  @include button;
+  display: block;
+  background-color: $yellow;
+  width: fit-content;
+  margin-left: auto;
+  color: #fff;
+  padding: 5px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: $yellow;
+  }
+}
+
+// Link
+.link {
+  color: $text-color;
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+  @include button;
+
+  &--yellow{
+    color: $yellow;
+  }
+  &--active {
+    color: $yellow;
+
+    &:after {
+      content: " ";
+      position: absolute;
+      border-radius: 20px;
+      background: $yellow;
+      left: 0;
+      bottom: -5px;
+      min-width: 100%;
+      height: 2px;
+      transition: width 0.3s;
+    }
+  }
+
+  &:after {
+    content: " ";
+    position: absolute;
+    border-radius: 20px;
+    background: $yellow;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    transition: width 0.3s;
+  }
+
+  &:hover {
+    color: $yellow;
+    &:after {
+      width: 100%;
+    }
+  }
+}

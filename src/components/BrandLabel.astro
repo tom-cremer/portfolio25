@@ -1,0 +1,14 @@
+---
+
+// Props
+let {brand} = Astro.props;
+
+let color;
+color = brand.toLowerCase();
+
+---
+
+
+<div class={`brand brand--${color}`}>
+    <span class="brand__text">{brand}</span>
+</div>

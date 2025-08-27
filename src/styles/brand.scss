@@ -1,0 +1,204 @@
+@use "colors" as *;
+@use "fonts" as *;
+
+.brand {
+    width: 80px;
+    border-radius: 6px;
+    padding: 5px 0;
+
+
+    &__text {
+        display: block;
+        text-align: center;
+        font-size: $xs;
+        font-weight: $medium;
+        font-family: $textFont;
+    }
+    // Brand colors
+    /*
+    &--laravel {
+        background-color: rgba($laravel, 0.2);
+        border: 1px solid $laravel;
+        > span {
+            color: $laravel;
+        }
+    }
+    &--astro {
+        background-color: rgba($astro, 0.2);
+        border: 1px solid $astro;
+        > span {
+            color: $astro;
+        }
+    }
+    &--python {
+        background-color: rgba($python, 0.2);
+        border: 1px solid $python;
+        > span {
+            color: $python;
+        }
+    }
+    &--html {
+        background-color: rgba($html, 0.2);
+        border: 1px solid $html;
+        > span {
+            color: $html;
+        }
+    }
+    &--css {
+        background-color: rgba($css, 0.2);
+        border: 1px solid $css;
+        > span {
+            color: $css;
+        }
+    }
+    &--javascript {
+        background-color: rgba($javascript, 0.2);
+        border: 1px solid $javascript;
+        > span {
+            color: $javascript;
+        }
+    }
+    &--typescript {
+        background-color: rgba($typescript, 0.2);
+        border: 1px solid $typescript;
+        > span {
+            color: $typescript;
+        }
+    }
+    &--sass {
+        background-color: rgba($sass, 0.2);
+        border: 1px solid $sass;
+        > span {
+            color: $sass;
+        }
+    }
+    &--svelte {
+        background-color: rgba($svelte, 0.2);
+        border: 1px solid $svelte;
+        > span {
+            color: $svelte;
+        }
+    }
+    &--mysql {
+        background-color: rgba($mysql, 0.2);
+        border: 1px solid $mysql;
+        > span {
+            color: $mysql;
+        }
+    }
+    &--php {
+        background-color: rgba($php, 0.2);
+        border: 1px solid $php;
+        > span {
+            color: $php;
+        }
+    }
+    &--flutter {
+        background-color: rgba($flutter, 0.2);
+        border: 1px solid $flutter;
+        > span {
+            color: $flutter;
+        }
+    }
+    &--dart {
+        background-color: rgba($dart, 0.2);
+        border: 1px solid $dart;
+        > span {
+            color: $dart;
+        }
+    }
+    */
+
+    &--laravel {
+        background: $laravel;
+        border: 1px solid $laravel-static;
+        > span {
+            color: $laravel-static;
+        }
+    }
+    &--astro {
+        background: $astro;
+        border: 1px solid $astro-static;
+        > span {
+            color: $astro-static;
+        }
+    }
+    &--python {
+        background: $python;
+        border: 1px solid $python-static;
+        > span {
+            color: $python-static;
+        }
+    }
+    &--html {
+        background: $html;
+        border: 1px solid $html-static;
+        > span {
+            color: $html-static;
+        }
+    }
+    &--css {
+        background: $css;
+        border: 1px solid $css-static;
+        > span {
+            color: $css-static;
+        }
+    }
+    &--javascript {
+        background: $javascript;
+        border: 1px solid $javascript-static;
+        > span {
+            color: $javascript-static;
+        }
+    }
+    &--typescript {
+        background: $typescript;
+        border: 1px solid $typescript-static;
+        > span {
+            color: $typescript-static;
+        }
+    }
+    &--sass {
+        background: $sass;
+        border: 1px solid $sass-static;
+        > span {
+            color: $sass-static;
+        }
+    }
+    &--svelte {
+        background: $svelte;
+        border: 1px solid $svelte-static;
+        > span {
+            color: $svelte-static;
+        }
+    }
+    &--mysql {
+        background: $mysql;
+        border: 1px solid $mysql-static;
+        > span {
+            color: $mysql-static;
+        }
+    }
+    &--php {
+        background: $php;
+        border: 1px solid $php-static;
+        > span {
+            color: $php-static;
+        }
+    }
+    &--flutter {
+        background: $flutter;
+        border: 1px solid $flutter-static;
+        > span {
+            color: $flutter-static;
+        }
+    }
+    &--dart {
+        background: $dart;
+        border: 1px solid $dart-static;
+        > span {
+            color: $dart-static;
+        }
+    }
+
+}

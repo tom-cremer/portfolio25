@@ -1,0 +1,40 @@
+---
+
+// Props
+let {tag} = Astro.props;
+
+let color;
+
+// Fall back to default color
+switch (tag) {
+    case 'UI/UX':
+        color = 'purple';
+        break;
+    case 'Frontend':
+        color = 'blue';
+        break;
+    case 'Backend':
+        color = 'green';
+        break;
+    case 'Fullstack':
+        color = 'orange';
+        break;
+    case 'Design':
+        color = 'pink';
+        break;
+    case 'Web':
+        color = 'yellow';
+        break;
+    case 'Mobile':
+        color = 'red';
+        break;
+    default:
+        color = 'grey';
+}
+
+---
+
+
+<div class={`tag tag--${color}`}>
+    <span class="tag__text">{tag}</span>
+</div>

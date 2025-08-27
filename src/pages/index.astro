@@ -1,0 +1,296 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BrandLabel from "../components/BrandLabel.astro";
+import Tag from "../components/Tag.astro";
+
+import {getCollection} from 'astro:content';
+import { Image } from 'astro:assets';
+import TomCartoon from '../assets/cartoon_tom.png';
+import cartoon_tom from '../assets/cartoon-tom.png';
+
+import {SITE_TITLE} from "../consts";
+
+const posts = (await getCollection('projets')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+// get only the 3 first posts
+const postsToShow = posts.slice(0, 3);
+
+const brands = [
+    {name: "Laravel", link: "/src/assets/logos/laravel.svg"}, // 1
+    {name: "Astro", link: "/src/assets/logos/astro.svg"}, // 2
+    {name: "CSS", link: "/src/assets/logos/css.svg"}, // 3
+    {name: "HTML", link: "/src/assets/logos/html.svg"}, // 4
+    {name: "Sass", link: "/src/assets/logos/sass.svg"}, // 5
+    {name: "Python", link: "/src/assets/logos/python.svg"}, // 6
+    {name: "JavaScript", link: "/src/assets/logos/javascript.svg"}, // 7
+    {name: "TypeScript", link: "/src/assets/logos/typescript.svg"}, // 8
+    {name: "Svelte", link: "/src/assets/logos/svelte.svg"}, // 9
+    {name: "MySQL", link: "/src/assets/logos/mysql.svg"}, // 10
+    {name: "PHP", link: "/src/assets/logos/php.svg"}, // 11
+
+];
+---
+
+<Layout>
+    <section class="welcome">
+        <div class="wrapper wrapper--text welcome__wrapper">
+            <div class="welcome__main">
+                <div class="versions">
+                    <div class="tag tag--yellow">
+                        <span class="tag__text ">Version 0.9 </span>
+                    </div>
+                    <div class="info-bubble">
+                        <div class="info-bubble__contentContainer">
+                            <span class="info-bubble__contentContainer__title">En construction:</span>
+                            <p class="info-bubble__contentContainer__text">Le site est en cours de
+                                construction, mais n'hésitez pas à découvrir un avant-goût de mon
+                                savoir-faire&nbsp;! </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="welcome__main__contentContainer">
+                    <div class="welcome__main__contentContainer__jobs">
+                        <span class="welcome__main__contentContainer__jobs__2">Développeur Web</span>
+                        <span class="welcome__main__contentContainer__jobs__1">UI/UX Designer</span>
+                    </div>
+                    <h1 class="welcome__main__contentContainer__title">
+                        Tom Cremer
+                    </h1>
+                    <p class="welcome__main__contentContainer__text">
+                        Hey, ravi de pouvoir vous accueillir sur mon portfolio&nbsp;!
+                    </p>
+
+                </div>
+
+                <div class="welcome__main__secondary">
+                    <div class="welcome__main__secondary__imageContainer">
+                        <Image class="welcome__main__secondary__imageContainer__img"
+                               src={TomCartoon}
+                               alt="Personnage cartoon ressemblant à Tom Cremer"/>
+                    </div>
+                    <div class="welcome__main__secondary__background">
+                        <div class="welcome__main__secondary__background__mask">
+                            <div class="welcome__main__secondary__background__mask__left"></div>
+                            <div class="welcome__main__secondary__background__mask__right"></div>
+
+                        </div>
+                        <div class="welcome__main__secondary__background__img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="solutions">
+        <div class="wrapper wrapper--smaller solutions__wrapper">
+            <div class="solutions__main">
+                <div class="solutions__main__aside">
+                    <h2 class="solutions__main__aside__title">
+                        Solutions Créatives & Modernes
+                    </h2>
+                </div>
+                <div class="solutions__main__contentContainer">
+                    <h3 class="solutions__main__contentContainer__subtitle">
+                        Qu’est-ce que j’apporte&nbsp;?
+                    </h3>
+                    <p class="solutions__main__contentContainer__text">
+                        Chaque projet est une nouvelle occasion d'apprendre, d'innover et de perfectionner mon
+                        savoir-faire. Curieux et passionné, je mets mes compétences à votre service pour créer des
+                        solutions sur mesure, adaptées à vos besoins.
+                    </p>
+                </div>
+                <div class="solutions__main__infos">
+                    <div class="solutions__main__infos__item">
+                        <h4 class="solutions__main__infos__item__title">
+                            Expérience
+                        </h4>
+                        <p class="solutions__main__infos__item__text">
+                            +3&nbsp;<span>Ans</span>
+                        </p>
+                    </div>
+                    <div class="solutions__main__infos__item">
+                        <h4 class="solutions__main__infos__item__title">
+                            Projets
+                        </h4>
+                        <p class="solutions__main__infos__item__text">
+                            +9&nbsp;<span>Achevés</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="projets">
+        <div class="wrapper wrapper--smaller projets__wrapper">
+            <div class="projets__main">
+                <div class="projets__main__contentContainer">
+                    <h2 class="projets__main__contentContainer__title">
+                        Mes Projets
+                    </h2>
+                    <a href="/projets" title="Vers page Projets"
+                       class="link link--yellow projets__main__contentContainer__button">
+                        Tous les projets
+                    </a>
+                    <p class="projets__main__contentContainer__text">
+                        Voici une sélections de projets&nbsp;!
+                    </p>
+                </div>
+                <div class="projets__main__sliderContainer">
+                    <div class="projets__main__sliderContainer__slider">
+                        <!--TODO: move that in his own component-->
+                        {postsToShow.map((post) => (
+                                <a href={`/projets/${post.id}`} title={post.data.title} class="card-project">
+                                    <div class="card-project__contentContainer">
+                                        <h3 class="card-project__contentContainer__title">
+                                            {post.data.title}
+                                        </h3>
+                                        <Tag tag={post.data.tag}/>
+                                    </div>
+                                    <div class="card-project__imageContainer">
+                                        <Image class="card-project__imageContainer__img"
+                                               src={post.data.heroImage}
+                                               alt={`Illustration du projet ${post.data.title}`}
+                                               width="100%"
+                                               height="100%"/>
+                                    </div>
+                                    <div class="card-project__buttonContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24">
+                                            <path d="M18 8L22 12L18 16"/>
+                                            <path d="M2 12H22"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                        ))}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="tools">
+        <div class="wrapper wrapper--large tools__wrapper">
+            <div class="tools__main">
+                <div class="tools__main__primary">
+                    <div class="tools__main__primary__background">
+                        <div class="tools__main__primary__background__mask">
+                            <div class="tools__main__primary__background__mask__left"></div>
+                            <div class="tools__main__primary__background__mask__right"></div>
+                        </div>
+                        <div class="tools__main__primary__background__img"></div>
+                    </div>
+                    <div class="tools__main__primary__contentContainer">
+                        <h2 class="tools__main__primary__contentContainer__title">
+                            Mes Outils
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="tools__main__secondary">
+                    <div class="tools__main__secondary__labelContainer">
+                        {brands.map((brand) => (
+                                <div class="tools__main__secondary__labelContainer__item">
+                                    <div class={`tools__main__secondary__labelContainer__item__tooltipContainer brand brand--${brand.name.toLowerCase()}`}>
+                        <span class={`tools__main__secondary__labelContainer__item__tooltipContainer__text `}>
+                            {brand.name}
+                        </span>
+                                    </div>
+                                    <img src={brand.link} alt={brand.name}
+                                         class="tools__main__secondary__labelContainer__item__img"/>
+                                </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="timeline">
+        <div class="wrapper wrapper--smaller timeline__wrapper">
+            <div class="timeline__main">
+                <div class="timeline__main__primary">
+                    <h2 class="timeline__main__primary__title">Mon Parcours</h2>
+                    <div class="timeline__main__primary__listingContainer">
+                        <div class="timeline__main__primary__listingContainer__item">
+                            <div class="timeline__main__primary__listingContainer__item__content">
+                                <h3 class="timeline__main__primary__listingContainer__item__content__title">Techniques
+                                    Infographiques</h3>
+                                <p class="timeline__main__primary__listingContainer__item__content__date">2022 -
+                                    Aujourd'hui</p>
+                                <p class="timeline__main__primary__listingContainer__item__content__text">Bachelier en
+                                    techniques infographiques,
+                                    spécialisation Web
+                                    - Haute École de la Province de Liège</p>
+                            </div>
+                        </div>
+                        <div class="timeline__main__primary__listingContainer__item">
+                            <div class="timeline__main__primary__listingContainer__item__content">
+                                <h3 class="timeline__main__primary__listingContainer__item__content__title">Techniques
+                                    Infographiques</h3>
+                                <p class="timeline__main__primary__listingContainer__item__content__date">2022 -
+                                    Aujourd'hui</p>
+                                <p class="timeline__main__primary__listingContainer__item__content__text">Bachelier en
+                                    techniques infographiques,
+                                    spécialisation Web
+                                    - Haute École de la Province de Liège</p>
+                            </div>
+                        </div>
+                        <div class="timeline__main__primary__listingContainer__item">
+                            <div class="timeline__main__primary__listingContainer__item__content">
+                                <h3 class="timeline__main__primary__listingContainer__item__content__title">Techniques
+                                    Infographiques</h3>
+                                <p class="timeline__main__primary__listingContainer__item__content__date">2022 -
+                                    Aujourd'hui</p>
+                                <p class="timeline__main__primary__listingContainer__item__content__text">Bachelier en
+                                    techniques infographiques,
+                                    spécialisation Web
+                                    - Haute École de la Province de Liège</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline__main__secondary">
+                    <div class="timeline__main__secondary__line"></div>
+                    <div class="timeline__main__secondary__dotContainer">
+                        <div class="timeline__main__secondary__dotContainer__dot timeline__main__secondary__dotContainer__dot--green ">
+                            <svg width="34" height="35" viewBox="0 0 34 35" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.12177C21.5207 4.19218 23.1432 6.41076 25.1651 8.60184C27.3666 10.9876 29.5816 12.8423 31.5982 14.2774C33.4781 15.6151 33.5805 18.5599 31.7626 19.9807C29.7034 21.59 27.4703 23.5908 25.2318 26.0614C23.0992 28.4151 21.3542 30.7651 19.9334 32.9497C18.6011 34.9981 15.4066 34.997 14.0739 32.9488C12.6525 30.7645 10.906 28.4148 8.7738 26.0614C6.53817 23.594 4.308 21.5953 2.25101 19.987C0.431577 18.5644 0.535756 15.6137 2.41716 14.2742C4.43254 12.8393 6.64495 10.9845 8.84048 8.60184C10.8678 6.41052 12.4932 4.19169 13.7909 2.12108Z"/>
+                            </svg>
+                        </div>
+                        <div class="timeline__main__secondary__dotContainer__dot timeline__main__secondary__dotContainer__dot--red ">
+                            <svg width="34" height="35" viewBox="0 0 34 35" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.12177C21.5207 4.19218 23.1432 6.41076 25.1651 8.60184C27.3666 10.9876 29.5816 12.8423 31.5982 14.2774C33.4781 15.6151 33.5805 18.5599 31.7626 19.9807C29.7034 21.59 27.4703 23.5908 25.2318 26.0614C23.0992 28.4151 21.3542 30.7651 19.9334 32.9497C18.6011 34.9981 15.4066 34.997 14.0739 32.9488C12.6525 30.7645 10.906 28.4148 8.7738 26.0614C6.53817 23.594 4.308 21.5953 2.25101 19.987C0.431577 18.5644 0.535756 15.6137 2.41716 14.2742C4.43254 12.8393 6.64495 10.9845 8.84048 8.60184C10.8678 6.41052 12.4932 4.19169 13.7909 2.12108Z"/>
+                            </svg>
+                        </div>
+                        <div class="timeline__main__secondary__dotContainer__dot timeline__main__secondary__dotContainer__dot--purple ">
+                            <svg width="34" height="35" viewBox="0 0 34 35" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.12177C21.5207 4.19218 23.1432 6.41076 25.1651 8.60184C27.3666 10.9876 29.5816 12.8423 31.5982 14.2774C33.4781 15.6151 33.5805 18.5599 31.7626 19.9807C29.7034 21.59 27.4703 23.5908 25.2318 26.0614C23.0992 28.4151 21.3542 30.7651 19.9334 32.9497C18.6011 34.9981 15.4066 34.997 14.0739 32.9488C12.6525 30.7645 10.906 28.4148 8.7738 26.0614C6.53817 23.594 4.308 21.5953 2.25101 19.987C0.431577 18.5644 0.535756 15.6137 2.41716 14.2742C4.43254 12.8393 6.64495 10.9845 8.84048 8.60184C10.8678 6.41052 12.4932 4.19169 13.7909 2.12108Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="wrapper wrapper--smaller contact__wrapper">
+            <div class="contact__main">
+                <div class="contact__main__primary">
+                    <h2 class="contact__main__primary__title">Contactez-moi</h2>
+                    <p class="contact__main__primary__text">Vous avez un projet en tête ou une question&nbsp;? N'hésitez
+                        pas à me contacter, je serai ravi de vous aider&nbsp;!</p>
+                </div>
+                <div class="contact__main__secondary">
+                    <a href="/contact" title="Vers page Contact"
+                       class="link link--yellow contact__main__secondary__button">
+                        Contactez-moi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</Layout>
+

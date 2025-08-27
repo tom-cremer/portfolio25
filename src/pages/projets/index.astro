@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {getCollection} from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const posts = (await getCollection('projets')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Layout>
+
+    <h1>Projets</h1>
+
+    <ul>
+        {posts.map((post) => (
+                <li>
+                    <a href=`/projets/${post.id}`>
+                        <h2>{post.data.title}</h2>
+                        <p>{post.data.pubDate}</p>
+                    </a>
+                </li>
+            ))}
+            </ul>
+
+            </Layout>
+

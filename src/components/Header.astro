@@ -1,0 +1,74 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import {SITE_TITLE} from '../consts';
+---
+
+
+<header class="header">
+    <div class="wrapper wrapper--small">
+        <div class="header__main">
+            <a href="/" class="header__main__logo">
+                <span>
+                    {SITE_TITLE}
+                </span>
+                <svg viewBox="0 0 52 42" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M35.6606 0H51.1884V11.3981H35.6606V0ZM38.6606 3V8.3981H48.1884V3H38.6606Z"/>
+                    <path d="M35.6606 0H51.1884V11.3981H35.6606V0ZM38.6606 3V8.3981H48.1884V3H38.6606Z"/>
+                    <path d="M0 11.5V0H31.5V42H20V11.5H0Z"/>
+                </svg>
+            </a>
+            <nav class="header__main__menu">
+                <h2 class="hidden">Menu Principal</h2>
+                <ul class="header__main__menu__list">
+                    <li class="header__main__menu__list__item">
+                        <HeaderLink href="/" title="Accueil">Accueil</HeaderLink>
+                    </li>
+                    <li class="header__main__menu__list__item">
+                        <HeaderLink href="/projets" title="Projets">Projets</HeaderLink>
+                    </li>
+                    <li class="header__main__menu__list__item">
+                        <HeaderLink href="/apropos" title="A Propos">A Propos</HeaderLink>
+                    </li>
+                </ul>
+            </nav>
+            <a href="/#contact" title="Contact" class="button header__main__contact">
+                Contact
+            </a>
+
+            <input type="checkbox" id="menu-toggle" class="header__main__input"/>
+            <label for="menu-toggle" class="header__main__label">
+                <span class="header__main__label__burger"> </span>
+                <span class="header__main__label__burger"> </span>
+                <span class="header__main__label__burger"> </span>
+            </label>
+            <div class="header__main__overlay">
+                <nav class="header__main__overlay__menu">
+                    <h2 class="hidden">Burger Menu</h2>
+                    <ul class="header__main__overlay__menu__list">
+                        <li class="header__main__overlay__menu__list__item">
+                            <HeaderLink href="/" title="Accueil">Accueil</HeaderLink>
+                        </li>
+                        <li class="header__main__overlay__menu__list__item">
+                            <HeaderLink href="/projets" title="Projets">Projets</HeaderLink>
+                        </li>
+                        <li class="header__main__overlay__menu__list__item">
+                            <HeaderLink href="/apropos" title="A Propos">A Propos</HeaderLink>
+                        </li>
+                        <li class="header__main__overlay__menu__list__item">
+                            <HeaderLink href="/#contact" title="Contact">Contact</HeaderLink>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const body = document.body;
+
+    menuToggle.addEventListener("change", (event) => {
+        body.classList.toggle("no-scroll");
+    });
+</script>

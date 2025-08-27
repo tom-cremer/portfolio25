@@ -4,7 +4,7 @@ import BrandLabel from "../components/BrandLabel.astro";
 import Tag from "../components/Tag.astro";
 
 import {getCollection} from 'astro:content';
-import { Image } from 'astro:assets';
+import {Image} from 'astro:assets';
 import TomCartoon from '../assets/cartoon_tom.png';
 import cartoon_tom from '../assets/cartoon-tom.png';
 
@@ -278,15 +278,41 @@ const brands = [
         <div class="wrapper wrapper--smaller contact__wrapper">
             <div class="contact__main">
                 <div class="contact__main__primary">
-                    <h2 class="contact__main__primary__title">Contactez-moi</h2>
-                    <p class="contact__main__primary__text">Vous avez un projet en tête ou une question&nbsp;? N'hésitez
-                        pas à me contacter, je serai ravi de vous aider&nbsp;!</p>
+                    <h2 class="contact__main__primary__title">
+                        Une idée,<br> Un projet&nbsp;?
+                    </h2>
+                    <p class="contact__main__primary__text">
+                        Parlons-en&nbsp;!
+                    </p>
                 </div>
                 <div class="contact__main__secondary">
-                    <a href="/contact" title="Vers page Contact"
-                       class="link link--yellow contact__main__secondary__button">
-                        Contactez-moi
-                    </a>
+                    <form method="post" action="#contact" class="form">
+                        <fieldset class="form__group">
+                            <div class="from__row">
+                                <label for="firstname" class="form__label">Prénom</label>
+                                <input type="text" id="firstname" name="firstname" class="form__input" required>
+                            </div>
+                            <div class="from__row">
+                                <label for="lastname" class="form__label">Nom</label>
+                                <input type="text" id="lastname" name="lastname" class="form__input" required>
+                            </div>
+                        </fieldset>
+                        <div class="from__row">
+                            <label for="email" class="form__label">Email</label>
+                            <input type="email" id="email" name="email" class="form__input" required>
+                        </div>
+                        <div class="from__row">
+                            <label for="telephone" class="form__label">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone" class="form__input">
+                        </div>
+                        <div class="from__row">
+                            <label for="message" class="form__label">Message</label>
+                            <textarea id="message" name="message" class="form__input form__input--textarea"
+                                      rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="button button--yellow form__button">Envoyer</button>
+
+                    </form>
                 </div>
             </div>
         </div>

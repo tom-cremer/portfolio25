@@ -1,17 +1,15 @@
+@use 'reset';
+@use 'fonts';
+@use 'colors';
+@use 'mediaqueries';
+@use 'wrapper';
 
-@use "reset";
-@use "button";
-@use "global";
-@use "colors";
-@use "fonts";
-@use "mediaqueries";
-@use "wrapper";
-@use "tag";
-@use "brand";
+@use 'button';
+@use 'tag';
 
-// pages
-@use "header";
-@use "footer";
-@use "home";
-@use "contact";
-@use "form";
+@use 'global';
+@use 'home';
+@use 'contact';
+@use 'header';
+@use 'footer';
+@use 'form';

@@ -1,16 +1,15 @@
-@use "fonts" as *;
-@use "colors" as *;
-@use "mediaqueries" as *;
+@use 'fonts' as *;
+@use 'colors' as *;
+@use 'mediaqueries' as *;
+
 
 .form {
+    border: 1px solid $light-grey;
+    border-radius: 8px;
     padding: 26px;
-    background: $white;
-    border-radius: 20px;
-    border: solid 1px $light-grey;
-
-    &__row {
-        margin-top: 20px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
 
     &__group {
         display: grid;
@@ -18,50 +17,47 @@
         gap: 20px;
     }
 
-    &__label {
-        display: block;
-        font-family: $textFont;
-        font-size: $n;
-        font-weight: $medium;
-        color: $text-color;
-        margin-bottom: 8px;
-
-        &:has(+input[required])::after,
-        &:has(+textarea[required])::after {
-            content: "*";
-            color: $red;
-            margin-left: 4px;
-        }
-
+    &__row {
+        display: flex;
+        flex-direction: column;
     }
 
-    &__input, &__textarea {
-        width: 100%;
-        padding: 8px 12px;
-        border: 1px solid $light-grey;
-        border-radius: 8px;
+    &__label {
+        display: block;
+        font-weight: $medium;
         font-family: $textFont;
-        font-size: $m;
-        color: $text-color;
-        background: $white;
-        transition: border-color 0.3s ease-in-out;
+        margin-bottom: 6px;
+
+        &:has(+input[required])::after,
+        &:has(+textarea[required])::after, {
+            content: "*";
+            color: red;
+            margin-left: 4px;
+        }
+    }
+
+
+    &__input,
+    &__textarea {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: $textFont;
+        font-size: 1rem;
+        width: 100%;
+        box-sizing: border-box;
 
         &:focus {
-            border-color: $yellow;
-            outline: none;
-        }
-
-        &::placeholder {
-            color: $grey;
+        border-color: #007bff;
+        outline: none;
         }
     }
 
     &__button {
-        border: none;
         width: 100%;
-        padding: 10px;
+        border: none;
         border-radius: 10px;
-        font-weight: $medium;
+        padding: 8px 0;
     }
 
 }

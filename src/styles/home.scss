@@ -678,7 +678,7 @@
                 @include title;
                 text-align: center;
                 color: $text-color;
-                margin-bottom: 35px;
+                margin-bottom: 50px;
             }
 
             &__listingContainer {
@@ -830,10 +830,10 @@
 }
 
 .contact {
-    padding: 70px 0;
+    padding: 70px 0 35px;
 
     &__wrapper {
-
+        position: relative;
     }
 
     &__main {
@@ -841,15 +841,32 @@
         grid-template-columns: repeat(2, 1fr);
         min-height: 500px;
         gap: 100px;
+        position: relative;
+        z-index: 2;
+
+        @include w1024 {
+            grid-template-columns: 1fr;
+            gap: 50px;
+        }
 
         &__primary {
             margin-right: 5%;
+
+            @include w1024 {
+                margin: 0 auto;
+                max-width: 500px;
+                width: 100%;
+            }
 
             &__title {
                 @include title;
                 color: $text-color;
                 text-align: right;
                 font-size: $xxxxl;
+                line-height: 1.1;
+                @include w480 {
+                    font-size: $xxxl;
+                }
             }
 
             &__text {
@@ -857,13 +874,73 @@
                 color: $yellow;
                 text-align: right;
                 font-size: $xxxxxl;
+                @include w480 {
+                    font-size: $xxxxl;
+                }
             }
         }
 
         &__secondary {
 
         }
-
     }
+
+    &__background {
+        position: absolute;
+        width: 100vw;
+        transform: translateX(-50%);
+        height: 195px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        left: 50%;
+
+        bottom: 10%;
+        z-index: 1;
+
+        &__mask {
+            position: absolute;
+            width: 100%;
+            height: 195px;
+            /*  background: linear-gradient(45deg, $primary-color, lighten($primary-color, 90%), lighten($primary-color, 40%));
+              background-size: 300% 300%;
+              animation: moveColors 3s linear infinite;*/
+            /* Masque en forme de texte */
+            -webkit-mask-image: url('../assets/vector_pattern.png'); /* Ex : Logo PNG */
+            mask-image: url('../assets/vector_pattern.png');
+
+            &__left {
+                position: absolute;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(90deg, #215e5a, #3ffc8c, #215e5a, #215e5a);
+                background-size: 300% 300%;
+                animation: moveColors 3s ease-in-out infinite;
+            }
+
+            &__right {
+                position: absolute;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(90deg, #215e5a, #3ffc8c, #215e5a, #215e5a);
+                background-size: 300% 300%;
+                animation: moveColors 3s ease-in-out infinite;
+                transform: rotate(180deg);
+                right: 0;
+                opacity: 1;
+            }
+        }
+
+        &__img {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+            background-image: url("../assets/vector_pattern.png");
+            opacity: 0.3;
+        }
+    }
+
 }
 

@@ -1,30 +1,46 @@
 ---
+import {SITE_TITLE} from "../consts";
+import HeaderLink from "./HeaderLink.astro";
 const today = new Date();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} Your name here. All rights reserved.
+
+<footer class="footer">
+	<div class="wrapper wrapper--smaller footer__wrapper">
+		<div class="footer__main">
+			<div class="footer__main__primary">
+				<a href="/" class="footer__main__primary__logo">
+                	<span>
+                    	{SITE_TITLE}
+                	</span>
+					<svg viewBox="0 0 52 42" xmlns="http://www.w3.org/2000/svg">
+						<path d="M35.6606 0H51.1884V11.3981H35.6606V0ZM38.6606 3V8.3981H48.1884V3H38.6606Z"/>
+						<path d="M35.6606 0H51.1884V11.3981H35.6606V0ZM38.6606 3V8.3981H48.1884V3H38.6606Z"/>
+						<path d="M0 11.5V0H31.5V42H20V11.5H0Z"/>
+					</svg>
+				</a>
+				<nav class="header__main__menu">
+					<h2 class="hidden">Menu Principal</h2>
+					<ul class="header__main__menu__list">
+						<li class="header__main__menu__list__item">
+							<HeaderLink href="/" title="Accueil">Accueil</HeaderLink>
+						</li>
+						<li class="header__main__menu__list__item">
+							<HeaderLink href="/projets" title="Projets">Projets</HeaderLink>
+						</li>
+						<li class="header__main__menu__list__item">
+							<HeaderLink href="/apropos" title="A Propos">A Propos</HeaderLink>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="footer__main__secondary">
+
+			</div>
+			<div class="footer__main__tertiary">
+				<p>&copy; {today.getFullYear()} Tom Cremer. All rights reserved.</p>
+			</div>
+		</div>
+	</div>
 </footer>
-<!--
-<style>
-	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(&#45;&#45;gray-gradient)) no-repeat;
-		color: rgb(var(&#45;&#45;gray));
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(&#45;&#45;gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(&#45;&#45;gray-dark));
-	}
-</style>
--->
+

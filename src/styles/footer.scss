@@ -4,7 +4,8 @@
 
 
 .footer {
-    padding: 35px 0;
+    padding: 50px 0 15px;
+    background: $background-color;
 
     &__wrapper {
 
@@ -16,9 +17,29 @@
         grid-template-areas:
         "p s"
         "t t";
+        column-gap: 15px;
+
+        @include w500 {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+            "p"
+            "s"
+            "t";
+        }
+
 
         &__primary {
+            position: relative;
+
             grid-area: p;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 0 0 25px;
+
+            @include w900 {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
             &__logo {
                 display: inline-block;
@@ -39,16 +60,89 @@
                 }
             }
 
+            &__menu {
+                &__list {
+                    display: flex;
+                    gap: 25px;
+
+                    @include w900 {
+                        flex-direction: column;
+                    }
+                }
+            }
+
+            &:after {
+                content: url('data:image/svg+xml,<svg width="34" height="35" viewBox="0 0 34 35" xmlns="http://www.w3.org/2000/svg"><path fill="%23E9A925" d="M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.12177C21.5207 4.19218 23.1432 6.41076 25.1651 8.60184C27.3666 10.9876 29.5816 12.8423 31.5982 14.2774C33.4781 15.6151 33.5805 18.5599 31.7626 19.9807C29.7034 21.59 27.4703 23.5908 25.2318 26.0614C23.0992 28.4151 21.3542 30.7651 19.9334 32.9497C18.6011 34.9981 15.4066 34.997 14.0739 32.9488C12.6525 30.7645 10.906 28.4148 8.7738 26.0614C6.53817 23.594 4.308 21.5953 2.25101 19.987C0.431577 18.5644 0.535756 15.6137 2.41716 14.2742C4.43254 12.8393 6.64495 10.9845 8.84048 8.60184C10.8678 6.41052 12.4932 4.19169 13.7909 2.12108Z"/></svg>');
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                transform: translate(-50%, -50%);
+                @include w900 {
+                    display: none;
+                }
+            }
         }
 
         &__secondary {
             grid-area: s;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 0 0 25px;
 
+            &__text {
+                @include caption;
+                font-size: $xs;
+                margin-left: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+                color: $text-color;
+
+                @include w768 {
+                    width: 120px;
+                    text-align: right;
+                }
+
+                @include w500 {
+                    width: 100%;
+                    margin-top: 20px;
+                    text-align: center;
+                }
+            }
+
+            &__list {
+                display: flex;
+                justify-content: end;
+                gap: 25px;
+
+                @include w500 {
+                    justify-content: center;
+                }
+
+                &__item {
+                    a {
+                        color: $text-color;
+                        transition: color 300ms ease-in-out;
+
+                        &:hover, &:focus {
+                            color: $yellow;
+                        }
+                    }
+                }
+            }
         }
 
         &__tertiary {
+            margin-top: 30px;
             grid-area: t;
 
+            &__copyright {
+                font-family: $textFont;
+                font-weight: $regular;
+                font-size: $xxs;
+                text-align: center;
+                width: 100%;
+            }
         }
 
     }

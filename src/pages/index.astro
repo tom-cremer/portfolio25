@@ -288,8 +288,18 @@ const brands = [
                     <p class="contact__main__primary__text">
                         Parlons-en&nbsp;!
                     </p>
+
+
                 </div>
                 <div class="contact__main__secondary">
+                    <div class="contact__main__secondary__buttonContainer">
+                        <a href="mailto:contact@tomcremer.be" title=""
+                           class="button contact__main__secondary__buttonContainer__button">
+                            C'est parti&nbsp;!
+                        </a>
+                    </div>
+                </div>
+                <!--<div class="contact__main__secondary">
                     <form method="post" action="#contact" class="form">
                         <fieldset class="form__group">
                             <div class="from__row">
@@ -311,13 +321,13 @@ const brands = [
                         </div>
                         <div class="from__row">
                             <label for="message" class="form__label">Message</label>
-                            <textarea id="message" name="message" class="form__input form__input--textarea"
+                            <textarea id="message" name="message" class="form__input form__input&#45;&#45;textarea"
                                       rows="4" required></textarea>
                         </div>
-                        <button type="submit" class="button button--yellow form__button">Envoyer</button>
+                        <button type="submit" class="button button&#45;&#45;yellow form__button">Envoyer</button>
 
                     </form>
-                </div>
+                </div>-->
             </div>
             <div class="contact__background">
                 <div class="contact__background__mask">
@@ -330,6 +340,24 @@ const brands = [
         </div>
 
     </section>
+    <script>
+        if (typeof window !== 'undefined') {
+            const button = document.querySelector('.contact__main__secondary__buttonContainer__button');
+            const container = document.querySelector('.contact__main__secondary__buttonContainer');
 
+            container?.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+
+            container?.addEventListener('mouseleave', () => {
+                button.style.transition = 'transform 0.1s ease';
+                button.style.transform = 'translate(0, 0)';
+            });
+        }
+    </script>
 </Layout>
 

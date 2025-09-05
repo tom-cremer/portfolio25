@@ -830,27 +830,27 @@
 }
 
 .contact {
-    padding: 70px 0 35px;
+    padding: 35px 0;
 
     &__wrapper {
         position: relative;
     }
 
     &__main {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        min-height: 500px;
-        gap: 100px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 400px;
+        gap: 50px;
         position: relative;
         z-index: 2;
 
-        @include w1024 {
+        /*@include w1024 {
             grid-template-columns: 1fr;
             gap: 50px;
-        }
+        }*/
 
         &__primary {
-            margin-right: 5%;
 
             @include w1024 {
                 margin: 0 auto;
@@ -861,7 +861,7 @@
             &__title {
                 @include title;
                 color: $text-color;
-                text-align: right;
+                text-align: center;
                 font-size: $xxxxl;
                 line-height: 1.1;
                 @include w480 {
@@ -872,7 +872,7 @@
             &__text {
                 @include title;
                 color: $yellow;
-                text-align: right;
+                text-align: center;
                 font-size: $xxxxxl;
                 @include w480 {
                     font-size: $xxxxl;
@@ -882,6 +882,31 @@
 
         &__secondary {
 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &__buttonContainer {
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                max-width: 500px;
+                width: 100%;
+                height: 195px;
+
+                &__button {
+                    margin: auto;
+                    padding: 8px 100px;
+                    border-radius: 5px;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                    @include w500 {
+                        padding: 8px 10%;
+
+                    }
+                }
+            }
         }
     }
 
@@ -896,7 +921,7 @@
         overflow: hidden;
         left: 50%;
 
-        bottom: 10%;
+        bottom: 0;
         z-index: 1;
 
         &__mask {

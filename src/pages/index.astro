@@ -10,6 +10,7 @@ import cartoon_tom from '../assets/cartoon-tom.png';
 
 import {SITE_TITLE} from "../consts";
 
+
 const posts = (await getCollection('projets')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
@@ -129,15 +130,15 @@ const brands = [
                     </h2>
                     <a href="/projets" title="Vers page Projets"
                        class="link link--yellow projets__main__contentContainer__button">
-                        Tous les projets
+                        <span>Tous les projets</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link-icon lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                     </a>
                     <p class="projets__main__contentContainer__text">
                         Voici une sélections de projets&nbsp;!
                     </p>
                 </div>
                 <div class="projets__main__sliderContainer">
-                    <div class="projets__main__sliderContainer__slider">
-                        <!--TODO: move that in his own component-->
+                    <div class="projets__main__sliderContainer__slider" id="slider">
                         {postsToShow.map((post) => (
                                 <a href={`/projets/${post.id}`} title={post.data.title} class="card-project">
                                     <div class="card-project__contentContainer">
@@ -150,8 +151,7 @@ const brands = [
                                         <Image class="card-project__imageContainer__img"
                                                src={post.data.heroImage}
                                                alt={`Illustration du projet ${post.data.title}`}
-                                               width="100%"
-                                               height="100%"/>
+                                               width="100%" height="100%"/>
                                     </div>
                                     <div class="card-project__buttonContainer">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -163,7 +163,27 @@ const brands = [
                                 </a>
                         ))}
                     </div>
+
+
+                    <!--<button class="slider-btn prev" id="prevBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="lucide lucide-chevron-left-icon lucide-chevron-left">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button class="slider-btn next" id="nextBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </button>-->
+
+                    <!-- Points -->
+                    <div class="slider-dots" id="sliderDots"></div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -359,5 +379,7 @@ const brands = [
             });
         }
     </script>
+    <script src="/src/js/slider.js"></script>
+
 </Layout>
 

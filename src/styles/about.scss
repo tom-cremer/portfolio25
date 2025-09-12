@@ -7,8 +7,8 @@
     padding: 150px 0 0;
     min-height: 500px;
 
-&__wrapper {
-}
+    &__wrapper {
+    }
 
     &__main {
 
@@ -18,8 +18,51 @@
                 @include title;
                 text-align: center;
                 color: $text-color;
-                
+
             }
+        }
+
+        &__primary {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 35px;
+
+            @include w768 {
+                grid-template-columns: 1fr;
+            }
+
+            &__imageContainer {
+                display: flex;
+                @include w768 {
+                    order: 2;
+                }
+
+                &__img {
+                    margin: auto;
+                    aspect-ratio: 2/3;
+                    max-height: 400px;
+                }
+            }
+
+            &__content {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                p {
+                    font-family: $textFont;
+                    font-size: $n;
+                    line-height: 1.3;
+                    color: $text-color;
+
+                    i {
+                        font-style: italic;
+                    }
+                }
+
+            }
+
         }
     }
 
@@ -116,10 +159,16 @@
 
             &__inner {
                 padding: 16px 20px;
-                font-size: $xs;
-                font-family: $textFont;
-                line-height: 1.3;
-                color: $text-color;
+
+                p {
+                    font-size: $xs;
+                    font-family: $textFont;
+                    line-height: 1.3;
+                    color: $text-color;
+                    em {
+                        font-weight: $medium;
+                    }
+                }
             }
         }
 

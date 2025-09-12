@@ -15,11 +15,31 @@ import Layout from "../layouts/Layout.astro";
                 <div class="about__main__primary">
                     <div class="about__main__primary__imageContainer">
                         <img src="/src/assets/portfolio_me.jpg" alt="Photo de Tom Cremer à l'athlétisme"
-                                class="about__main__primary__imageContainer__img">
+                             class="about__main__primary__imageContainer__img">
                     </div>
-                    <p class="about__main__primary__content">
-
-                    </p>
+                    <div class="about__main__primary__content">
+                        <p>
+                            Holà, moi c'est Tom, développeur back-end avec un goût pour les défis, que ce soit derrière
+                            mon clavier ou sur
+                            la piste d'athlétisme&nbsp;!
+                        </p>
+                        <p>
+                            Je suppose que si vous êtes là, en train de lire ceci c'est que vous voulez en apprendre
+                            plus sur moi&#x2026; Bande de coquins va&nbsp;&#128521;
+                        </p>
+                        <p>
+                            Blague à part, ce qui me passionne dans le web c'est de pouvoir créer et sans aucune limite
+                            des sites tout aussi incroyables visuellement que logiquement,
+                            et surtout que ces sites soient accessibles partout et à n'importe quel moment c'est juste
+                            magique&nbsp;!
+                        </p>
+                        <p>
+                            Ma devise ? <i>“Les records sont faits pour être battus”</i> — Robert Downey Jr, alias Iron
+                            Man.
+                            Une phrase qui résume bien ma vision : toujours chercher à aller plus loin, à progresser, et
+                            à repousser mes propres limites.
+                        </p>
+                    </div>
                 </div>
 
             </div>
@@ -29,48 +49,53 @@ import Layout from "../layouts/Layout.astro";
     <section class="faq" aria-label="FAQ">
         <div class="wrapper wrapper--smaller faq__wrapper">
             <div class="faq__main">
+                <h2 class="faq__main__title">FAQ</h2>
 
-            </div>
-            <h2 class="faq__main__title">FAQ</h2>
-
-            <!-- data-multi="true" permet d'ouvrir plusieurs panneaux -->
-            <div class="faq__main__list" id="faqAccordion" data-multi="true">
-                <div class="faq__main__item">
-                    <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-1" id="trigger-1">
-                        Depuis combien de temps tu codes ?
-                        <span class="faq__main__icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq__main__panel" id="panel-1" role="region" aria-labelledby="trigger-1" hidden>
-                        <div class="faq__main__panel__inner">
-                            <p>Je code depuis X ans — mais j’ai commencé à bidouiller des sites bien avant.</p>
+                <div class="faq__main__list" id="faqAccordion" data-multi="true">
+                    <div class="faq__main__item">
+                        <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-1" id="trigger-1">
+                            Depuis combien de temps tu codes ?
+                            <span class="faq__main__icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq__main__panel" id="panel-1" role="region" aria-labelledby="trigger-1" hidden>
+                            <div class="faq__main__panel__inner">
+                                <p>Je code depuis que j'ai 16 ans, j'ai commencé avec arduino puis j'ai appris python
+                                    ensuite j'ai découvert le web&#x2026;</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="faq__main__item">
-                    <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-2" id="trigger-2">
-                        Que fais-tu quand tu ne codes pas ?
-                        <span class="faq__main__icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq__main__panel" id="panel-2" role="region" aria-labelledby="trigger-2" hidden>
-                        <div class="faq__main__panel__inner">
-                            <p>Je fais de l'athlé depuis 11 ans — j’aime bien décompresser sur la piste.</p>
+                    <div class="faq__main__item">
+                        <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-2" id="trigger-2">
+                            Que fais-tu quand tu ne codes pas ?
+                            <span class="faq__main__icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq__main__panel" id="panel-2" role="region" aria-labelledby="trigger-2" hidden>
+                            <div class="faq__main__panel__inner">
+                                <p>
+                                    J'ai deux principaux passe temps, l'athlétisme et les jeux vidéos - Décompresser sur
+                                    la piste est essentiels après une journée de code&nbsp;!
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="faq__main__item">
-                    <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-3" id="trigger-3">
-                        Ton film préféré ?
-                        <span class="faq__main__icon" aria-hidden="true">+</span>
-                    </button>
-                    <div class="faq__main__panel" id="panel-3" role="region" aria-labelledby="trigger-3" hidden>
-                        <div class="faq__main__panel__inner">
-                            <p>Mon film préféré est <em>Nana</em>. Oui, vraiment.</p>
+                    <div class="faq__main__item">
+                        <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-3" id="trigger-3">
+                            Ton film préféré ?
+                            <span class="faq__main__icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq__main__panel" id="panel-3" role="region" aria-labelledby="trigger-3" hidden>
+                            <div class="faq__main__panel__inner">
+                                <p>
+                                    Ouf. Il y en a plein, mais si je dois en choisir qu'un ce serait, <em>The Wild
+                                    Robot</em>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </section>
@@ -207,7 +232,6 @@ import Layout from "../layouts/Layout.astro";
                 });
             });
         });
-
     </script>
 
 </Layout>

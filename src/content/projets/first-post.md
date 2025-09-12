@@ -1,8 +1,41 @@
 ---
 title: 'First Project'
-description: 'Lorem ipsum dolor sit amet'
+description1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium.
+Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit
+amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum
+lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed
+vulputate mi. Dictumst quisque sagittis purus sit amet.'
+
+description2: 'Lorem ipsum dolor sit **amet**, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium.
+Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit
+amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum
+lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed
+vulputate mi. Dictumst quisque sagittis purus sit amet.'
+
 tag: 'Web'
+image1: '/blog-placeholder-4.jpg'
+image2: '/blog-placeholder-4.jpg'
 heroImage: '/blog-placeholder-3.jpg'
+urls: 
+  - 'https://github.com/tom-cremer'
+tools:
+  - 'laravel'
+  - 'javascript'
+  - 'astro'
+  - 'php'
+  - 'python'
+  - 'typescript'
+
+gallery: 
+  - '/blog-placeholder-3.jpg'
+  - '/blog-placeholder-2.jpg'
+  - '/src/assets/logos/astro.svg'
+  - '/blog-placeholder-1.jpg'
+  - '/blog-placeholder-4.jpg'
+  - '/blog-placeholder-5.jpg'
+  - '/blog-placeholder-about.jpg'
 
 pubDate: '29-09-2025'
 ---
@@ -31,24 +64,3 @@ Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperd
 felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut
 ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat
 nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-
- <!--
-                          <a href={`/projets/`} class="card-project">
-                              <div class="card-project__contentContainer">
-                                  <h3 class="card-project__contentContainer__title">
-                                      Title </h3>
-                                  <Tag tag="Web"/>
-                              </div>
-                              <div class="card-project__imageContainer">
-                                  <Image class="card-project__imageContainer__img"
-                                         src="/src/assets/blog-placeholder-3.jpg"
-                                         alt={`Illustration du projet`} width="100%" height="100%"/>
-                              </div>
-                              <div class="card-project__buttonContainer">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                       viewBox="0 0 24 24">
-                                      <path d="M18 8L22 12L18 16"/>
-                                      <path d="M2 12H22"/>
-                                  </svg>
-                              </div>
-                          </a> -->

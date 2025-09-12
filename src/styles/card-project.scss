@@ -1,0 +1,104 @@
+@use "colors" as *;
+@use "fonts" as *;
+@use "mediaqueries" as *;
+
+
+.card-project {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 280px;
+    min-width: 280px;
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    text-decoration: none;
+
+    &:hover, &:focus {
+        transform: scale(1.02);
+        box-shadow: 0 6px 14px rgba($text-color, 0.2);
+
+        .card-project__contentContainer__title {
+            color: $yellow;
+        }
+
+        .card-project__buttonContainer {
+            svg {
+                transform: translateX(3px);
+            }
+        }
+
+        .card-project__imageContainer {
+            .card-project__imageContainer__img {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &__contentContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__title {
+            font-family: $textFont;
+            font-size: $l;
+            font-weight: $semi-bold;
+            color: $text-color;
+            transition: all 0.3s ease-in-out;
+        }
+
+        &__text {
+            @include body;
+            color: $text-color;
+        }
+    }
+
+    &__imageContainer {
+        background: #ddd;
+        border-radius: 12px;
+        height: 170px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: black;
+        position: relative;
+        overflow: hidden;
+        clip-path: polygon(3.497% 0%, 3.497% 0%, 2.929% 0.069%, 2.391% 0.268%, 1.89% 0.587%, 1.432% 1.015%, 1.024% 1.542%, 0.675% 2.155%, 0.39% 2.844%, 0.178% 3.6%, 0.046% 4.409%, 0% 5.263%, 0% 94.737%, 0% 94.737%, 0.046% 95.591%, 0.178% 96.4%, 0.39% 97.156%, 0.675% 97.845%, 1.024% 98.458%, 1.432% 98.985%, 1.89% 99.413%, 2.391% 99.732%, 2.929% 99.931%, 3.497% 100%, 77.273% 100%, 77.273% 100%, 77.84% 99.931%, 78.378% 99.732%, 78.88% 99.413%, 79.338% 98.985%, 79.745% 98.458%, 80.095% 97.845%, 80.379% 97.156%, 80.591% 96.4%, 80.723% 95.591%, 80.769% 94.737%, 80.769% 81.053%, 80.769% 81.053%, 80.852% 79.516%, 81.09% 78.058%, 81.472% 76.699%, 81.984% 75.458%, 82.613% 74.354%, 83.346% 73.407%, 84.171% 72.636%, 85.074% 72.062%, 86.042% 71.703%, 87.063% 71.579%, 96.503% 71.579%, 96.503% 71.579%, 97.071% 71.51%, 97.609% 71.311%, 98.11% 70.991%, 98.569% 70.563%, 98.976% 70.037%, 99.325% 69.424%, 99.61% 68.735%, 99.822% 67.979%, 99.954% 67.17%, 100% 66.316%, 100% 5.263%, 100% 5.263%, 99.954% 4.409%, 99.822% 3.6%, 99.61% 2.844%, 99.325% 2.155%, 98.976% 1.542%, 98.569% 1.015%, 98.11% 0.587%, 97.609% 0.268%, 97.071% 0.069%, 96.503% 0%, 3.497% 0%);
+
+        &__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+
+    &__buttonContainer {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 16px;
+        right: 16px;
+        border-radius: 10px;
+        padding: 4px;
+        width: 40px;
+        height: 40px;
+        background: $yellow;
+
+        svg {
+            fill: none;
+            stroke: $white;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}

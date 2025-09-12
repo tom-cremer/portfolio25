@@ -28,10 +28,14 @@ const projets = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: z.object({
 		title: z.string(),
-		description: z.string(),
+		description1: z.string(),
+		description2: z.string().optional(),
+		image1: z.string(),
+		image2: z.string(),
 		tag: z.string(),
 		heroImage: z.string(),
-		url: z.string().url().optional(),
+		urls: z.array(z.string()).optional(),
+		tools: z.array(z.string()).optional(),
 		gallery: z.array(z.string()).optional(),
 		pubDate: z.preprocess(parseDate, z.date()).transform(formatDate),
 		updatedDate: z.coerce.date().optional(),

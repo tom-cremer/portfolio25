@@ -1,0 +1,207 @@
+@use "colors" as *;
+@use "fonts" as *;
+@use "mediaqueries" as *;
+
+.projectPost {
+    padding-top: 150px;
+    padding-bottom: 70px;
+    overflow: hidden;
+
+    &__wrapper {
+
+    }
+
+    &__main {
+        min-height: 100vh;
+
+        &__primary {
+
+            &__contentContainer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 60px;
+                @include w1024 {
+                    margin-bottom: 40px;
+                }
+
+                &__tag {
+                }
+
+                &__title {
+                    @include title;
+                    color: $text-color;
+                }
+
+                &__links {
+                    display: flex;
+                    gap: 10px;
+
+                    a {
+                        display: block;
+                        color: $text-color;
+                        transition: color 0.2s ease-in-out;
+
+                        svg {
+                            width: 30px;
+                            height: 30px;
+                        }
+
+                        &:hover, &:focus {
+                            color: $yellow;
+                        }
+                    }
+                }
+            }
+
+            &__container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+
+                @include w1024 {
+                    grid-template-columns: 1fr;
+                    max-width: 500px;
+                    margin: auto;
+                }
+
+
+                &__text {
+                    @include body;
+                    text-wrap: balance;
+                    line-height: 1.4;
+
+                }
+
+                &__imageContainer {
+                    width: 100%;
+                    height: 100%;
+
+
+                    &__img {
+                        width: 100%;
+                        height: 100%;
+                        aspect-ratio: 16/9;
+                    }
+                }
+            }
+
+            &__tools {
+                border: $yellow solid 2px;
+                border-radius: 15px;
+                padding: 20px 40px;
+                margin: 60px 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                gap: 20px;
+                min-height: 35px;
+                @include w1024 {
+                    max-width: 500px;
+                    margin: 50px auto;
+                    justify-content: center;
+                    padding: 15px 4%;
+                }
+                &__logo {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+
+        }
+
+        &__secondary {
+            margin-top: 80px;
+
+            &__contentContainer {
+                &__title {
+                    @include subtitle;
+                    color: $text-color;
+                    text-align: center;
+                }
+            }
+
+            &__galleryContainer {
+                margin-top: 40px;
+                display: block;
+
+                &__gallery {
+                    display: grid;
+                    gap: 20px;
+                    grid-template-areas:
+                    "a b b c"
+                    "a d e e"
+                    "f f g g";
+
+                    @include w1024 {
+                        margin: auto;
+                        max-width: 500px;
+                        width: 100%;
+                        grid-template-areas:
+                          "b b"
+                          "a c"
+                          "a d"
+                          "f f"
+                          "e e"
+                          "g g";
+                    }
+
+                    @include w600 {
+                        max-width: 100%;
+                        grid-template-areas:
+                          "b b"
+                          "a c"
+                          "a d"
+                          "f f"
+                          "e e"
+                          "g g";
+                    }
+
+                    &__imageContainer {
+                        width: 100%;
+                        height: 100%;
+
+                        &__img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        &:nth-child(1) {
+                            grid-area: a;
+                        }
+
+                        &:nth-child(2) {
+                            grid-area: b;
+                        }
+
+                        &:nth-child(3) {
+                            grid-area: c;
+                        }
+
+                        &:nth-child(4) {
+                            grid-area: d;
+                        }
+
+                        &:nth-child(5) {
+                            grid-area: e;
+                        }
+
+                        &:nth-child(6) {
+                            grid-area: f;
+                        }
+
+                        &:nth-child(7) {
+                            grid-area: g;
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+    }
+}

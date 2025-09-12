@@ -1,87 +1,124 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type {CollectionEntry} from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Tag from "../components/Tag.astro";
+import {SITE_TITLE} from "../consts";
 
 type Props = CollectionEntry<'projets'>['data'];
 
-const { title, description, tag, pubDate, updatedDate, heroImage } = Astro.props;
+const {
+    title,
+    description1,
+    description2,
+    image1,
+    image2,
+    tag,
+    tools,
+    gallery,
+    pubDate,
+    updatedDate,
+    heroImage,
+    urls
+} = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<head>
+    <BaseHead title={title} description={description1}/>
+</head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<p>{pubDate} </p>
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on {updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<Tag tag={tag}/>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
+<body>
+<Header/>
+<section class="projectPost">
+    <div class="wrapper wrapper--smaller projectPost--wrapper">
+        <div class="projectPost__main">
+            <div class="projectPost__main__primary">
+                <div class="projectPost__main__primary__contentContainer">
+                    <div class="projectPost__main__primary__contentContainer__tag">
+                        <Tag tag={tag}/>
+                    </div>
+                    <h2 class="projectPost__main__primary__contentContainer__title">
+                        {title}
+                    </h2>
+                    <div class="projectPost__main__primary__contentContainer__links">
+                        {urls && urls.map((url) => (
+                                <a href={url} target="_blank" rel="noopener noreferrer"
+                                   title={`${title} - ${url.includes('github') ? 'GitHub' : 'Website'}`}>
+                                    {url.includes('github') ? (
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round"
+                                                 stroke-linejoin="round"
+                                                 class="lucide lucide-github-icon lucide-github">
+                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                                                <path d="M9 18c-4.51 2-5-2-7-2"/>
+                                            </svg>
+                                    ) : (
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                 class="lucide lucide-link-icon lucide-link">
+                                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                                            </svg>
+                                    )}
+                                </a>
+                        ))}
+                    </div>
+                </div>
+                <div class="projectPost__main__primary__container">
+                    <div class="projectPost__main__primary__container__text">
+                        {description1}
+                    </div>
+                    <div class="projectPost__main__primary__container__imageContainer">
+                        <img alt={SITE_TITLE} src={image1}
+                             class="projectPost__main__primary__container__imageContainer__img">
+                    </div>
+                </div>
+                <div class="projectPost__main__primary__tools">
+                    {tools && tools.map((tool) => (
+                            <img src={`/src/assets/logos/${tool}.svg`} alt={tool}
+                                 title={tool.charAt(0).toUpperCase() + tool.slice(1)}
+                                 class="projectPost__main__primary__tools__logo"
+                            />
+                    ))}
+                </div>
+                <div class="projectPost__main__primary__container">
+                    <div class="projectPost__main__primary__container__imageContainer">
+                        <img alt={SITE_TITLE} src={image2}
+                             class="projectPost__main__primary__container__imageContainer__img">
+                    </div>
+                    <div class="projectPost__main__primary__container__text">
+                        {description2}
+                    </div>
+                </div>
+            </div>
+            <div class="projectPost__main__secondary">
+                <div class="projectPost__main__secondary__contentContainer">
+                    <h3 class="projectPost__main__secondary__contentContainer__title">
+                        Galerie
+                    </h3>
+                </div>
+
+                <div class="projectPost__main__secondary__galleryContainer">
+                    <div class="projectPost__main__secondary__galleryContainer__gallery">
+                        {gallery && gallery.map((image) => (
+                                <div class="projectPost__main__secondary__galleryContainer__gallery__imageContainer">
+                                    <img src={image} alt={title}
+                                         class="projectPost__main__secondary__galleryContainer__gallery__imageContainer__img"
+                                    />
+                                </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<Footer/>
+</body>
 </html>

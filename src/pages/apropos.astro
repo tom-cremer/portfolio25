@@ -1,62 +1,213 @@
 ---
-import BlogPost from '../layouts/BlogPost.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<BlogPost
-	title="A Propos"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage="/blog-placeholder-about.jpg"
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<Layout>
+    <section class="about">
+        <div class="wrapper wrapper--smaller about__wrapper">
+            <div class="about__main">
+                <div class="about__main__contentContainer">
+                    <h2 class="about__main__contentContainer__title">
+                        Un peu plus que du code&nbsp;!
+                    </h2>
+                </div>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+                <div class="about__main__primary">
+                    <div class="about__main__primary__imageContainer">
+                        <img src="/src/assets/portfolio_me.jpg" alt="Photo de Tom Cremer à l'athlétisme"
+                                class="about__main__primary__imageContainer__img">
+                    </div>
+                    <p class="about__main__primary__content">
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+                    </p>
+                </div>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+            </div>
+        </div>
+    </section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</BlogPost>
+    <section class="faq" aria-label="FAQ">
+        <div class="wrapper wrapper--smaller faq__wrapper">
+            <div class="faq__main">
+
+            </div>
+            <h2 class="faq__main__title">FAQ</h2>
+
+            <!-- data-multi="true" permet d'ouvrir plusieurs panneaux -->
+            <div class="faq__main__list" id="faqAccordion" data-multi="true">
+                <div class="faq__main__item">
+                    <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-1" id="trigger-1">
+                        Depuis combien de temps tu codes ?
+                        <span class="faq__main__icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq__main__panel" id="panel-1" role="region" aria-labelledby="trigger-1" hidden>
+                        <div class="faq__main__panel__inner">
+                            <p>Je code depuis X ans — mais j’ai commencé à bidouiller des sites bien avant.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq__main__item">
+                    <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-2" id="trigger-2">
+                        Que fais-tu quand tu ne codes pas ?
+                        <span class="faq__main__icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq__main__panel" id="panel-2" role="region" aria-labelledby="trigger-2" hidden>
+                        <div class="faq__main__panel__inner">
+                            <p>Je fais de l'athlé depuis 11 ans — j’aime bien décompresser sur la piste.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq__main__item">
+                    <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-3" id="trigger-3">
+                        Ton film préféré ?
+                        <span class="faq__main__icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq__main__panel" id="panel-3" role="region" aria-labelledby="trigger-3" hidden>
+                        <div class="faq__main__panel__inner">
+                            <p>Mon film préféré est <em>Nana</em>. Oui, vraiment.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const accordion = document.getElementById("faqAccordion");
+            if (!accordion) return;
+
+            const multi = accordion.getAttribute("data-multi") === "true";
+            const items = Array.from(accordion.querySelectorAll(".faq__main__item"));
+
+
+            function closePanel(trigger, panel) {
+                trigger.setAttribute("aria-expanded", "false");
+                // animate height to 0
+                panel.style.height = panel.scrollHeight + "px"; // set current for transition
+                requestAnimationFrame(() => {
+                    panel.style.transition = "height 260ms ease";
+                    panel.style.height = "0px";
+                });
+
+                // after transition, hide and cleanup
+                panel.addEventListener("transitionend", function handler() {
+                    panel.hidden = true;
+                    panel.style.removeProperty("height");
+                    panel.style.removeProperty("transition");
+                    panel.removeEventListener("transitionend", handler);
+                });
+            }
+
+            // helper : open a panel (animated)
+            function openPanel(trigger, panel) {
+                // if single-open, close others
+                if (!multi) {
+                    items.forEach(i => {
+                        const t = i.querySelector(".faq__main__trigger");
+                        const p = i.querySelector(".faq__main__panel");
+                        if (p !== panel && t.getAttribute("aria-expanded") === "true") {
+                            closePanel(t, p);
+                        }
+                    });
+                }
+
+                trigger.setAttribute("aria-expanded", "true");
+                panel.hidden = false;
+
+                // measure then animate to that height
+                const height = panel.scrollHeight;
+                panel.style.height = "0px";
+                requestAnimationFrame(() => {
+                    panel.style.transition = "height 260ms ease";
+                    panel.style.height = height + "px";
+                });
+
+                panel.addEventListener("transitionend", function handler() {
+                    // cleanup so content can be responsive
+                    panel.style.removeProperty("height");
+                    panel.style.removeProperty("transition");
+                    panel.removeEventListener("transitionend", handler);
+                });
+            }
+
+            // toggle
+            items.forEach(item => {
+                const trigger = item.querySelector(".faq__main__trigger");
+                const panel = item.querySelector(".faq__main__panel");
+
+                // ensure initial state sync
+                if (trigger.getAttribute("aria-expanded") === "true") {
+                    panel.hidden = false;
+                    panel.style.removeProperty("height");
+                } else {
+                    panel.hidden = true;
+                }
+
+                // click
+                trigger.addEventListener("click", () => {
+                    const expanded = trigger.getAttribute("aria-expanded") === "true";
+                    if (expanded) {
+                        closePanel(trigger, panel);
+                    } else {
+                        openPanel(trigger, panel);
+                    }
+                });
+
+                // keyboard accessibility
+                trigger.addEventListener("keydown", (e) => {
+                    const KEY = {
+                        ENTER: "Enter",
+                        SPACE: " ",
+                        ARROW_UP: "ArrowUp",
+                        ARROW_DOWN: "ArrowDown",
+                        HOME: "Home",
+                        END: "End",
+                    };
+
+                    switch (e.key) {
+                        case KEY.ENTER:
+                        case KEY.SPACE:
+                            e.preventDefault();
+                            trigger.click();
+                            break;
+
+                        case KEY.ARROW_DOWN: {
+                            e.preventDefault();
+                            // focus next trigger (wrap)
+                            const idx = items.indexOf(item);
+                            const next = items[(idx + 1) % items.length].querySelector(".faq__main__trigger");
+                            next.focus();
+                            break;
+                        }
+
+                        case KEY.ARROW_UP: {
+                            e.preventDefault();
+                            const idx = items.indexOf(item);
+                            const prev = items[(idx - 1 + items.length) % items.length].querySelector(".faq__main__trigger");
+                            prev.focus();
+                            break;
+                        }
+
+                        case KEY.HOME:
+                            e.preventDefault();
+                            items[0].querySelector(".faq__main__trigger").focus();
+                            break;
+
+                        case KEY.END:
+                            e.preventDefault();
+                            items[items.length - 1].querySelector(".faq__main__trigger").focus();
+                            break;
+
+                        default:
+                            break;
+                    }
+                });
+            });
+        });
+
+    </script>
+
+</Layout>

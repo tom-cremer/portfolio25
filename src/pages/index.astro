@@ -9,13 +9,13 @@ import TomCartoon from '../assets/cartoon_tom.png';
 import cartoon_tom from '../assets/cartoon-tom.png';
 
 import {SITE_TITLE} from "../consts";
+import Contact from "../components/Contact.astro";
 
 
 const posts = (await getCollection('projets')).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
 );
-// get only the 3 first posts
-const postsToShow = posts.slice(0, 3);
+let postsToShow = posts.filter(post => post.data.title !== "SEF").slice(-3).reverse();
 
 const brands = [
     {name: "Laravel", link: "/src/assets/logos/laravel.svg"}, // 1
@@ -29,6 +29,8 @@ const brands = [
     {name: "Svelte", link: "/src/assets/logos/svelte.svg"}, // 9
     {name: "MySQL", link: "/src/assets/logos/mysql.svg"}, // 10
     {name: "PHP", link: "/src/assets/logos/php.svg"}, // 11
+    {name: "Flutter", link: "/src/assets/logos/flutter.svg"}, // 12
+    {name: "Dart", link: "/src/assets/logos/dart.svg"}, // 13
 
 ];
 ---
@@ -298,88 +300,7 @@ const brands = [
 
         </div>
     </section>
-    <section class="contact" id="contact">
-        <div class="wrapper wrapper--smaller contact__wrapper">
-            <div class="contact__main">
-                <div class="contact__main__primary">
-                    <h2 class="contact__main__primary__title">
-                        Une idée,<br> Un projet&nbsp;?
-                    </h2>
-                    <p class="contact__main__primary__text">
-                        Parlons-en&nbsp;!
-                    </p>
-
-
-                </div>
-                <div class="contact__main__secondary">
-                    <div class="contact__main__secondary__buttonContainer">
-                        <a href="mailto:contact@tomcremer.be" title=""
-                           class="button contact__main__secondary__buttonContainer__button">
-                            C'est parti&nbsp;!
-                        </a>
-                    </div>
-                </div>
-                <!--<div class="contact__main__secondary">
-                    <form method="post" action="#contact" class="form">
-                        <fieldset class="form__group">
-                            <div class="from__row">
-                                <label for="firstname" class="form__label">Prénom</label>
-                                <input type="text" id="firstname" name="firstname" class="form__input" required>
-                            </div>
-                            <div class="from__row">
-                                <label for="lastname" class="form__label">Nom</label>
-                                <input type="text" id="lastname" name="lastname" class="form__input" required>
-                            </div>
-                        </fieldset>
-                        <div class="from__row">
-                            <label for="email" class="form__label">Email</label>
-                            <input type="email" id="email" name="email" class="form__input" required>
-                        </div>
-                        <div class="from__row">
-                            <label for="telephone" class="form__label">Téléphone</label>
-                            <input type="tel" id="telephone" name="telephone" class="form__input">
-                        </div>
-                        <div class="from__row">
-                            <label for="message" class="form__label">Message</label>
-                            <textarea id="message" name="message" class="form__input form__input&#45;&#45;textarea"
-                                      rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="button button&#45;&#45;yellow form__button">Envoyer</button>
-
-                    </form>
-                </div>-->
-            </div>
-            <div class="contact__background">
-                <div class="contact__background__mask">
-                    <div class="contact__background__mask__left"></div>
-                    <div class="contact__background__mask__right"></div>
-
-                </div>
-                <div class="contact__background__img"></div>
-            </div>
-        </div>
-
-    </section>
-    <script>
-        if (typeof window !== 'undefined') {
-            const button = document.querySelector('.contact__main__secondary__buttonContainer__button');
-            const container = document.querySelector('.contact__main__secondary__buttonContainer');
-
-            container?.addEventListener('mousemove', (e) => {
-                const rect = container.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-
-                button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-            });
-
-            container?.addEventListener('mouseleave', () => {
-                button.style.transition = 'transform 0.1s ease';
-                button.style.transform = 'translate(0, 0)';
-            });
-        }
-    </script>
-    <script src="/src/js/slider.js"></script>
+    <Contact/>
 
 </Layout>
 

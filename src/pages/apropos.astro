@@ -59,7 +59,9 @@ import Layout from "../layouts/Layout.astro";
                         </button>
                         <div class="faq__main__panel" id="panel-1" role="region" aria-labelledby="trigger-1" hidden>
                             <div class="faq__main__panel__inner">
-                                <p>Je code depuis que j'ai 16 ans, j'ai commencé avec arduino puis j'ai appris python
+                                <p>Je code depuis que j'ai 16 ans
+                                    ({new Date().getFullYear() - new Date(2004, 3, 29).getFullYear()} ans actuellement),
+                                    j'ai commencé avec arduino puis j'ai appris python
                                     ensuite j'ai découvert le web&#x2026;</p>
                             </div>
                         </div>
@@ -95,6 +97,64 @@ import Layout from "../layouts/Layout.astro";
                         </div>
                     </div>
 
+                    <div class="faq__main__item">
+                        <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-4" id="trigger-4">
+                            Team Café ou Thé&nbsp;?
+                            <span class="faq__main__icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq__main__panel" id="panel-4" role="region" aria-labelledby="trigger-4" hidden>
+                            <div class="faq__main__panel__inner">
+                                <p>
+                                    Team Thé, avec deux petits carrés de sucre ou si j'ai le choix une bonne cuillère de
+                                    miel
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq__main__item">
+                        <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-5" id="trigger-5">
+                            Quel sont tes trois jeux du moment&nbsp;?
+                            <span class="faq__main__icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq__main__panel" id="panel-5" role="region" aria-labelledby="trigger-5" hidden>
+                            <div class="faq__main__panel__inner">
+                                <p>
+                                    En ce moment, je joue principalement à Cult of the Lamb, Elite: Dangerous et
+                                    évidemment Hollow Knight: Silksong
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq__main__item">
+                        <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-6" id="trigger-6">
+                            Front-end ou Back-end&nbsp;? (Et pourquoi&nbsp;?)
+                            <span class="faq__main__icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq__main__panel" id="panel-6" role="region" aria-labelledby="trigger-6" hidden>
+                            <div class="faq__main__panel__inner">
+                                <p>
+                                    Le but serait de faire Full-stack, mais à choisir je penche plus sur le Back-end,
+                                    pourquoi, parce que j'aime bien me creuser la tête, de plus j'aime la logique&nbsp;!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq__main__item">
+                        <button class="faq__main__trigger" aria-expanded="false" aria-controls="panel-7" id="trigger-7">
+                            Ton éditeur de code préféré ?
+                            <span class="faq__main__icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq__main__panel" id="panel-7" role="region" aria-labelledby="trigger-7" hidden>
+                            <div class="faq__main__panel__inner">
+                                <p>
+                                    <em>PHPStorm</em>&nbsp;! Il n'y a pas de débat, il y a tout, c'est une mine d'outils, {new Date().getFullYear() - new Date(2022, 9, 15).getFullYear()} ans que je l'utilise et je n'ai pas encore fini d'en apprendre sur lui&nbsp;!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

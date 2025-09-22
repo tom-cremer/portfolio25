@@ -7,7 +7,7 @@ import {Image} from "astro:assets";
 
 const posts = (await getCollection('projets')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+).reverse();
 ---
 
 <Layout>

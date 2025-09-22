@@ -58,7 +58,7 @@
     transition: width 0.3s;
   }
 
-  &:hover {
+  &:hover, &:focus {
     color: $yellow;
     &:after {
       width: 100%;

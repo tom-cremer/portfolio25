@@ -15,9 +15,9 @@ de l’ASBL et faciliter l’accès aux informations essentielles. L’expérien
 une navigation simple et intuitive adaptée aussi bien aux bénéficiaires qu’aux partenaires potentiels."
 
 tag: 'Web'
-image1: '/src/assets/sef/home.png'
-image2: '/src/assets/sef/contact.png'
-heroImage: '/src/assets/sef/home.png'
+image1: '/assets/sef/home.png'
+image2: '/assets/sef/contact.png'
+heroImage: '/assets/sef/home.png'
 urls:
   - 'https://github.com/tom-cremer/Projet-SEF'
 tools:
@@ -28,13 +28,13 @@ tools:
 
 
 gallery:
-  - '/src/assets/sef/phone.png'
-  - '/src/assets/sef/logo1.png'
-  - '/src/assets/sef/mc1.png'
-  - '/src/assets/sef/poles.png'
-  - '/src/assets/sef/footer.png'
-  - '/src/assets/sef/news1.png'
-  - '/src/assets/sef/how.png'
+  - '/assets/sef/phone.png'
+  - '/assets/sef/logo1.png'
+  - '/assets/sef/mc1.png'
+  - '/assets/sef/poles.png'
+  - '/assets/sef/footer.png'
+  - '/assets/sef/news1.png'
+  - '/assets/sef/how.png'
  
 pubDate: '10-05-2024'
 ---

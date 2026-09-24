@@ -12,9 +12,9 @@ l’ergonomie, en veillant à ce que chaque section soit agréable à parcourir,
 ordinateur que sur mobile."
 
 tag: 'Web'
-image1: '/src/assets/portfoliov1/home.png'
-image2: '/src/assets/portfoliov1/project.png'
-heroImage: '/src/assets/portfoliov1/home.png'
+image1: '/assets/portfoliov1/home.png'
+image2: '/assets/portfoliov1/project.png'
+heroImage: '/assets/portfoliov1/home.png'
 urls:
   - 'https://github.com/tom-cremer/Portfolio'
 tools:
@@ -26,12 +26,12 @@ tools:
 
 
 gallery:
-  - '/src/assets/portfoliov1/cards.png'
-  - '/src/assets/portfoliov1/contact.png'
-  - '/src/assets/portfoliov1/logo.png'
-  - '/src/assets/portfoliov1/data.png'
-  - '/src/assets/portfoliov1/river.png'
-  - '/src/assets/portfoliov1/card.png'
+  - '/assets/portfoliov1/cards.png'
+  - '/assets/portfoliov1/contact.png'
+  - '/assets/portfoliov1/logo.png'
+  - '/assets/portfoliov1/data.png'
+  - '/assets/portfoliov1/river.png'
+  - '/assets/portfoliov1/card.png'
 
 
 pubDate: '15-05-2024'

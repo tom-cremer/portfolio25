@@ -14,9 +14,9 @@ partage de liens soit fluide et intuitif. Le résultat a été très apprécié 
 technique que la clarté du rendu final."
 
 tag: 'Mobile'
-image1: '/src/assets/tethr/presentation.png'
-image2: '/src/assets/tethr/login.png'
-heroImage: '/src/assets/tethr/presentation.png'
+image1: '/assets/tethr/presentation.png'
+image2: '/assets/tethr/login.png'
+heroImage: '/assets/tethr/presentation.png'
 urls:
   - 'https://github.com/tom-cremer/Tethr/tree/devlop'
 tools:
@@ -24,11 +24,11 @@ tools:
   - 'dart'
 
 gallery:
-  - '/src/assets/tethr/profile.png'
-  - '/src/assets/tethr/presentation.png'
-  - '/src/assets/tethr/card.png'
-  - '/src/assets/tethr/shop.png'
-  - '/src/assets/tethr/login.png'
+  - '/assets/tethr/profile.png'
+  - '/assets/tethr/presentation.png'
+  - '/assets/tethr/card.png'
+  - '/assets/tethr/shop.png'
+  - '/assets/tethr/login.png'
 
 
 pubDate: '18-01-2025'

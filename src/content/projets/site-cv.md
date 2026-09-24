@@ -13,9 +13,9 @@ description2: "Pour réaliser ce projet, j'ai commencé par analyser en détail 
   consolider mes connaissances en développement web tout en créant un portfolio personnalisé et professionnel."
 
 tag: 'Web'
-image1: '/src/assets/sitecv/home.png'
-image2: '/src/assets/sitecv/portfolio.png'
-heroImage: '/src/assets/sitecv/home.png'
+image1: '/assets/sitecv/home.png'
+image2: '/assets/sitecv/portfolio.png'
+heroImage: '/assets/sitecv/home.png'
 urls:
   - 'https://github.com/tom-cremer/site_cv'
   - 'https://cv.tomcremer.be'
@@ -25,13 +25,13 @@ tools:
   - 'javascript'
 
 gallery:
-  - '/src/assets/sitecv/rocket1.png'
-  - '/src/assets/sitecv/work.png'
-  - '/src/assets/sitecv/robot.png'
-  - '/src/assets/sitecv/target.png'
-  - '/src/assets/sitecv/rocket2.png'
-  - '/src/assets/sitecv/portfolio.png'
-  - '/src/assets/sitecv/home.png'
+  - '/assets/sitecv/rocket1.png'
+  - '/assets/sitecv/work.png'
+  - '/assets/sitecv/robot.png'
+  - '/assets/sitecv/target.png'
+  - '/assets/sitecv/rocket2.png'
+  - '/assets/sitecv/portfolio.png'
+  - '/assets/sitecv/home.png'
 
 pubDate: '25-06-2024'
 ---

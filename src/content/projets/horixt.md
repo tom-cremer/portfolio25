@@ -14,9 +14,9 @@ impression de fiabilité. L’ensemble a été développé avec Laravel et Livew
 mes compétences full-stack tout en construisant une application robuste et évolutive."
 
 tag: 'Web'
-image1: '/src/assets/horixt/home.png'
-image2: '/src/assets/horixt/todos.png'
-heroImage: '/src/assets/horixt/home.png'
+image1: '/assets/horixt/home.png'
+image2: '/assets/horixt/todos.png'
+heroImage: '/assets/horixt/home.png'
 urls:
   - 'https://github.com/tom-cremer/Horixt'
 
@@ -27,12 +27,12 @@ tools:
   - 'mysql'
 
 gallery:
-  - '/src/assets/horixt/menu.png'
-  - '/src/assets/horixt/notes.png'
-  - '/src/assets/horixt/logo.png'
-  - '/src/assets/horixt/projects.png'
-  - '/src/assets/horixt/todo.png'
-  - '/src/assets/horixt/members.png'
+  - '/assets/horixt/menu.png'
+  - '/assets/horixt/notes.png'
+  - '/assets/horixt/logo.png'
+  - '/assets/horixt/projects.png'
+  - '/assets/horixt/todo.png'
+  - '/assets/horixt/members.png'
 
 
 pubDate: '20-03-2024'

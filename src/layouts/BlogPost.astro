@@ -82,7 +82,7 @@ const {
                 </div>
                 <div class="projectPost__main__primary__tools">
                     {tools && tools.map((tool) => (
-                            <img src={`/src/assets/logos/${tool}.svg`} alt={tool}
+                            <img src={`/assets/logos/${tool.toLowerCase()}.svg`} alt={tool}
                                  title={tool.charAt(0).toUpperCase() + tool.slice(1)}
                                  class="projectPost__main__primary__tools__logo"
                             />

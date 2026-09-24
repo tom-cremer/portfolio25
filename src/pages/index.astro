@@ -18,19 +18,19 @@ const posts = (await getCollection('projets')).sort(
 let postsToShow = posts.filter(post => post.data.title !== "SEF").slice(-3).reverse();
 
 const brands = [
-    {name: "Laravel", link: "/src/assets/logos/laravel.svg"}, // 1
-    {name: "Astro", link: "/src/assets/logos/astro.svg"}, // 2
-    {name: "CSS", link: "/src/assets/logos/css.svg"}, // 3
-    {name: "HTML", link: "/src/assets/logos/html.svg"}, // 4
-    {name: "Sass", link: "/src/assets/logos/sass.svg"}, // 5
-    {name: "Python", link: "/src/assets/logos/python.svg"}, // 6
-    {name: "JavaScript", link: "/src/assets/logos/javascript.svg"}, // 7
-    {name: "TypeScript", link: "/src/assets/logos/typescript.svg"}, // 8
-    {name: "Svelte", link: "/src/assets/logos/svelte.svg"}, // 9
-    {name: "MySQL", link: "/src/assets/logos/mysql.svg"}, // 10
-    {name: "PHP", link: "/src/assets/logos/php.svg"}, // 11
-    {name: "Flutter", link: "/src/assets/logos/flutter.svg"}, // 12
-    {name: "Dart", link: "/src/assets/logos/dart.svg"}, // 13
+    {name: "Laravel", link: "/assets/logos/laravel.svg"}, // 1
+    {name: "Astro", link: "/assets/logos/astro.svg"}, // 2
+    {name: "CSS", link: "/assets/logos/css.svg"}, // 3
+    {name: "HTML", link: "/assets/logos/html.svg"}, // 4
+    {name: "Sass", link: "/assets/logos/sass.svg"}, // 5
+    {name: "Python", link: "/assets/logos/python.svg"}, // 6
+    {name: "JavaScript", link: "/assets/logos/javascript.svg"}, // 7
+    {name: "TypeScript", link: "/assets/logos/typescript.svg"}, // 8
+    {name: "Svelte", link: "/assets/logos/svelte.svg"}, // 9
+    {name: "MySQL", link: "/assets/logos/mysql.svg"}, // 10
+    {name: "PHP", link: "/assets/logos/php.svg"}, // 11
+    {name: "Flutter", link: "/assets/logos/flutter.svg"}, // 12
+    {name: "Dart", link: "/assets/logos/dart.svg"}, // 13
 
 ];
 ---

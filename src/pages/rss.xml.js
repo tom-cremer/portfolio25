@@ -1,25 +1,21 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-
-const MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
-
-// pubDate est formaté en "dd Mois yyyy" par le schéma, on le reconvertit en Date
-const toDate = (formatted) => {
-	const [day, month, year] = formatted.split(' ');
-	return new Date(Number(year), MONTHS.indexOf(month.toLowerCase()), Number(day));
-};
+import {getCollection} from 'astro:content';
+import {SITE_TITLE} from '../consts';
+import {ui} from '../i18n/ui';
+import {localizeEntries} from '../i18n/localize';
+import {localizePath} from '../i18n/utils';
 
 export async function GET(context) {
-	const posts = await getCollection('projets');
+	const projects = localizeEntries(await getCollection('projets'), 'fr');
 	return rss({
 		title: SITE_TITLE,
-		description: SITE_DESCRIPTION,
+		description: ui.fr['meta.home.description'],
 		site: context.site,
-		items: posts.map((post) => ({
-			...post.data,
-			pubDate: toDate(post.data.pubDate),
-			link: `/projets/${post.id}/`,
+		items: projects.map(({entry, slug}) => ({
+			title: entry.data.title,
+			description: entry.data.description1,
+			pubDate: entry.data.pubDate,
+			link: `${localizePath('projects', 'fr', slug)}/`,
 		})),
 	});
 }

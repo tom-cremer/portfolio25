@@ -1,0 +1,102 @@
+@use "colors" as *;
+@use "fonts" as *;
+
+// Menu déroulant (en-tête desktop)
+.lang-switcher--dropdown {
+    position: relative;
+    font-family: $textFont;
+    font-size: $xs;
+    font-weight: $semi-bold;
+
+    &[open] .lang-switcher__chevron {
+        transform: rotate(180deg);
+    }
+}
+
+.lang-switcher__toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    color: $text-color;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color 300ms ease-in-out;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+        color: $yellow;
+    }
+}
+
+.lang-switcher__chevron {
+    transition: transform 200ms ease-in-out;
+}
+
+.lang-switcher__menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    z-index: 60;
+    min-width: 130px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: $white;
+    border: 1px solid $light-grey;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba($black, .08);
+}
+
+.lang-switcher__option {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: $text-color;
+    font-weight: $regular;
+    text-decoration: none;
+    transition: background-color 200ms ease-in-out;
+
+    &:hover,
+    &:focus-visible {
+        background-color: $background-color;
+    }
+
+    &--active {
+        font-weight: $semi-bold;
+        text-decoration: underline;
+    }
+}
+
+// Version en ligne (menu burger, fond sombre) : mêmes couleurs que les autres liens du menu
+.lang-switcher--inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: $bold;
+}
+
+.header__main__overlay .lang-switcher__item {
+    color: $white;
+    text-decoration: none;
+    transition: color 300ms ease-in-out;
+
+    &:hover,
+    &:focus-visible,
+    &--active {
+        color: $yellow;
+    }
+}
+
+.header__main__overlay .lang-switcher__separator {
+    color: $white;
+    opacity: .5;
+}

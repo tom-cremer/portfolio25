@@ -2,17 +2,28 @@
 // Import the global.scss file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/main.css';
-import { SITE_TITLE } from '../consts';
+import {SITE_TITLE} from '../consts';
+import {getAlternatePath, getLang, withTrailingSlash} from '../i18n/utils';
+import type {Lang} from '../i18n/ui';
 
 interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	canonical?: string;
+	alternates?: Partial<Record<Lang, string>>;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const {title, description, image = '/blog-placeholder-1.jpg', canonical, alternates} = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const pathname = Astro.url.pathname;
+const absolute = (path: string) => new URL(withTrailingSlash(path), Astro.site).href;
 
-const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+const canonicalURL = absolute(canonical ?? pathname);
+const resolved = alternates ?? {fr: getAlternatePath(pathname, 'fr'), en: getAlternatePath(pathname, 'en')};
+const alternateLinks = (Object.entries(resolved) as [Lang, string | undefined][])
+	.filter((pair): pair is [Lang, string] => Boolean(pair[1]));
+const ogLocale = {fr: 'fr_BE', en: 'en_US'} as const;
 ---
 
 <!-- Global Metadata -->
@@ -35,6 +46,10 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+{alternateLinks.length > 1 && alternateLinks.map(([l, path]) => (
+	<link rel="alternate" hreflang={l} href={absolute(path)} />
+))}
+{alternateLinks.length > 1 && resolved.fr && <link rel="alternate" hreflang="x-default" href={absolute(resolved.fr)} />}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -43,6 +58,8 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
+<meta property="og:locale" content={ogLocale[lang]} />
+{alternateLinks.filter(([l]) => l !== lang).map(([l]) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />

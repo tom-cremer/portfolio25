@@ -1,0 +1,28 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import BlogPost from '../layouts/BlogPost.astro';
+import {availableLangs, type Localized} from '../i18n/localize';
+import {localizePath} from '../i18n/utils';
+import type {Lang} from '../i18n/ui';
+
+interface Props {
+    lang: Lang;
+    item: Localized<CollectionEntry<'projets'>>;
+    entries: CollectionEntry<'projets'>[];
+}
+
+const {item, entries} = Astro.props;
+const available = availableLangs(entries, item.slug);
+const pathFor = (l: Lang) => localizePath('projects', l, item.slug);
+
+// hreflang uniquement entre versions réellement traduites ; une page de repli pointe vers l'original FR.
+const alternates = item.isFallback
+    ? {}
+    : Object.fromEntries(available.map((l) => [l, pathFor(l)])) as Partial<Record<Lang, string>>;
+const canonical = item.isFallback ? pathFor('fr') : undefined;
+// Le sélecteur de langue : la page EN existe toujours (repli), la page FR seulement si le contenu FR existe.
+const langPaths = {fr: available.includes('fr') ? pathFor('fr') : undefined, en: pathFor('en')};
+---
+
+<BlogPost {...item.entry.data} isFallback={item.isFallback} canonical={canonical} alternates={alternates}
+          langPaths={langPaths}/>

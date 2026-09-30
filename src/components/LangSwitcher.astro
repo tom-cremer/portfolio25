@@ -1,0 +1,71 @@
+---
+import {getAlternatePath, getLang, localizePath, useTranslations} from '../i18n/utils';
+import {languages, type Lang} from '../i18n/ui';
+
+interface Props {
+    langPaths?: Partial<Record<Lang, string>>;
+    // dropdown : en-tête desktop ; inline : menu burger
+    variant?: 'dropdown' | 'inline';
+}
+
+const {langPaths, variant = 'dropdown'} = Astro.props;
+const current = getLang(Astro.currentLocale);
+const t = useTranslations(current);
+const hrefFor = (lang: Lang) => langPaths
+    ? (langPaths[lang] ?? localizePath('home', lang))
+    : getAlternatePath(Astro.url.pathname, lang);
+const langs = Object.keys(languages) as Lang[];
+---
+
+{variant === 'dropdown' ? (
+    <details class="lang-switcher lang-switcher--dropdown">
+        <summary class="lang-switcher__toggle" aria-label={`${t('lang.switch')} (${languages[current]})`}>
+            <span>{current.toUpperCase()}</span>
+            <svg class="lang-switcher__chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>
+        </summary>
+        <ul class="lang-switcher__menu">
+            {langs.map((lang) => (
+                <li>
+                    <a href={hrefFor(lang)} hreflang={lang} lang={lang}
+                       class={`lang-switcher__option ${lang === current ? 'lang-switcher__option--active' : ''}`}
+                       aria-current={lang === current ? 'true' : undefined}>
+                        {languages[lang]}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </details>
+) : (
+    <div class="lang-switcher lang-switcher--inline" role="group" aria-label={t('lang.switch')}>
+        {langs.map((lang, index) => (
+            <>
+                {index > 0 && <span class="lang-switcher__separator" aria-hidden="true">·</span>}
+                {lang === current
+                    ? <span class="lang-switcher__item lang-switcher__item--active" aria-current="true">{languages[lang]}</span>
+                    : <a href={hrefFor(lang)} hreflang={lang} lang={lang} class="lang-switcher__item">{languages[lang]}</a>}
+            </>
+        ))}
+    </div>
+)}
+
+<script>
+    // Ferme le menu de langue au clic extérieur ou avec Échap
+    const dropdowns = document.querySelectorAll<HTMLDetailsElement>('.lang-switcher--dropdown');
+    document.addEventListener('click', (event) => {
+        dropdowns.forEach((dropdown) => {
+            if (dropdown.open && !dropdown.contains(event.target as Node)) dropdown.open = false;
+        });
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        dropdowns.forEach((dropdown) => {
+            if (!dropdown.open) return;
+            dropdown.open = false;
+            dropdown.querySelector('summary')?.focus();
+        });
+    });
+</script>

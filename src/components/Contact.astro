@@ -1,4 +1,8 @@
 ---
+import {getLang, useTranslations} from '../i18n/utils';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 
 ---
 
@@ -6,11 +10,9 @@
     <div class="wrapper wrapper--smaller contact__wrapper">
         <div class="contact__main">
             <div class="contact__main__primary">
-                <h2 class="contact__main__primary__title">
-                    Une idée,<br> Un projet&nbsp;?
-                </h2>
+                <h2 class="contact__main__primary__title" set:html={t('contact.titleHtml')}/>
                 <p class="contact__main__primary__text">
-                    Parlons-en&nbsp;!
+                    {t('contact.text')}
                 </p>
 
 
@@ -19,7 +21,7 @@
                 <div class="contact__main__secondary__buttonContainer">
                     <a href="mailto:contact@tomcremer.be" title=""
                        class="button contact__main__secondary__buttonContainer__button">
-                        C'est parti&nbsp;!
+                        {t('contact.button')}
                     </a>
                 </div>
             </div>

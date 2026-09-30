@@ -1,13 +1,26 @@
 ---
 import HeaderLink from './HeaderLink.astro';
+import LangSwitcher from './LangSwitcher.astro';
 import {SITE_TITLE} from '../consts';
+import {getLang, localizePath, useTranslations} from '../i18n/utils';
+import type {Lang} from '../i18n/ui';
+
+interface Props {
+    langPaths?: Partial<Record<Lang, string>>;
+}
+
+const {langPaths} = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const home = localizePath('home', lang);
+const contactHref = `${home}#contact`;
 ---
 
 
 <header class="header">
     <div class="wrapper wrapper--small">
         <div class="header__main">
-            <a href="/" class="header__main__logo">
+            <a href={home} class="header__main__logo">
                 <span>
                     {SITE_TITLE}
                 </span>
@@ -18,20 +31,21 @@ import {SITE_TITLE} from '../consts';
                 </svg>
             </a>
             <nav class="header__main__menu">
-                <h2 class="hidden">Menu Principal</h2>
+                <h2 class="hidden">{t('nav.menuTitle')}</h2>
                 <ul class="header__main__menu__list">
                     <li class="header__main__menu__list__item">
-                        <HeaderLink href="/" title="Accueil">Accueil</HeaderLink>
+                        <HeaderLink href={home} title={t('nav.home')}>{t('nav.home')}</HeaderLink>
                     </li>
                     <li class="header__main__menu__list__item">
-                        <HeaderLink href="/projets" title="Projets">Projets</HeaderLink>
+                        <HeaderLink href={localizePath('projects', lang)} title={t('nav.projects')}>{t('nav.projects')}</HeaderLink>
                     </li>
                     <li class="header__main__menu__list__item">
-                        <HeaderLink href="/apropos" title="A Propos">A Propos</HeaderLink>
+                        <HeaderLink href={localizePath('about', lang)} title={t('nav.about')}>{t('nav.about')}</HeaderLink>
                     </li>
                 </ul>
             </nav>
             <div class="header__main__contactContainer">
+                <LangSwitcher langPaths={langPaths}/>
                 <a href="https://github.com/tom-cremer" title="GitHub" target="_blank"
                    rel="noopener noreferrer" class="header__main__contactContainer__github">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -41,8 +55,8 @@ import {SITE_TITLE} from '../consts';
                         <path d="M9 18c-4.51 2-5-2-7-2"/>
                     </svg>
                 </a>
-                <a href="/#contact" title="Contact" class="button header__main__contactContainer__contact">
-                    Contact
+                <a href={contactHref} title={t('nav.contact')} class="button header__main__contactContainer__contact">
+                    {t('nav.contact')}
                 </a>
             </div>
 
@@ -54,16 +68,16 @@ import {SITE_TITLE} from '../consts';
             </label>
             <div class="header__main__overlay">
                 <nav class="header__main__overlay__menu">
-                    <h2 class="hidden">Burger Menu</h2>
+                    <h2 class="hidden">{t('nav.burgerTitle')}</h2>
                     <ul class="header__main__overlay__menu__list">
                         <li class="header__main__overlay__menu__list__item">
-                            <HeaderLink href="/" title="Accueil">Accueil</HeaderLink>
+                            <HeaderLink href={home} title={t('nav.home')}>{t('nav.home')}</HeaderLink>
                         </li>
                         <li class="header__main__overlay__menu__list__item">
-                            <HeaderLink href="/projets" title="Projets">Projets</HeaderLink>
+                            <HeaderLink href={localizePath('projects', lang)} title={t('nav.projects')}>{t('nav.projects')}</HeaderLink>
                         </li>
                         <li class="header__main__overlay__menu__list__item">
-                            <HeaderLink href="/apropos" title="A Propos">A Propos</HeaderLink>
+                            <HeaderLink href={localizePath('about', lang)} title={t('nav.about')}>{t('nav.about')}</HeaderLink>
                         </li>
                         <li class="header__main__overlay__menu__list__item">
                             <HeaderLink href="https://github.com/tom-cremer" title="Github - Tom Cremer" target="_blank"
@@ -72,7 +86,10 @@ import {SITE_TITLE} from '../consts';
                             </HeaderLink>
                         </li>
                         <li class="header__main__overlay__menu__list__item">
-                            <HeaderLink href="/#contact" title="Contact">Contact</HeaderLink>
+                            <HeaderLink href={contactHref} title={t('nav.contact')}>{t('nav.contact')}</HeaderLink>
+                        </li>
+                        <li class="header__main__overlay__menu__list__item">
+                            <LangSwitcher langPaths={langPaths} variant="inline"/>
                         </li>
                     </ul>
                 </nav>

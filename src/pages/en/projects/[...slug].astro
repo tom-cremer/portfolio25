@@ -1,0 +1,14 @@
+---
+import {getCollection} from 'astro:content';
+import ProjectPage from '../../../views/ProjectPage.astro';
+import {localizeEntries} from '../../../i18n/localize';
+
+export async function getStaticPaths() {
+    const entries = await getCollection('projets');
+    return localizeEntries(entries, 'en').map((item) => ({params: {slug: item.slug}, props: {item, entries}}));
+}
+
+const {item, entries} = Astro.props;
+---
+
+<ProjectPage lang="en" item={item} entries={entries}/>

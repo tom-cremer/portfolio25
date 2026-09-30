@@ -1,0 +1,311 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BrandLabel from "../components/BrandLabel.astro";
+import Tag from "../components/Tag.astro";
+
+import {getCollection} from 'astro:content';
+import {Image} from 'astro:assets';
+import TomCartoon from '../assets/cartoon_tom.png';
+import cartoon_tom from '../assets/cartoon-tom.png';
+
+import {SITE_TITLE} from "../consts";
+import Contact from "../components/Contact.astro";
+import {useTranslations, localizePath} from '../i18n/utils';
+import {getLocalizedEntries} from '../i18n/content';
+import {byNewest} from '../i18n/localize';
+import type {Lang} from '../i18n/ui';
+
+interface Props {
+    lang: Lang;
+}
+
+
+const {lang} = Astro.props;
+const t = useTranslations(lang);
+const projectsToShow = byNewest(await getLocalizedEntries('projets', lang))
+    .filter((item) => item.entry.data.title !== "SEF")
+    .slice(0, 3);
+
+const brands = [
+    {name: "Laravel", link: "/assets/logos/laravel.svg"}, // 1
+    {name: "Astro", link: "/assets/logos/astro.svg"}, // 2
+    {name: "CSS", link: "/assets/logos/css.svg"}, // 3
+    {name: "HTML", link: "/assets/logos/html.svg"}, // 4
+    {name: "Sass", link: "/assets/logos/sass.svg"}, // 5
+    {name: "Python", link: "/assets/logos/python.svg"}, // 6
+    {name: "JavaScript", link: "/assets/logos/javascript.svg"}, // 7
+    {name: "TypeScript", link: "/assets/logos/typescript.svg"}, // 8
+    {name: "Svelte", link: "/assets/logos/svelte.svg"}, // 9
+    {name: "MySQL", link: "/assets/logos/mysql.svg"}, // 10
+    {name: "PHP", link: "/assets/logos/php.svg"}, // 11
+    {name: "Flutter", link: "/assets/logos/flutter.svg"}, // 12
+    {name: "Dart", link: "/assets/logos/dart.svg"}, // 13
+
+];
+---
+
+<Layout title={t('meta.home.title')} description={t('meta.home.description')}>
+    <section class="welcome">
+        <div class="wrapper wrapper--text welcome__wrapper">
+            <div class="welcome__main">
+                <!--<div class="versions">
+                    <div class="tag tag&#45;&#45;yellow">
+                        <span class="tag__text ">Version 0.9 </span>
+                    </div>
+                    <div class="info-bubble">
+                        <div class="info-bubble__contentContainer">
+                            <span class="info-bubble__contentContainer__title">En construction:</span>
+                            <p class="info-bubble__contentContainer__text">Le site est en cours de
+                                construction, mais n'hésitez pas à découvrir un avant-goût de mon
+                                savoir-faire&nbsp;! </p>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="welcome__main__contentContainer">
+                    <div class="welcome__main__contentContainer__jobs">
+                        <span class="welcome__main__contentContainer__jobs__2">{t('home.jobs.2')}</span>
+                        <span class="welcome__main__contentContainer__jobs__1">{t('home.jobs.1')}</span>
+                    </div>
+                    <h1 class="welcome__main__contentContainer__title">
+                        Tom Cremer
+                    </h1>
+                    <p class="welcome__main__contentContainer__text">
+                        {t('home.welcome')}
+                    </p>
+
+                </div>
+
+                <div class="welcome__main__secondary">
+                    <div class="welcome__main__secondary__imageContainer">
+                        <Image class="welcome__main__secondary__imageContainer__img"
+                               src={TomCartoon}
+                               alt={t('home.heroAlt')}/>
+                    </div>
+                    <div class="welcome__main__secondary__background">
+                        <div class="welcome__main__secondary__background__mask">
+                            <div class="welcome__main__secondary__background__mask__left"></div>
+                            <div class="welcome__main__secondary__background__mask__right"></div>
+
+                        </div>
+                        <div class="welcome__main__secondary__background__img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="solutions">
+        <div class="wrapper wrapper--smaller solutions__wrapper">
+            <div class="solutions__main">
+                <div class="solutions__main__aside">
+                    <h2 class="solutions__main__aside__title">
+                        {t('home.solutions.title')}
+                    </h2>
+                </div>
+                <div class="solutions__main__contentContainer">
+                    <h3 class="solutions__main__contentContainer__subtitle">
+                        {t('home.solutions.subtitle')}
+                    </h3>
+                    <p class="solutions__main__contentContainer__text">
+                        {t('home.solutions.text')}
+                    </p>
+                </div>
+                <div class="solutions__main__infos">
+                    <div class="solutions__main__infos__item">
+                        <h4 class="solutions__main__infos__item__title">
+                            {t('home.stats.experience')}
+                        </h4>
+                        <p class="solutions__main__infos__item__text">
+                            +3&nbsp;<span>{t('home.stats.years')}</span>
+                        </p>
+                    </div>
+                    <div class="solutions__main__infos__item">
+                        <h4 class="solutions__main__infos__item__title">
+                            {t('home.stats.projects')}
+                        </h4>
+                        <p class="solutions__main__infos__item__text">
+                            +9&nbsp;<span>{t('home.stats.completed')}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="projets">
+        <div class="wrapper wrapper--smaller projets__wrapper">
+            <div class="projets__main">
+                <div class="projets__main__contentContainer">
+                    <h2 class="projets__main__contentContainer__title">
+                            {t('projects.title')}
+                        </h2>
+                    <a href={localizePath('projects', lang)} title={t('home.projects.allTitle')}
+                       class="link link--yellow projets__main__contentContainer__button">
+                        <span>{t('home.projects.all')}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link-icon lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                    <p class="projets__main__contentContainer__text">
+                        {t('home.projects.text')}
+                    </p>
+                </div>
+                <div class="projets__main__sliderContainer">
+                    <div class="projets__main__sliderContainer__slider" id="slider">
+                        {projectsToShow.map((item) => (
+                                <a href={localizePath('projects', lang, item.slug)} title={item.entry.data.title} class="card-project">
+                                    <div class="card-project__contentContainer">
+                                        <h3 class="card-project__contentContainer__title">
+                                            {item.entry.data.title}
+                                        </h3>
+                                        <Tag tag={item.entry.data.tag}/>
+                                    </div>
+                                    <div class="card-project__imageContainer">
+                                        <Image class="card-project__imageContainer__img"
+                                               src={item.entry.data.heroImage}
+                                               alt={t('project.imageAlt', {title: item.entry.data.title})}
+                                               width="100%" height="100%"/>
+                                    </div>
+                                    <div class="card-project__buttonContainer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24">
+                                            <path d="M18 8L22 12L18 16"/>
+                                            <path d="M2 12H22"/>
+                                        </svg>
+                                    </div>
+                                </a>
+                        ))}
+                    </div>
+
+
+                    <!--<button class="slider-btn prev" id="prevBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="lucide lucide-chevron-left-icon lucide-chevron-left">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                    </button>
+                    <button class="slider-btn next" id="nextBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </button>-->
+
+                    <!-- Points -->
+                    <div class="slider-dots" id="sliderDots"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="tools">
+        <div class="wrapper wrapper--large tools__wrapper">
+            <div class="tools__main">
+                <div class="tools__main__primary">
+                    <div class="tools__main__primary__background">
+                        <div class="tools__main__primary__background__mask">
+                            <div class="tools__main__primary__background__mask__left"></div>
+                            <div class="tools__main__primary__background__mask__right"></div>
+                        </div>
+                        <div class="tools__main__primary__background__img"></div>
+                    </div>
+                    <div class="tools__main__primary__contentContainer">
+                        <h2 class="tools__main__primary__contentContainer__title">
+                            {t('home.tools.title')}
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="tools__main__secondary">
+                    <div class="tools__main__secondary__labelContainer">
+                        {brands.map((brand) => (
+                                <div class="tools__main__secondary__labelContainer__item">
+                                    <div class={`tools__main__secondary__labelContainer__item__tooltipContainer brand brand--${brand.name.toLowerCase()}`}>
+                        <span class={`tools__main__secondary__labelContainer__item__tooltipContainer__text `}>
+                            {brand.name}
+                        </span>
+                                    </div>
+                                    <img src={brand.link} alt={brand.name}
+                                         class="tools__main__secondary__labelContainer__item__img"/>
+                                </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="timeline">
+        <div class="wrapper wrapper--smaller timeline__wrapper">
+            <div class="timeline__main">
+                <div class="timeline__main__primary">
+                    <h2 class="timeline__main__primary__title">{t('home.timeline.title')}</h2>
+                    <div class="timeline__main__primary__listingContainer">
+                        <div class="timeline__main__primary__listingContainer__item">
+                            <div class="timeline__main__primary__listingContainer__item__content">
+                                <h3 class="timeline__main__primary__listingContainer__item__content__title">
+                                    {t('home.timeline.1.title')}
+                                </h3>
+                                <p class="timeline__main__primary__listingContainer__item__content__date">
+                                    {t('home.timeline.1.date')}
+                                </p>
+                                <p class="timeline__main__primary__listingContainer__item__content__text">
+                                    {t('home.timeline.1.text')}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline__main__primary__listingContainer__item">
+                            <div class="timeline__main__primary__listingContainer__item__content">
+                                <h3 class="timeline__main__primary__listingContainer__item__content__title">
+                                    {t('home.timeline.2.title')}
+                                </h3>
+                                <p class="timeline__main__primary__listingContainer__item__content__date">
+                                    {t('home.timeline.2.date')}
+                                </p>
+                                <p class="timeline__main__primary__listingContainer__item__content__text">
+                                    {t('home.timeline.2.text')}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline__main__primary__listingContainer__item">
+                            <div class="timeline__main__primary__listingContainer__item__content">
+                                <h3 class="timeline__main__primary__listingContainer__item__content__title">
+                                    {t('home.timeline.3.title')}
+                                </h3>
+                                <p class="timeline__main__primary__listingContainer__item__content__date">
+                                    {t('home.timeline.3.date')}
+                                </p>
+                                <p class="timeline__main__primary__listingContainer__item__content__text">
+                                    {t('home.timeline.3.text')}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline__main__secondary">
+                    <div class="timeline__main__secondary__line"></div>
+                    <div class="timeline__main__secondary__dotContainer">
+                        <div class="timeline__main__secondary__dotContainer__dot timeline__main__secondary__dotContainer__dot--green ">
+                            <svg width="34" height="35" viewBox="0 0 34 35" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.12177C21.5207 4.19218 23.1432 6.41076 25.1651 8.60184C27.3666 10.9876 29.5816 12.8423 31.5982 14.2774C33.4781 15.6151 33.5805 18.5599 31.7626 19.9807C29.7034 21.59 27.4703 23.5908 25.2318 26.0614C23.0992 28.4151 21.3542 30.7651 19.9334 32.9497C18.6011 34.9981 15.4066 34.997 14.0739 32.9488C12.6525 30.7645 10.906 28.4148 8.7738 26.0614C6.53817 23.594 4.308 21.5953 2.25101 19.987C0.431577 18.5644 0.535756 15.6137 2.41716 14.2742C4.43254 12.8393 6.64495 10.9845 8.84048 8.60184C10.8678 6.41052 12.4932 4.19169 13.7909 2.12108Z"/>
+                            </svg>
+                        </div>
+                        <div class="timeline__main__secondary__dotContainer__dot timeline__main__secondary__dotContainer__dot--red ">
+                            <svg width="34" height="35" viewBox="0 0 34 35" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.12177C21.5207 4.19218 23.1432 6.41076 25.1651 8.60184C27.3666 10.9876 29.5816 12.8423 31.5982 14.2774C33.4781 15.6151 33.5805 18.5599 31.7626 19.9807C29.7034 21.59 27.4703 23.5908 25.2318 26.0614C23.0992 28.4151 21.3542 30.7651 19.9334 32.9497C18.6011 34.9981 15.4066 34.997 14.0739 32.9488C12.6525 30.7645 10.906 28.4148 8.7738 26.0614C6.53817 23.594 4.308 21.5953 2.25101 19.987C0.431577 18.5644 0.535756 15.6137 2.41716 14.2742C4.43254 12.8393 6.64495 10.9845 8.84048 8.60184C10.8678 6.41052 12.4932 4.19169 13.7909 2.12108Z"/>
+                            </svg>
+                        </div>
+                        <div class="timeline__main__secondary__dotContainer__dot timeline__main__secondary__dotContainer__dot--purple ">
+                            <svg width="34" height="35" viewBox="0 0 34 35" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.12177C21.5207 4.19218 23.1432 6.41076 25.1651 8.60184C27.3666 10.9876 29.5816 12.8423 31.5982 14.2774C33.4781 15.6151 33.5805 18.5599 31.7626 19.9807C29.7034 21.59 27.4703 23.5908 25.2318 26.0614C23.0992 28.4151 21.3542 30.7651 19.9334 32.9497C18.6011 34.9981 15.4066 34.997 14.0739 32.9488C12.6525 30.7645 10.906 28.4148 8.7738 26.0614C6.53817 23.594 4.308 21.5953 2.25101 19.987C0.431577 18.5644 0.535756 15.6137 2.41716 14.2742C4.43254 12.8393 6.64495 10.9845 8.84048 8.60184C10.8678 6.41052 12.4932 4.19169 13.7909 2.12108Z"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+    <Contact/>
+
+</Layout>
+

@@ -1,21 +1,14 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
-import { render } from 'astro:content';
+import {getCollection} from 'astro:content';
+import ProjectPage from '../../views/ProjectPage.astro';
+import {localizeEntries} from '../../i18n/localize';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('projets');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
+    const entries = await getCollection('projets');
+    return localizeEntries(entries, 'fr').map((item) => ({params: {slug: item.slug}, props: {item, entries}}));
 }
-type Props = CollectionEntry<'projets'>;
 
-const post = Astro.props;
-const { Content } = await render(post);
+const {item, entries} = Astro.props;
 ---
 
-<BlogPost {...post.data}>
-	<Content />
-</BlogPost>
+<ProjectPage lang="fr" item={item} entries={entries}/>

@@ -1,53 +1,45 @@
 ---
 import type {CollectionEntry} from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import Layout from './Layout.astro';
 import Tag from "../components/Tag.astro";
 import {SITE_TITLE} from "../consts";
 import Contact from "../components/Contact.astro";
+import {getLang, useTranslations} from '../i18n/utils';
+import type {Lang} from '../i18n/ui';
 
-type Props = CollectionEntry<'projets'>['data'];
+type Props = CollectionEntry<'projets'>['data'] & {
+    isFallback: boolean;
+    canonical?: string;
+    alternates?: Partial<Record<Lang, string>>;
+    langPaths?: Partial<Record<Lang, string>>;
+};
 
 const {
-    title,
-    description1,
-    description2,
-    image1,
-    image2,
-    tag,
-    tools,
-    gallery,
-    pubDate,
-    updatedDate,
-    heroImage,
-    urls
+    title, description1, description2, image1, image2, tag, tools, gallery, urls,
+    isFallback, canonical, alternates, langPaths,
 } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
-<html lang="en">
-<head>
-    <BaseHead title={title} description={description1}/>
-</head>
-
-<body>
-<Header/>
-<section class="projectPost">
+<Layout title={`${title} ${t('meta.project.titleSuffix')}`} description={description1} canonical={canonical}
+        alternates={alternates} langPaths={langPaths}>
+<section class="projectPost" lang={isFallback ? 'fr' : undefined}>
     <div class="wrapper wrapper--smaller projectPost--wrapper">
         <div class="projectPost__main">
             <div class="projectPost__main__primary">
                 <div class="projectPost__main__primary__contentContainer">
+                    {isFallback && <p class="lang-fallback" lang={lang}>{t('project.fallbackNotice')}</p>}
                     <div class="projectPost__main__primary__contentContainer__tag">
                         <Tag tag={tag}/>
                     </div>
-                    <h2 class="projectPost__main__primary__contentContainer__title">
+                    <h1 class="projectPost__main__primary__contentContainer__title">
                         {title}
-                    </h2>
+                    </h1>
                     <div class="projectPost__main__primary__contentContainer__links">
                         {urls && urls.map((url) => (
                                 <a href={url} target="_blank" rel="noopener noreferrer"
-                                   title={`${title} - ${url.includes('github') ? 'GitHub' : 'Website'}`}>
+                                   title={`${title} - ${url.includes('github') ? 'GitHub' : t('project.website')}`}>
                                     {url.includes('github') ? (
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                  viewBox="0 0 24 24"
@@ -101,7 +93,7 @@ const {
             <div class="projectPost__main__secondary">
                 <div class="projectPost__main__secondary__contentContainer">
                     <h3 class="projectPost__main__secondary__contentContainer__title">
-                        Galerie
+                        {t('project.gallery')}
                     </h3>
                 </div>
 
@@ -122,6 +114,4 @@ const {
 </section>
 <Contact/>
 
-<Footer/>
-</body>
-</html>
+</Layout>

@@ -1,7 +1,14 @@
 ---
 import {SITE_TITLE} from "../consts";
 import HeaderLink from "./HeaderLink.astro";
+import {getLang, localizePath, useTranslations} from '../i18n/utils';
+import {cvUrl} from '../i18n/cv';
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const home = localizePath('home', lang);
 const today = new Date();
+const cv = cvUrl(lang);
 ---
 
 
@@ -9,7 +16,7 @@ const today = new Date();
     <div class="wrapper wrapper--smaller footer__wrapper">
         <div class="footer__main">
             <div class="footer__main__primary">
-                <a href="/" class="footer__main__primary__logo">
+                <a href={home} class="footer__main__primary__logo">
                 	<span>
                     	{SITE_TITLE}
                 	</span>
@@ -20,30 +27,30 @@ const today = new Date();
                     </svg>
                 </a>
                 <nav class="footer__main__primary__menu">
-                    <h2 class="hidden">Menu Principal</h2>
+                    <h2 class="hidden">{t('nav.menuTitle')}</h2>
                     <ul class="footer__main__primary__menu__list">
                         <li class="footer__main__primary__menu__list__item">
-                            <HeaderLink href="/" title="Accueil">Accueil</HeaderLink>
+                            <HeaderLink href={home} title={t('nav.home')}>{t('nav.home')}</HeaderLink>
                         </li>
                         <li class="footer__main__primary__menu__list__item">
-                            <HeaderLink href="/projets" title="Projets">Projets</HeaderLink>
+                            <HeaderLink href={localizePath('projects', lang)} title={t('nav.projects')}>{t('nav.projects')}</HeaderLink>
                         </li>
                         <li class="footer__main__primary__menu__list__item">
-                            <HeaderLink href="/apropos" title="A Propos">A Propos</HeaderLink>
+                            <HeaderLink href={localizePath('about', lang)} title={t('nav.about')}>{t('nav.about')}</HeaderLink>
                         </li>
                         <li class="footer__main__primary__menu__list__item">
-                            <HeaderLink href="/#contact" title="Contact">Contact</HeaderLink>
+                            <HeaderLink href={`${home}#contact`} title={t('nav.contact')}>{t('nav.contact')}</HeaderLink>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="footer__main__secondary">
                 <p class="footer__main__secondary__text">
-                    Fait avec &#128155;, par Tom Cremer
+                    {t('footer.madeWith')}
                 </p>
                 <ul class="footer__main__secondary__list">
                     <li class="footer__main__secondary__list__item">
-                        <a href="tel:+32499911975" title="Telephone" target="_blank" rel="noopener noreferrer">
+                        <a href="tel:+32499911975" title={t('footer.phone')} target="_blank" rel="noopener noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                  stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone">
@@ -52,7 +59,7 @@ const today = new Date();
                         </a>
                     </li>
                     <li class="footer__main__secondary__list__item">
-                        <a href="mailto:contact@tomcremer.be" title="GitHub" target="_blank" rel="noopener noreferrer">
+                        <a href="mailto:contact@tomcremer.be" title={t('footer.email')} target="_blank" rel="noopener noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                  stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail">
@@ -87,8 +94,20 @@ const today = new Date();
                 </ul>
             </div>
             <div class="footer__main__tertiary">
-                <p class="footer__main__tertiary__copyright">&copy; {today.getFullYear()} Tom Cremer. All rights
-                    reserved.</p>
+                <p class="footer__main__tertiary__copyright">{t('footer.rights', {year: today.getFullYear()})}</p>
+                {cv && (
+                    <a href={cv} class="link footer__main__tertiary__cv" target="_blank" rel="noopener noreferrer"
+                       title={t('footer.cv')}>
+                        <!--<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path d="M12 15V3"/>
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <path d="m7 10 5 5 5-5"/>
+                        </svg>-->
+                        <span>{t('footer.cv')}</span>
+                    </a>
+                )}
             </div>
         </div>
     </div>

@@ -11,19 +11,8 @@ const parseDate = (value: unknown) => {
 	return value;
 };
 
-// Fonction pour formater la date en "dd Mois yyyy" avec majuscule
-const formatDate = (date: Date) => {
-	const formatted = date.toLocaleDateString("fr-FR", {
-		day: "2-digit",
-		month: "long",
-		year: "numeric",
-	});
-
-	return formatted.replace(/\b(\p{Letter})/u, (c) => c.toUpperCase()); // Forcer la majuscule
-};
-
 const projets = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
+	// Load Markdown and MDX files in the `src/content/projets/` directory (EN versions in `en/`).
 	loader: glob({ base: './src/content/projets', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
 	schema: z.object({
@@ -37,7 +26,7 @@ const projets = defineCollection({
 		urls: z.array(z.string()).optional(),
 		tools: z.array(z.string()).optional(),
 		gallery: z.array(z.string()).optional(),
-		pubDate: z.preprocess(parseDate, z.date()).transform(formatDate),
+		pubDate: z.preprocess(parseDate, z.date()),
 		updatedDate: z.coerce.date().optional(),
 	}),
 });

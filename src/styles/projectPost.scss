@@ -220,3 +220,12 @@
 
     }
 }
+.lang-fallback {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background-color: rgba($yellow, .15);
+    color: $text-color;
+    font-size: .9rem;
+}

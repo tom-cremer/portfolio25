@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Redirect www to the bare domain
+RewriteCond %{HTTP_HOST} ^www\.tomcremer\.be$ [NC]
+RewriteRule ^(.*)$ https://tomcremer.be/$1 [R=301,L]
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://tomcremer.be/$1 [R=301,L]

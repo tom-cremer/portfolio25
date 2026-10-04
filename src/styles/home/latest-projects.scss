@@ -1,0 +1,78 @@
+@use "../colors" as *;
+@use "../fonts" as *;
+
+.projets__glide {
+    width: 100%;
+
+    .glide__track {
+        padding: 12px 6px 16px;
+    }
+
+    .glide__slides {
+        align-items: flex-start;
+        overflow: visible; // le track découpe déjà : ombres et survol des cartes restent visibles
+    }
+
+    // La carte remplit sa slide (écart = gap Glide) ; l'encoche de l'image est en px, elle ne se déforme pas
+    .glide__slide .card-project {
+        max-width: none;
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+.projets__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.projets__glide .glide__arrows {
+    display: flex;
+    gap: 10px;
+}
+
+.projets__glide .glide__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid $primary-color;
+    border-radius: 10px;
+    background: transparent;
+    color: $primary-color;
+    cursor: pointer;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out, opacity 300ms ease-in-out;
+
+    &:hover:not(.glide__arrow--disabled),
+    &:focus-visible {
+        background: $primary-color;
+        color: $white;
+    }
+
+    &--disabled {
+        opacity: .35;
+        cursor: default;
+    }
+}
+
+.projets__glide .glide__bullets {
+    display: flex;
+    gap: 8px;
+}
+
+.projets__glide .glide__bullet {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: $light-grey;
+    cursor: pointer;
+
+    &--active {
+        background: $yellow;
+    }
+}

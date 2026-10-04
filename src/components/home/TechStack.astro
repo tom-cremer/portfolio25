@@ -1,0 +1,55 @@
+---
+import {useTranslations} from '../../i18n/utils';
+import {stack} from '../../data/stack';
+import {localize} from '../../data/l10n';
+import {logoFor} from '../../data/logos';
+import type {Lang} from '../../i18n/ui';
+
+interface Props {
+    lang: Lang;
+}
+
+const {lang} = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="techStack" id="stack">
+    <div class="wrapper wrapper--smaller">
+        <!-- En-tête repris de l'ancienne section « Mes Outils » : bande radiale au dégradé animé -->
+        <div class="tools__main__primary techStack__head">
+            <div class="tools__main__primary__background" aria-hidden="true">
+                <div class="tools__main__primary__background__mask">
+                    <div class="tools__main__primary__background__mask__left"></div>
+                    <div class="tools__main__primary__background__mask__right"></div>
+                </div>
+                <div class="tools__main__primary__background__img"></div>
+            </div>
+            <div class="tools__main__primary__contentContainer">
+                <h2 class="tools__main__primary__contentContainer__title">{t('home.stack.title')}</h2>
+            </div>
+        </div>
+        <div class="techStack__grid">
+            {stack.map((group) => (
+                <div class="techStack__group">
+                    <h3 class="techStack__groupTitle">{localize(group.title, lang)}</h3>
+                    <ul class="techStack__items">
+                        {group.items.map((item) => {
+                            const logo = logoFor(item.name);
+                            return (
+                                <li class={`techStack__item ${item.familiar ? 'techStack__item--familiar' : ''}`}>
+                                    {logo && (
+                                        <div class="techStack__item__imageContainer">
+                                            <img class="techStack__item__imageContainer__img" src={logo} alt="" width="20" height="20" loading="lazy"/>
+                                        </div>
+                                    )}
+                                    <span>{item.name}</span>
+                                    {item.familiar && <span class="techStack__familiar">{t('home.stack.familiar')}</span>}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

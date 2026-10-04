@@ -1,0 +1,104 @@
+@use "../colors" as *;
+@use "../fonts" as *;
+@use "../mediaqueries" as *;
+
+.experience {
+    padding: 70px 0;
+    background-color: $background-color;
+
+    &__list {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin: 0;
+        padding: 0 0 0 56px;
+        list-style: none;
+        border-left: 2px dashed $primary-color;
+
+        @include w600 {
+            padding-left: 36px;
+        }
+    }
+
+    &__item {
+        position: relative;
+
+        &--job .experience__dot { fill: $yellow; }
+        &--education:nth-child(3n + 2) .experience__dot { fill: $green; }
+        &--education:nth-child(3n + 3) .experience__dot { fill: $red; }
+        &--education:nth-child(3n + 4) .experience__dot { fill: $purple; }
+    }
+
+    &__dot {
+        position: absolute;
+        top: 18px;
+        left: -74px;
+
+        @include w600 {
+            left: -54px;
+        }
+    }
+
+    &__card {
+        background-color: $white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba($black, .1);
+    }
+
+    &__label {
+        @include caption;
+        font-size: $xxs;
+        text-transform: uppercase;
+        color: $secondary-color;
+    }
+
+    &__title {
+        @include subtitle;
+        font-size: $xl;
+        line-height: 1.5;
+        color: $text-color;
+    }
+
+    &__item--education &__title {
+        font-size: $l;
+    }
+
+    &__meta {
+        @include caption;
+        font-size: $xs;
+        color: $primary-color;
+    }
+
+    &__text, &__bullets {
+        @include body;
+        color: $text-color;
+    }
+
+    &__bullets {
+        margin: 12px 0;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        list-style-type: disc;
+    }
+
+    &__stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 0;
+        list-style: none;
+
+        li {
+            padding: 2px 10px;
+            border-radius: 20px;
+            background: $background-color;
+            font-family: $textFont;
+            font-size: $xs;
+            color: $text-color;
+        }
+    }
+}

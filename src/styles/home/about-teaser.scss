@@ -1,0 +1,55 @@
+@use "../colors" as *;
+@use "../fonts" as *;
+@use "../mediaqueries" as *;
+
+.aboutTeaser {
+    padding: 70px 0;
+    background-color: $background-color;
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 40px;
+        align-items: start;
+
+        @include w768 {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    &__title {
+        @include title;
+        color: $primary-color;
+    }
+
+    &__text {
+        @include body;
+        font-size: $m;
+        color: $text-color;
+    }
+
+    &__faq {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    &__faqTitle {
+        @include caption;
+        color: $primary-color;
+    }
+
+    // l'accordéon réutilise les styles .faq__main__* de la page À propos
+    .faq__main__list {
+        width: 100%;
+    }
+}

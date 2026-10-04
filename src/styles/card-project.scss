@@ -4,96 +4,119 @@
 
 
 .card-project {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 280px;
+  min-width: 280px;
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    transform: scale(1.02);
+    box-shadow: 0 6px 14px rgba($text-color, 0.2);
+
+    .card-project__contentContainer__title {
+      color: $yellow;
+    }
+
+    .card-project__buttonContainer {
+      svg {
+        transform: translateX(3px);
+      }
+    }
+
+  }
+
+  &__contentContainer {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 280px;
-    min-width: 280px;
-    background: white;
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease-in-out;
+    align-items: center;
+    justify-content: space-between;
+
+    &__title {
+      font-family: $textFont;
+      font-size: $l;
+      font-weight: $semi-bold;
+      color: $text-color;
+      transition: all 0.3s ease-in-out;
+
+      &--long {
+        font-size: $n;
+      }
+    }
+
+    &__text {
+      @include body;
+      color: $text-color;
+    }
+  }
+
+  &__imageContainer {
+    background: #ddd;
+    border-radius: 12px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
     position: relative;
-    text-decoration: none;
+    overflow: hidden;
+    // Points en px ancrés sur les bords : coins et encoche gardent leur taille quelle que soit la largeur
+    clip-path: polygon(8.67px 0%, 8.67px 0%, 7.26px 0.069%, 5.93px 0.268%, 4.69px 0.587%, 3.55px 1.015%, 2.54px 1.542%, 1.67px 2.155%, 0.97px 2.844%, 0.44px 3.6%, 0.11px 4.409%, 0px 5.263%, 0px 94.737%, 0px 94.737%, 0.11px 95.591%, 0.44px 96.4%, 0.97px 97.156%, 1.67px 97.845%, 2.54px 98.458%, 3.55px 98.985%, 4.69px 99.413%, 5.93px 99.732%, 7.26px 99.931%, 8.67px 100%, calc(100% - 56.36px) 100%, calc(100% - 56.36px) 100%, calc(100% - 54.96px) 99.931%, calc(100% - 53.62px) 99.732%, calc(100% - 52.38px) 99.413%, calc(100% - 51.24px) 98.985%, calc(100% - 50.23px) 98.458%, calc(100% - 49.36px) 97.845%, calc(100% - 48.66px) 97.156%, calc(100% - 48.13px) 96.4%, calc(100% - 47.81px) 95.591%, calc(100% - 47.69px) 94.737%, calc(100% - 47.69px) 81.053%, calc(100% - 47.69px) 81.053%, calc(100% - 47.49px) 79.516%, calc(100% - 46.90px) 78.058%, calc(100% - 45.95px) 76.699%, calc(100% - 44.68px) 75.458%, calc(100% - 43.12px) 74.354%, calc(100% - 41.30px) 73.407%, calc(100% - 39.26px) 72.636%, calc(100% - 37.02px) 72.062%, calc(100% - 34.62px) 71.703%, calc(100% - 32.08px) 71.579%, calc(100% - 8.67px) 71.579%, calc(100% - 8.67px) 71.579%, calc(100% - 7.26px) 71.51%, calc(100% - 5.93px) 71.311%, calc(100% - 4.69px) 70.991%, calc(100% - 3.55px) 70.563%, calc(100% - 2.54px) 70.037%, calc(100% - 1.67px) 69.424%, calc(100% - 0.97px) 68.735%, calc(100% - 0.44px) 67.979%, calc(100% - 0.11px) 67.17%, 100% 66.316%, 100% 5.263%, 100% 5.263%, calc(100% - 0.11px) 4.409%, calc(100% - 0.44px) 3.6%, calc(100% - 0.97px) 2.844%, calc(100% - 1.67px) 2.155%, calc(100% - 2.54px) 1.542%, calc(100% - 3.55px) 1.015%, calc(100% - 4.69px) 0.587%, calc(100% - 5.93px) 0.268%, calc(100% - 7.26px) 0.069%, calc(100% - 8.67px) 0%, 8.67px 0%);
 
-    &:hover, &:focus {
-        transform: scale(1.02);
-        box-shadow: 0 6px 14px rgba($text-color, 0.2);
-
-        .card-project__contentContainer__title {
-            color: $yellow;
-        }
-
-        .card-project__buttonContainer {
-            svg {
-                transform: translateX(3px);
-            }
-        }
-
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: all 0.3s ease-in-out;
     }
 
-    &__contentContainer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    &--text {
+      background: $primary-color;
+      padding: 18px;
+      align-items: flex-start;
+      justify-content: flex-start;
 
-        &__title {
-            font-family: $textFont;
-            font-size: $l;
-            font-weight: $semi-bold;
-            color: $text-color;
-            transition: all 0.3s ease-in-out;
-        }
-
-        &__text {
-            @include body;
-            color: $text-color;
-        }
-    }
-
-    &__imageContainer {
-        background: #ddd;
-        border-radius: 12px;
-        height: 170px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        color: black;
-        position: relative;
+      p {
+        @include body;
+        color: $white;
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
         overflow: hidden;
-        clip-path: polygon(3.497% 0%, 3.497% 0%, 2.929% 0.069%, 2.391% 0.268%, 1.89% 0.587%, 1.432% 1.015%, 1.024% 1.542%, 0.675% 2.155%, 0.39% 2.844%, 0.178% 3.6%, 0.046% 4.409%, 0% 5.263%, 0% 94.737%, 0% 94.737%, 0.046% 95.591%, 0.178% 96.4%, 0.39% 97.156%, 0.675% 97.845%, 1.024% 98.458%, 1.432% 98.985%, 1.89% 99.413%, 2.391% 99.732%, 2.929% 99.931%, 3.497% 100%, 77.273% 100%, 77.273% 100%, 77.84% 99.931%, 78.378% 99.732%, 78.88% 99.413%, 79.338% 98.985%, 79.745% 98.458%, 80.095% 97.845%, 80.379% 97.156%, 80.591% 96.4%, 80.723% 95.591%, 80.769% 94.737%, 80.769% 81.053%, 80.769% 81.053%, 80.852% 79.516%, 81.09% 78.058%, 81.472% 76.699%, 81.984% 75.458%, 82.613% 74.354%, 83.346% 73.407%, 84.171% 72.636%, 85.074% 72.062%, 86.042% 71.703%, 87.063% 71.579%, 96.503% 71.579%, 96.503% 71.579%, 97.071% 71.51%, 97.609% 71.311%, 98.11% 70.991%, 98.569% 70.563%, 98.976% 70.037%, 99.325% 69.424%, 99.61% 68.735%, 99.822% 67.979%, 99.954% 67.17%, 100% 66.316%, 100% 5.263%, 100% 5.263%, 99.954% 4.409%, 99.822% 3.6%, 99.61% 2.844%, 99.325% 2.155%, 98.976% 1.542%, 98.569% 1.015%, 98.11% 0.587%, 97.609% 0.268%, 97.071% 0.069%, 96.503% 0%, 3.497% 0%);
-
-        &__img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: all 0.3s ease-in-out;
-        }
+      }
     }
+  }
 
-    &__buttonContainer {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 16px;
-        right: 16px;
-        border-radius: 10px;
-        padding: 4px;
-        width: 40px;
-        height: 40px;
-        background: $yellow;
 
-        svg {
-            fill: none;
-            stroke: $white;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            transition: all 0.3s ease-in-out;
-        }
+  &__buttonContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 16px;
+    right: 16px;
+    border-radius: 10px;
+    padding: 4px;
+    width: 40px;
+    height: 40px;
+    background: $yellow;
+
+    svg {
+      fill: none;
+      stroke: $white;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: all 0.3s ease-in-out;
     }
+  }
 }
+

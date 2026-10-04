@@ -1,7 +1,7 @@
 ---
 
-// Props
-let {tag} = Astro.props;
+// Props : `tag` choisit la couleur, `label` (optionnel) remplace le texte affiché
+let {tag, label} = Astro.props;
 
 let color;
 
@@ -36,5 +36,5 @@ switch (tag) {
 
 
 <div class={`tag tag--${color}`}>
-    <span class="tag__text">{tag}</span>
+    <span class="tag__text">{label ?? tag}</span>
 </div>

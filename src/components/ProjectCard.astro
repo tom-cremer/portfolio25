@@ -1,0 +1,44 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import {Image} from 'astro:assets';
+import Tag from './Tag.astro';
+import {localizePath, useTranslations} from '../i18n/utils';
+import type {Localized} from '../i18n/localize';
+import type {Lang} from '../i18n/ui';
+
+interface Props {
+    lang: Lang;
+    item: Localized<CollectionEntry<'projets'>>;
+}
+
+const {lang, item} = Astro.props;
+const t = useTranslations(lang);
+const data = item.entry.data;
+const isCaseStudy = data.kind === 'case-study';
+// Titre long : une taille de police en dessous pour laisser la place au tag
+const isLongTitle = data.title.length > 14;
+---
+
+<a href={localizePath('projects', lang, item.slug)} title={data.title}
+   class={`card-project ${isCaseStudy ? 'card-project--caseStudy' : ''}`}>
+    <div class="card-project__contentContainer">
+        <h3 class={`card-project__contentContainer__title${isLongTitle ? ' card-project__contentContainer__title--long' : ''}`}>{data.title}</h3>
+        <Tag tag={data.tag} label={isCaseStudy ? t('home.projects.caseStudy') : undefined}/>
+    </div>
+    {data.heroImage ? (
+        <div class="card-project__imageContainer">
+            <Image class="card-project__imageContainer__img" src={data.heroImage}
+                   alt={t('project.imageAlt', {title: data.title})} width="100%" height="100%"/>
+        </div>
+    ) : (
+        <div class="card-project__imageContainer card-project__imageContainer--text">
+            <p>{data.kind === 'case-study' ? data.context : data.title}</p>
+        </div>
+    )}
+    <div class="card-project__buttonContainer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M18 8L22 12L18 16"/>
+            <path d="M2 12H22"/>
+        </svg>
+    </div>
+</a>

@@ -4,6 +4,11 @@ export function getLang(locale: string | undefined): Lang {
     return locale === 'en' ? 'en' : 'fr';
 }
 
+// Remplace {nom} par vars.nom ; les variables inconnues restent telles quelles.
+export function interpolate(template: string, vars: Record<string, string | number> = {}): string {
+    return template.replace(/\{(\w+)\}/g, (match, name) => (name in vars ? String(vars[name]) : match));
+}
+
 const warned = new Set<string>();
 
 export function useTranslations(lang: Lang, dict: Dictionary = ui) {
@@ -14,7 +19,7 @@ export function useTranslations(lang: Lang, dict: Dictionary = ui) {
             console.warn(`[i18n] Missing "${lang}" translation for "${key}", using "${defaultLang}".`);
         }
         const template = own ?? dict[defaultLang][key];
-        return template.replace(/\{(\w+)\}/g, (match, name) => (name in vars ? String(vars[name]) : match));
+        return interpolate(template, vars);
     };
 }
 

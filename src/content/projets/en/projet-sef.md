@@ -4,6 +4,8 @@ description1: "In this project, the goal was to design the showcase website for 
 
 description2: "For the design, I went for a minimalist yet modern approach that reflects the organisation's human values. The colour palette was built around soft, reassuring tones, with blue dominating to inspire trust and green to symbolise hope and rebuilding. I built a WordPress theme with a clear, accessible layout, designed to highlight the organisation's missions and make essential information easy to find. User experience was at the heart of the project, with simple, intuitive navigation suited to beneficiaries and potential partners alike."
 
+goal: 'Build the showcase site of a non-profit supporting homeless people, for a real client.'
+role: 'Design and custom WordPress theme, as part of a team.'
 tag: 'Web'
 image1: '/assets/sef/home.png'
 image2: '/assets/sef/contact.png'

@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Tag from "../components/Tag.astro";
-import {Image} from "astro:assets";
+import ProjectCard from '../components/ProjectCard.astro';
 import {useTranslations, localizePath} from '../i18n/utils';
 import {getLocalizedEntries} from '../i18n/content';
 import {byNewest} from '../i18n/localize';
@@ -29,28 +28,7 @@ const projects = byNewest(await getLocalizedEntries('projets', lang));
                     <div class="projects__main__secondary__gridContainer">
                         <div class="projects__main__secondary__gridContainer__grid">
                             {projects.map((item) => (
-                                    <a href={localizePath('projects', lang, item.slug)} title={item.entry.data.title} class="card-project">
-                                        <div class="card-project__contentContainer">
-                                            <h3 class="card-project__contentContainer__title">
-                                                {item.entry.data.title}
-                                            </h3>
-                                            <Tag tag={item.entry.data.tag}/>
-                                        </div>
-                                        <div class="card-project__imageContainer">
-                                            <Image class="card-project__imageContainer__img"
-                                                   src={item.entry.data.heroImage}
-                                                   alt={t('project.imageAlt', {title: item.entry.data.title})}
-                                                   width="100%"
-                                                   height="100%"/>
-                                        </div>
-                                        <div class="card-project__buttonContainer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24">
-                                                <path d="M18 8L22 12L18 16"/>
-                                                <path d="M2 12H22"/>
-                                            </svg>
-                                        </div>
-                                    </a>
+                                    <ProjectCard lang={lang} item={item}/>
                             ))}
                         </div>
                     </div>

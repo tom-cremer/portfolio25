@@ -12,6 +12,7 @@ interface Props {
     canonical?: string;
     alternates?: Partial<Record<Lang, string>>;
     langPaths?: Partial<Record<Lang, string>>;
+    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const lang = getLang(Astro.currentLocale);
@@ -23,13 +24,14 @@ const {
     canonical,
     alternates,
     langPaths,
+    jsonLd,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang}>
 <head>
-    <BaseHead title={title} description={description} image={image} canonical={canonical} alternates={alternates}/>
+    <BaseHead title={title} description={description} image={image} canonical={canonical} alternates={alternates} jsonLd={jsonLd}/>
 </head>
 <body>
 <Header langPaths={langPaths}/>

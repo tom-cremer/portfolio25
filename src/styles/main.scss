@@ -9,6 +9,12 @@
 
 @use 'global';
 @use 'home';
+@use 'home/section';
+@use 'home/editorial';
+@use 'home/latest-projects';
+@use 'home/experience';
+@use 'home/tech-stack';
+@use 'home/about-teaser';
 @use 'contact';
 @use 'header';
 @use 'lang-switcher';
@@ -19,3 +25,4 @@
 
 @use 'card-project';
 @use 'projectPost';
+@use 'caseStudy';

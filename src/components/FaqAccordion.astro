@@ -1,0 +1,166 @@
+---
+// Accordéon FAQ partagé (page À propos + aperçu de l'accueil) : même markup, même animation, même clavier.
+interface Props {
+    items: {q: string; a: string}[];
+    id: string;          // préfixe unique des ids trigger/panel
+    openFirst?: boolean; // première question ouverte au chargement
+}
+
+const {items, id, openFirst = false} = Astro.props;
+---
+
+<div class="faq__main__list" id={id} data-faq-accordion data-multi="true">
+    {items.map((item, index) => {
+        const open = openFirst && index === 0;
+        return (
+            <div class="faq__main__item">
+                <button class="faq__main__trigger" aria-expanded={open ? 'true' : 'false'}
+                        aria-controls={`${id}-panel-${index + 1}`} id={`${id}-trigger-${index + 1}`}>
+                    {item.q}
+                    <span class="faq__main__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq__main__panel" id={`${id}-panel-${index + 1}`} role="region"
+                     aria-labelledby={`${id}-trigger-${index + 1}`} hidden={!open}>
+                    <div class="faq__main__panel__inner">
+                        <p set:html={item.a}/>
+                    </div>
+                </div>
+            </div>
+        );
+    })}
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("[data-faq-accordion]").forEach((accordion) => {
+
+            const multi = accordion.getAttribute("data-multi") === "true";
+            const items = Array.from(accordion.querySelectorAll(".faq__main__item"));
+
+
+            function closePanel(trigger, panel) {
+                trigger.setAttribute("aria-expanded", "false");
+                // animate height to 0
+                panel.style.height = panel.scrollHeight + "px"; // set current for transition
+                requestAnimationFrame(() => {
+                    panel.style.transition = "height 260ms ease";
+                    panel.style.height = "0px";
+                });
+
+                // after transition, hide and cleanup
+                panel.addEventListener("transitionend", function handler() {
+                    panel.hidden = true;
+                    panel.style.removeProperty("height");
+                    panel.style.removeProperty("transition");
+                    panel.removeEventListener("transitionend", handler);
+                });
+            }
+
+            // helper : open a panel (animated)
+            function openPanel(trigger, panel) {
+                // if single-open, close others
+                if (!multi) {
+                    items.forEach(i => {
+                        const t = i.querySelector(".faq__main__trigger");
+                        const p = i.querySelector(".faq__main__panel");
+                        if (p !== panel && t.getAttribute("aria-expanded") === "true") {
+                            closePanel(t, p);
+                        }
+                    });
+                }
+
+                trigger.setAttribute("aria-expanded", "true");
+                panel.hidden = false;
+
+                // measure then animate to that height
+                const height = panel.scrollHeight;
+                panel.style.height = "0px";
+                requestAnimationFrame(() => {
+                    panel.style.transition = "height 260ms ease";
+                    panel.style.height = height + "px";
+                });
+
+                panel.addEventListener("transitionend", function handler() {
+                    // cleanup so content can be responsive
+                    panel.style.removeProperty("height");
+                    panel.style.removeProperty("transition");
+                    panel.removeEventListener("transitionend", handler);
+                });
+            }
+
+            // toggle
+            items.forEach(item => {
+                const trigger = item.querySelector(".faq__main__trigger");
+                const panel = item.querySelector(".faq__main__panel");
+
+                // ensure initial state sync
+                if (trigger.getAttribute("aria-expanded") === "true") {
+                    panel.hidden = false;
+                    panel.style.removeProperty("height");
+                } else {
+                    panel.hidden = true;
+                }
+
+                // click
+                trigger.addEventListener("click", () => {
+                    const expanded = trigger.getAttribute("aria-expanded") === "true";
+                    if (expanded) {
+                        closePanel(trigger, panel);
+                    } else {
+                        openPanel(trigger, panel);
+                    }
+                });
+
+                // keyboard accessibility
+                trigger.addEventListener("keydown", (e) => {
+                    const KEY = {
+                        ENTER: "Enter",
+                        SPACE: " ",
+                        ARROW_UP: "ArrowUp",
+                        ARROW_DOWN: "ArrowDown",
+                        HOME: "Home",
+                        END: "End",
+                    };
+
+                    switch (e.key) {
+                        case KEY.ENTER:
+                        case KEY.SPACE:
+                            e.preventDefault();
+                            trigger.click();
+                            break;
+
+                        case KEY.ARROW_DOWN: {
+                            e.preventDefault();
+                            // focus next trigger (wrap)
+                            const idx = items.indexOf(item);
+                            const next = items[(idx + 1) % items.length].querySelector(".faq__main__trigger");
+                            next.focus();
+                            break;
+                        }
+
+                        case KEY.ARROW_UP: {
+                            e.preventDefault();
+                            const idx = items.indexOf(item);
+                            const prev = items[(idx - 1 + items.length) % items.length].querySelector(".faq__main__trigger");
+                            prev.focus();
+                            break;
+                        }
+
+                        case KEY.HOME:
+                            e.preventDefault();
+                            items[0].querySelector(".faq__main__trigger").focus();
+                            break;
+
+                        case KEY.END:
+                            e.preventDefault();
+                            items[items.length - 1].querySelector(".faq__main__trigger").focus();
+                            break;
+
+                        default:
+                            break;
+                    }
+                });
+            });
+        });
+    });
+</script>

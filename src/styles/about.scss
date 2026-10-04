@@ -139,7 +139,7 @@
         }
 
         /* when expanded, rotate icon & change bg */
-        &__trigger[aria-expanded="true"] .faq__icon {
+        &__trigger[aria-expanded="true"] .faq__main__icon {
             transform: rotate(45deg);
             background: $yellow;
             color: $white;

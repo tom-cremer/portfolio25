@@ -2,7 +2,7 @@
 @use "fonts" as *;
 
 .tag {
-  width: 80px;
+  width: 85px;
   border-radius: 6px;
   padding: 5px 0;
 
@@ -10,9 +10,10 @@
   &__text {
     display: block;
     text-align: center;
-    font-size: $xs;
+    font-size: $xxs;
     font-weight: $medium;
     font-family: $textFont;
+    text-wrap: nowrap;
   }
 
   &--purple {

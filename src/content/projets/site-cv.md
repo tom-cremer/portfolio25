@@ -12,6 +12,8 @@ description2: "Pour réaliser ce projet, j'ai commencé par analyser en détail 
   en adaptant chaque section pour mettre en avant mes compétences, expériences et réalisations. Ce travail m'a permis de
   consolider mes connaissances en développement web tout en créant un portfolio personnalisé et professionnel."
 
+goal: 'Reproduire fidèlement un site existant, puis l''adapter à mon propre CV.'
+role: 'Intégration HTML, Sass et JavaScript.'
 tag: 'Web'
 image1: '/assets/sitecv/home.png'
 image2: '/assets/sitecv/portfolio.png'

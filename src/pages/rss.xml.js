@@ -13,7 +13,7 @@ export async function GET(context) {
 		site: context.site,
 		items: projects.map(({entry, slug}) => ({
 			title: entry.data.title,
-			description: entry.data.description1,
+			description: entry.data.kind === 'case-study' ? entry.data.context : entry.data.description1,
 			pubDate: entry.data.pubDate,
 			link: `${localizePath('projects', 'fr', slug)}/`,
 		})),

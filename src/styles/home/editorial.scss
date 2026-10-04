@@ -1,0 +1,89 @@
+@use "../colors" as *;
+@use "../fonts" as *;
+@use "../mediaqueries" as *;
+
+// Ancien composant « solutions », sans les chiffres
+.solutions {
+    background: $white;
+    padding: 70px 0;
+
+    &__main {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "aside content";
+        align-items: flex-start;
+        gap: 30px;
+
+        @include w1024 {
+            grid-template-columns: 1fr 1.5fr;
+        }
+
+        @include w768 {
+            gap: 20px;
+        }
+
+        @include w600 {
+            grid-template-columns: 100%;
+            grid-template-areas:
+                "aside"
+                "content";
+        }
+
+        &__aside {
+            grid-area: aside;
+
+            &__title {
+                @include title;
+                font-size: $xxxxl;
+                color: $primary-color;
+                max-width: 350px;
+
+                @include w1024 {
+                    font-size: $xxxl;
+                }
+
+                @include w768 {
+                    font-size: $xxl;
+                }
+
+                @include w600 {
+                    max-width: 100%;
+                    font-size: $xxxl;
+                }
+            }
+        }
+
+        &__contentContainer {
+            grid-area: content;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+            max-width: 500px;
+
+            @include w768 {
+                gap: 10px;
+                max-width: 400px;
+            }
+
+            &__subtitle {
+                @include subtitle;
+                color: $text-color;
+
+                @include w768 {
+                    font-size: $xl;
+                }
+            }
+
+            &__text {
+                @include body;
+                color: $text-color;
+
+                p + p {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

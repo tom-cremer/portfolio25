@@ -7,12 +7,15 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "watch": "sass --watch src/styles/main.scss:src/styles/main.css"
+    "watch": "sass --watch src/styles/main.scss:src/styles/main.css",
+    "test": "node --test \"src/**/*.test.ts\"",
+    "check:i18n": "node scripts/check-i18n.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.8",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.2.1",
+    "@glidejs/glide": "^3.7.1",
     "astro": "^5.2.5",
     "sass": "^1.84.0"
   }

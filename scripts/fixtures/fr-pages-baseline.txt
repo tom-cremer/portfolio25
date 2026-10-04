@@ -1,0 +1,8 @@
+apropos/index.html
+index.html
+projets/horixt/index.html
+projets/index.html
+projets/portfolio-v1/index.html
+projets/projet-sef/index.html
+projets/site-cv/index.html
+projets/tethr/index.html

@@ -13,6 +13,8 @@ professionnelle, basée sur des tons neutres avec des touches de bleu pour renfo
 impression de fiabilité. L’ensemble a été développé avec Laravel et Livewire, ce qui m’a permis de mettre en pratique
 mes compétences full-stack tout en construisant une application robuste et évolutive."
 
+goal: 'Centraliser la gestion de projets, de tâches et du temps pour les indépendants et les organisations.'
+role: 'Conception et développement full-stack (projet de fin d''études).'
 tag: 'Web'
 image1: '/assets/horixt/home.png'
 image2: '/assets/horixt/todos.png'

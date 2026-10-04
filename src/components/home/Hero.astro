@@ -1,0 +1,50 @@
+---
+import {Image} from 'astro:assets';
+import TomCartoon from '../../assets/cartoon_tom.png';
+import {useTranslations} from '../../i18n/utils';
+import type {Lang} from '../../i18n/ui';
+
+interface Props {
+    lang: Lang;
+}
+
+const {lang} = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="welcome">
+    <div class="wrapper wrapper--text welcome__wrapper">
+        <div class="welcome__main">
+            <div class="welcome__main__contentContainer">
+                <p class="welcome__main__contentContainer__jobs">
+                    <span class="welcome__main__contentContainer__jobs__2">{t('home.hero.tagline')}</span>
+                </p>
+                <h1 class="welcome__main__contentContainer__title">Tom Cremer</h1>
+                <p class="welcome__main__contentContainer__text welcome__main__contentContainer__text--intro">
+                    {t('home.hero.intro')}
+                </p>
+                <div class="welcome__main__contentContainer__ctas">
+                    <a href="#projects" class="button welcome__main__contentContainer__ctas__primary">
+                        {t('home.hero.ctaProjects')}
+                    </a>
+                    <a href="https://github.com/tom-cremer" target="_blank" rel="noopener noreferrer"
+                       class="link welcome__main__contentContainer__ctas__link">GitHub ↗</a>
+                </div>
+            </div>
+
+            <div class="welcome__main__secondary">
+                <div class="welcome__main__secondary__imageContainer">
+                    <Image class="welcome__main__secondary__imageContainer__img" src={TomCartoon}
+                           alt={t('home.heroAlt')}/>
+                </div>
+                <div class="welcome__main__secondary__background">
+                    <div class="welcome__main__secondary__background__mask">
+                        <div class="welcome__main__secondary__background__mask__left"></div>
+                        <div class="welcome__main__secondary__background__mask__right"></div>
+                    </div>
+                    <div class="welcome__main__secondary__background__img"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

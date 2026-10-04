@@ -1,0 +1,9 @@
+@use "../colors" as *;
+@use "../fonts" as *;
+
+.homeSection__title {
+    @include title;
+    text-align: center;
+    color: $text-color;
+    margin-bottom: 50px;
+}

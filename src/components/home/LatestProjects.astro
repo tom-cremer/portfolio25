@@ -1,0 +1,92 @@
+---
+import '@glidejs/glide/dist/css/glide.core.min.css';
+import ProjectCard from '../ProjectCard.astro';
+import {localizePath, useTranslations} from '../../i18n/utils';
+import {getLatestEntries} from '../../i18n/content';
+import type {Lang} from '../../i18n/ui';
+
+interface Props {
+    lang: Lang;
+}
+
+const {lang} = Astro.props;
+const t = useTranslations(lang);
+const items = await getLatestEntries(lang);
+---
+
+<section class="projets" id="projects">
+    <div class="wrapper wrapper--smaller projets__wrapper">
+        <div class="projets__main">
+            <div class="projets__main__contentContainer">
+                <h2 class="projets__main__contentContainer__title">{t('home.projects.title')}</h2>
+                <a href={localizePath('projects', lang)} title={t('home.projects.allTitle')}
+                   class="link link--yellow projets__main__contentContainer__button">
+                    <span>{t('home.projects.all')}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         aria-hidden="true">
+                        <path d="M15 3h6v6"/><path d="M10 14 21 3"/>
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="glide projets__glide" data-glide>
+                <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        {items.map((item) => (
+                            <li class="glide__slide"><ProjectCard lang={lang} item={item}/></li>
+                        ))}
+                    </ul>
+                </div>
+                <div class="projets__controls">
+                    <div class="glide__arrows" data-glide-el="controls">
+                        <button class="glide__arrow glide__arrow--left" data-glide-dir="<" aria-label={t('home.projects.prev')}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                        </button>
+                        <button class="glide__arrow glide__arrow--right" data-glide-dir=">" aria-label={t('home.projects.next')}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                        {items.map((_, index) => (
+                            <button class="glide__bullet" data-glide-dir={`=${index}`}
+                                    aria-label={t('home.projects.slide', {n: index + 1})}></button>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import Glide from '@glidejs/glide';
+    import {reachablePositions} from './glide-bullets';
+
+    document.querySelectorAll<HTMLElement>('[data-glide]').forEach((element) => {
+        const bullets = [...element.querySelectorAll<HTMLButtonElement>('.glide__bullet')];
+        const glide = new Glide(element, {
+            type: 'slider',
+            rewind: false,
+            bound: true,
+            perView: 3,
+            gap: 20,
+            breakpoints: {
+                1024: {perView: 2},
+                600: {perView: 1, peek: {before: 0, after: 60}},
+            },
+        });
+        // Avec bound, les dernières puces mèneraient à la même position : on ne garde que les positions atteignables.
+        const syncBullets = () => {
+            const count = reachablePositions(bullets.length, glide.settings.perView);
+            bullets.forEach((bullet, index) => { bullet.hidden = index >= count; });
+        };
+        glide.on(['mount.after', 'resize'], syncBullets);
+        glide.mount();
+    });
+</script>

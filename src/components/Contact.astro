@@ -76,11 +76,11 @@ const t = useTranslations(lang);
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
 
-            button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            button.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
         });
 
         container?.addEventListener('mouseleave', () => {
-            button.style.transition = 'transform 0.1s ease';
+            button.style.transition = 'transform 0.09s ease';
             button.style.transform = 'translate(0, 0)';
         });
     }

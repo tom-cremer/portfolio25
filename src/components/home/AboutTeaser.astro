@@ -1,0 +1,32 @@
+---
+import FaqAccordion from '../FaqAccordion.astro';
+import {interpolate, localizePath, useTranslations} from '../../i18n/utils';
+import {faq, faqVars} from '../../data/faq';
+import {localize} from '../../data/l10n';
+import type {Lang} from '../../i18n/ui';
+
+interface Props {
+    lang: Lang;
+}
+
+const {lang} = Astro.props;
+const t = useTranslations(lang);
+const vars = faqVars();
+const teaser = faq.filter((item) => item.teaser)
+    .map((item) => ({q: localize(item.q, lang), a: interpolate(localize(item.a, lang), vars)}));
+---
+
+<section class="aboutTeaser">
+    <div class="wrapper wrapper--smaller aboutTeaser__wrapper">
+        <div class="aboutTeaser__intro">
+            <h2 class="aboutTeaser__title">{t('home.about.title')}</h2>
+            <p class="aboutTeaser__text">{t('home.about.text')}</p>
+            <a href={localizePath('about', lang)} class="link link--yellow aboutTeaser__link">{t('home.about.more')} →</a>
+        </div>
+        <div class="aboutTeaser__faq">
+            <h3 class="aboutTeaser__faqTitle">{t('home.about.faqTitle')}</h3>
+            <FaqAccordion items={teaser} id="faq-home" openFirst/>
+            <a href={`${localizePath('about', lang)}#faq`} class="link link--yellow aboutTeaser__link">{t('home.about.faqAll')} →</a>
+        </div>
+    </div>
+</section>

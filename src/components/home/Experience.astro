@@ -1,0 +1,50 @@
+---
+import {useTranslations} from '../../i18n/utils';
+import {education, jobs} from '../../data/experience';
+import {formatPeriod, localize} from '../../data/l10n';
+import type {Lang} from '../../i18n/ui';
+
+interface Props {
+    lang: Lang;
+}
+
+const {lang} = Astro.props;
+const t = useTranslations(lang);
+const dot = 'M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.12177C21.5207 4.19218 23.1432 6.41076 25.1651 8.60184C27.3666 10.9876 29.5816 12.8423 31.5982 14.2774C33.4781 15.6151 33.5805 18.5599 31.7626 19.9807C29.7034 21.59 27.4703 23.5908 25.2318 26.0614C23.0992 28.4151 21.3542 30.7651 19.9334 32.9497C18.6011 34.9981 15.4066 34.997 14.0739 32.9488C12.6525 30.7645 10.906 28.4148 8.7738 26.0614C6.53817 23.594 4.308 21.5953 2.25101 19.987C0.431577 18.5644 0.535756 15.6137 2.41716 14.2742C4.43254 12.8393 6.64495 10.9845 8.84048 8.60184C10.8678 6.41052 12.4932 4.19169 13.7909 2.12108Z';
+---
+
+<section class="experience" id="experience">
+    <div class="wrapper wrapper--text">
+        <h2 class="homeSection__title">{t('home.experience.title')}</h2>
+        <ol class="experience__list">
+            {jobs.map((job) => (
+                <li class="experience__item experience__item--job">
+                    <svg class="experience__dot" width="34" height="35" viewBox="0 0 34 35" aria-hidden="true"><path d={dot}/></svg>
+                    <article class="experience__card">
+                        <h3 class="experience__title">{localize(job.role, lang)} · {job.company}</h3>
+                        <p class="experience__meta">
+                            {localize(job.contract, lang)} · <time datetime={job.start}>{formatPeriod(job.start, job.end, lang)}</time>
+                        </p>
+                        <ul class="experience__bullets">
+                            {job.bullets.map((bullet) => <li>{localize(bullet, lang)}</li>)}
+                        </ul>
+                        <ul class="experience__stack">
+                            {job.stack.map((tool) => <li>{tool}</li>)}
+                        </ul>
+                    </article>
+                </li>
+            ))}
+            {education.map((entry) => (
+                <li class="experience__item experience__item--education">
+                    <svg class="experience__dot" width="34" height="35" viewBox="0 0 34 35" aria-hidden="true"><path d={dot}/></svg>
+                    <article class="experience__card">
+                        <p class="experience__label">{t('home.experience.education')}</p>
+                        <h3 class="experience__title">{localize(entry.title, lang)}</h3>
+                        <p class="experience__meta">{localize(entry.period, lang)}</p>
+                        <p class="experience__text">{localize(entry.school, lang)}</p>
+                    </article>
+                </li>
+            ))}
+        </ol>
+    </div>
+</section>

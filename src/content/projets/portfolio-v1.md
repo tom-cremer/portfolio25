@@ -11,6 +11,8 @@ claire afin de mettre en avant mes projets. J’ai également porté une attenti
 l’ergonomie, en veillant à ce que chaque section soit agréable à parcourir, aussi bien sur
 ordinateur que sur mobile."
 
+goal: 'Concevoir un portfolio complet de A à Z sous WordPress.'
+role: 'Thème WordPress sur mesure, design et intégration.'
 tag: 'Web'
 image1: '/assets/portfoliov1/home.png'
 image2: '/assets/portfoliov1/project.png'

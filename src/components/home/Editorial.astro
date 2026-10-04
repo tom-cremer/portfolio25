@@ -1,0 +1,28 @@
+---
+// Bloc éditorial : grand titre, sous-titre, texte riche (HTML) et CTA optionnel.
+interface Props {
+    title: string;
+    subtitle: string;
+    html: string;
+    cta?: {label: string; href: string};
+}
+
+const {title, subtitle, html, cta} = Astro.props;
+---
+
+<section class="solutions">
+    <div class="wrapper wrapper--smaller solutions__wrapper">
+        <div class="solutions__main">
+            <div class="solutions__main__aside">
+                <h2 class="solutions__main__aside__title">{title}</h2>
+            </div>
+            <div class="solutions__main__contentContainer">
+                <h3 class="solutions__main__contentContainer__subtitle">{subtitle}</h3>
+                <div class="solutions__main__contentContainer__text" set:html={html}/>
+                {cta && (
+                    <a href={cta.href} class="link link--yellow solutions__main__contentContainer__cta">{cta.label} →</a>
+                )}
+            </div>
+        </div>
+    </div>
+</section>

@@ -77,6 +77,7 @@
 // Version en ligne (menu burger, fond sombre) : mêmes couleurs que les autres liens du menu
 .lang-switcher--inline {
     display: flex;
+    font-family: $textFont;
     justify-content: center;
     align-items: center;
     gap: 10px;

@@ -76,20 +76,6 @@ const fr = {
     'about.p3': 'Blague à part, ce qui me passionne dans le web c\'est de pouvoir créer et sans aucune limite des sites tout aussi incroyables visuellement que logiquement, et surtout que ces sites soient accessibles partout et à n\'importe quel moment c\'est juste magique !',
     'about.p4Html': 'Ma devise ? <i>“Les records sont faits pour être battus”</i> — Robert Downey Jr, alias Iron Man. Une phrase qui résume bien ma vision : toujours chercher à aller plus loin, à progresser, et à repousser mes propres limites.',
     'about.faq.title': 'FAQ',
-    'about.faq.1.q': 'Depuis combien de temps tu codes ?',
-    'about.faq.1.aHtml': 'Je code depuis que j\'ai 16 ans ({age} ans actuellement), j\'ai commencé avec arduino puis j\'ai appris python ensuite j\'ai découvert le web…',
-    'about.faq.2.q': 'Que fais-tu quand tu ne codes pas ?',
-    'about.faq.2.aHtml': 'J\'ai deux principaux passe temps, l\'athlétisme et les jeux vidéos - Décompresser sur la piste est essentiels après une journée de code&nbsp;!',
-    'about.faq.3.q': 'Ton film préféré ?',
-    'about.faq.3.aHtml': 'Ouf. Il y en a plein, mais si je dois en choisir qu\'un ce serait, <em>The Wild Robot</em>',
-    'about.faq.4.q': 'Team Café ou Thé ?',
-    'about.faq.4.aHtml': 'Team Thé, avec deux petits carrés de sucre ou si j\'ai le choix une bonne cuillère de miel',
-    'about.faq.5.q': 'Quel sont tes trois jeux du moment ?',
-    'about.faq.5.aHtml': 'En ce moment, je joue principalement à Cult of the Lamb, Elite: Dangerous et évidemment Hollow Knight: Silksong',
-    'about.faq.6.q': 'Front-end ou Back-end ? (Et pourquoi ?)',
-    'about.faq.6.aHtml': 'Le but serait de faire Full-stack, mais à choisir je penche plus sur le Back-end, pourquoi, parce que j\'aime bien me creuser la tête, de plus j\'aime la logique&nbsp;!',
-    'about.faq.7.q': 'Ton éditeur de code préféré ?',
-    'about.faq.7.aHtml': '<em>PHPStorm</em>&nbsp;! Il n\'y a pas de débat, il y a tout, c\'est une mine d\'outils, {years} ans que je l\'utilise et je n\'ai pas encore fini d\'en apprendre sur lui&nbsp;!',
 } as const;
 
 export type UIKey = keyof typeof fr;
@@ -161,20 +147,6 @@ const en: Partial<Record<UIKey, string>> = {
     'about.p3': 'Jokes aside, what I love about the web is being able to create, without limits, sites that are as impressive visually as they are logically — and above all, that they\'re accessible anywhere, anytime. That\'s just magic!',
     'about.p4Html': 'My motto? <i>“Records are made to be broken”</i> — Robert Downey Jr, aka Iron Man. A line that sums up my outlook: always trying to go further, to improve, and to push my own limits.',
     'about.faq.title': 'FAQ',
-    'about.faq.1.q': 'How long have you been coding?',
-    'about.faq.1.aHtml': 'I\'ve been coding since I was 16 ({age} years old now). I started with Arduino, then learned Python, and then discovered the web…',
-    'about.faq.2.q': 'What do you do when you\'re not coding?',
-    'about.faq.2.aHtml': 'I have two main hobbies: athletics and video games. Unwinding on the track is essential after a day of coding!',
-    'about.faq.3.q': 'Your favorite movie?',
-    'about.faq.3.aHtml': 'Phew. There are so many, but if I had to pick just one it would be <em>The Wild Robot</em>',
-    'about.faq.4.q': 'Team Coffee or Tea?',
-    'about.faq.4.aHtml': 'Team Tea, with two little sugar cubes — or, if I get to choose, a good spoonful of honey',
-    'about.faq.5.q': 'What are your top three games right now?',
-    'about.faq.5.aHtml': 'Right now I\'m mostly playing Cult of the Lamb, Elite: Dangerous and, of course, Hollow Knight: Silksong',
-    'about.faq.6.q': 'Front-end or Back-end? (And why?)',
-    'about.faq.6.aHtml': 'The goal is to be full-stack, but if I had to choose I lean towards the back-end — because I like racking my brain, and I love logic!',
-    'about.faq.7.q': 'Your favorite code editor?',
-    'about.faq.7.aHtml': '<em>PHPStorm</em>! No debate — it has everything, it\'s a goldmine of tools. I\'ve been using it for {years} years and I\'m still learning new things about it!',
 };
 
 export const ui: Dictionary = {fr, en};

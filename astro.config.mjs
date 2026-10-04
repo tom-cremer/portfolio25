@@ -14,6 +14,18 @@ const translated = new Set(slugsIn(`${PROJECTS_DIR}/en`));
 const fallbackPages = new Set(slugsIn(PROJECTS_DIR).filter((s) => !translated.has(s))
 	.map((s) => `${SITE}/en/projects/${s}/`));
 
+// Liens externes du Markdown : ouverture dans un nouvel onglet
+const rehypeExternalLinks = () => (tree) => {
+	const visit = (node) => {
+		if (node.type === 'element' && node.tagName === 'a' && /^https?:\/\//.test(String(node.properties?.href ?? ''))) {
+			node.properties.target = '_blank';
+			node.properties.rel = ['noopener', 'noreferrer'];
+		}
+		node.children?.forEach(visit);
+	};
+	visit(tree);
+};
+
 // https://astro.build/config
 export default defineConfig({
 	site: SITE,
@@ -21,6 +33,9 @@ export default defineConfig({
 		defaultLocale: 'fr',
 		locales: ['fr', 'en'],
 		routing: {prefixDefaultLocale: false},
+	},
+	markdown: {
+		rehypePlugins: [rehypeExternalLinks],
 	},
 	integrations: [mdx(), sitemap({filter: (page) => !fallbackPages.has(page)})],
 });

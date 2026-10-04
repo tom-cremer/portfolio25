@@ -13,6 +13,8 @@ des icônes minimalistes pour faciliter la navigation. L’expérience utilisate
 partage de liens soit fluide et intuitif. Le résultat a été très apprécié par mon prof, qui a salué autant la qualité
 technique que la clarté du rendu final."
 
+goal: 'Réunir tous ses liens derrière un profil unique, partageable par QR code.'
+role: 'Design et développement mobile en Flutter, avec Firebase et deep links.'
 tag: 'Mobile'
 image1: '/assets/tethr/presentation.png'
 image2: '/assets/tethr/login.png'

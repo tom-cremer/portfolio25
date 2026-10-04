@@ -1,6 +1,7 @@
 ---
-import type {CollectionEntry} from 'astro:content';
+import {render, type CollectionEntry} from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
+import CaseStudy from '../layouts/CaseStudy.astro';
 import {availableLangs, type Localized} from '../i18n/localize';
 import {localizePath} from '../i18n/utils';
 import type {Lang} from '../i18n/ui';
@@ -12,6 +13,9 @@ interface Props {
 }
 
 const {item, entries} = Astro.props;
+// Contenu Markdown sous le frontmatter (affiché par les études de cas)
+const {Content} = await render(item.entry);
+const hasBody = Boolean(item.entry.body?.trim());
 const available = availableLangs(entries, item.slug);
 const pathFor = (l: Lang) => localizePath('projects', l, item.slug);
 
@@ -24,5 +28,8 @@ const canonical = item.isFallback ? pathFor('fr') : undefined;
 const langPaths = {fr: available.includes('fr') ? pathFor('fr') : undefined, en: pathFor('en')};
 ---
 
-<BlogPost {...item.entry.data} isFallback={item.isFallback} canonical={canonical} alternates={alternates}
-          langPaths={langPaths}/>
+{item.entry.data.kind === 'case-study'
+    ? <CaseStudy {...item.entry.data} isFallback={item.isFallback} canonical={canonical} alternates={alternates}
+                 langPaths={langPaths} hasBody={hasBody}><Content/></CaseStudy>
+    : <BlogPost {...item.entry.data} isFallback={item.isFallback} canonical={canonical} alternates={alternates}
+                langPaths={langPaths}/>}

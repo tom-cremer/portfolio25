@@ -14,6 +14,8 @@ une mise en page claire et accessible, pensée pour mettre en avant les missions
 de l’ASBL et faciliter l’accès aux informations essentielles. L’expérience utilisateur a été au centre du projet, avec
 une navigation simple et intuitive adaptée aussi bien aux bénéficiaires qu’aux partenaires potentiels."
 
+goal: 'Créer le site vitrine d''une ASBL qui accompagne des personnes sans-abri, pour un vrai client.'
+role: 'Design et thème WordPress sur mesure, en équipe.'
 tag: 'Web'
 image1: '/assets/sef/home.png'
 image2: '/assets/sef/contact.png'

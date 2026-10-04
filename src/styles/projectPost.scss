@@ -11,18 +11,45 @@
 
     }
 
+    &__meta {
+        margin-top: 40px;
+        font-family: $textFont;
+        color: $text-color;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        text-align: left;
+
+        @include w1024 {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+            margin: auto;
+            gap: 20px;
+        }
+
+        dt {
+            font-size: $m;
+            font-weight: $semi-bold;
+            color: $primary-color;
+        }
+
+        dd {
+            margin: 8px 0 0;
+            font-size: $n;
+        }
+    }
+
     &__main {
         min-height: 100vh;
 
         &__primary {
-
             &__contentContainer {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 gap: 15px;
-                margin-bottom: 60px;
+                margin-bottom: 50px;
                 @include w1024 {
                     margin-bottom: 40px;
                 }

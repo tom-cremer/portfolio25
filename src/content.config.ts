@@ -11,24 +11,43 @@ const parseDate = (value: unknown) => {
 	return value;
 };
 
+// Champs communs aux projets et aux études de cas
+const shared = {
+	title: z.string(),
+	tag: z.string(),
+	goal: z.string().optional(),
+	role: z.string().optional(),
+	urls: z.array(z.string()).optional(),
+	tools: z.array(z.string()).optional(),
+	gallery: z.array(z.string()).optional(),
+	pubDate: z.preprocess(parseDate, z.date()),
+	updatedDate: z.coerce.date().optional(),
+};
+
 const projets = defineCollection({
 	// Load Markdown and MDX files in the `src/content/projets/` directory (EN versions in `en/`).
 	loader: glob({ base: './src/content/projets', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
-	schema: z.object({
-		title: z.string(),
-		description1: z.string(),
-		description2: z.string().optional(),
-		image1: z.string(),
-		image2: z.string(),
-		tag: z.string(),
-		heroImage: z.string(),
-		urls: z.array(z.string()).optional(),
-		tools: z.array(z.string()).optional(),
-		gallery: z.array(z.string()).optional(),
-		pubDate: z.preprocess(parseDate, z.date()),
-		updatedDate: z.coerce.date().optional(),
-	}),
+	// Type-check frontmatter using a schema: projet classique ou étude de cas (kind: 'case-study')
+	schema: z.union([
+		z.object({
+			kind: z.literal('project').default('project'),
+			...shared,
+			description1: z.string(),
+			description2: z.string().optional(),
+			image1: z.string(),
+			image2: z.string(),
+			heroImage: z.string(),
+		}),
+		z.object({
+			kind: z.literal('case-study'),
+			...shared,
+			context: z.string(),
+			challenge: z.string(),
+			contribution: z.array(z.string()).min(1),
+			outcome: z.string(),
+			heroImage: z.string().optional(),
+		}),
+	]),
 });
 
 export const collections = { projets };

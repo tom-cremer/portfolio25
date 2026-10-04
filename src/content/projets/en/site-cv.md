@@ -4,6 +4,8 @@ description1: "For this first project, we were asked to pick an existing website
 
 description2: "To build this project, I started by analysing the chosen site in detail to understand its architecture and its different sections. I then reproduced the layout using HTML and CSS, taking care to stay true to the original design. Once the structure was in place, I replaced the content with the information from my own CV, adapting each section to highlight my skills, experience and achievements. This work helped me consolidate my web development knowledge while creating a personalised, professional portfolio."
 
+goal: 'Faithfully reproduce an existing website, then adapt it to my own CV.'
+role: 'HTML, Sass and JavaScript integration.'
 tag: 'Web'
 image1: '/assets/sitecv/home.png'
 image2: '/assets/sitecv/portfolio.png'

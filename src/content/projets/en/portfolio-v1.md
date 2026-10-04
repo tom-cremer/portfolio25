@@ -4,6 +4,8 @@ description1: "This project let me discover WordPress and become much more comfo
 
 description2: "I chose a colour palette built around shades of green, paired with subtle glow effects to create a dynamic atmosphere. The design aimed to be understated yet striking, with a clear visual hierarchy to showcase my projects. I also paid close attention to navigation and usability, making sure every section was pleasant to browse on both desktop and mobile."
 
+goal: 'Design a complete portfolio from A to Z on WordPress.'
+role: 'Custom WordPress theme, design and integration.'
 tag: 'Web'
 image1: '/assets/portfoliov1/home.png'
 image2: '/assets/portfoliov1/project.png'

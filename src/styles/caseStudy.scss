@@ -1,0 +1,157 @@
+@use "colors" as *;
+@use "fonts" as *;
+@use "mediaqueries" as *;
+
+.caseStudy {
+  padding-top: 150px;
+  padding-bottom: 70px;
+  overflow: hidden;
+
+  // Tag, titre, note et objectif/rôle centrés ; alignés à gauche à partir de 768px
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 50px;
+
+    @include w768 {
+      align-items: flex-start;
+      text-align: left;
+
+      .projectPost__meta {
+        justify-content: flex-start;
+        text-align: left;
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__title {
+    @include title;
+    color: $primary-color;
+    margin: 12px 0 6px;
+  }
+
+  &__note {
+    @include body;
+    font-size: $xs;
+    color: $secondary-color;
+    margin-bottom: 20px;
+  }
+
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+
+    @include w768 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__block {
+    background: $white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba($black, .1);
+    padding: 24px;
+
+    &--wide {
+      grid-column: 1 / -1;
+    }
+
+    &__title {
+      @include subtitle;
+      font-size: $l;
+      color: $text-color;
+      margin-bottom: 10px;
+    }
+
+    &__text, &__list {
+      @include body;
+      color: $text-color;
+    }
+
+    &__list {
+      padding-left: 20px;
+      list-style-type: disc;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+
+  &__tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: $background-color;
+      font-family: $textFont;
+      font-size: $xs;
+      color: $text-color;
+    }
+  }
+
+  &__body {
+    margin-top: 20px;
+    background: $white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba($black, .1);
+    padding: 24px;
+
+    &__content {
+      @include body;
+      color: $text-color;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+
+      ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      a {
+        color: $primary-color;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+
+        &:hover, &:focus-visible {
+          color: $yellow;
+        }
+      }
+
+      code {
+        padding: 1px 6px;
+        border-radius: 4px;
+        background: $background-color;
+        font-size: .9em;
+      }
+    }
+  }
+
+  &__gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+
+    &__img {
+      width: 100%;
+      border-radius: 8px;
+    }
+  }
+}

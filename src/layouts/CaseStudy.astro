@@ -1,0 +1,87 @@
+---
+import type {CollectionEntry} from 'astro:content';
+import Layout from './Layout.astro';
+import Contact from '../components/Contact.astro';
+import Tag from '../components/Tag.astro';
+import {getLang, useTranslations} from '../i18n/utils';
+import {logoFor} from '../data/logos';
+import type {Lang} from '../i18n/ui';
+
+type Props = Extract<CollectionEntry<'projets'>['data'], {kind: 'case-study'}> & {
+    isFallback: boolean;
+    canonical?: string;
+    alternates?: Partial<Record<Lang, string>>;
+    langPaths?: Partial<Record<Lang, string>>;
+    hasBody?: boolean; // contenu Markdown passé en slot
+};
+
+const {
+    title, tag, context, challenge, contribution, outcome, tools, gallery, goal, role,
+    isFallback, canonical, alternates, langPaths, hasBody = false,
+} = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+---
+
+<Layout title={`${title} ${t('meta.project.titleSuffix')}`} description={context} canonical={canonical}
+        alternates={alternates} langPaths={langPaths}>
+    <section class="caseStudy" lang={isFallback ? 'fr' : undefined}>
+        <div class="wrapper wrapper--smaller caseStudy__wrapper">
+            {isFallback && <p class="lang-fallback" lang={lang}>{t('project.fallbackNotice')}</p>}
+            <header class="caseStudy__header">
+                <Tag tag={tag} label={t('home.projects.caseStudy')}/>
+                <h1 class="caseStudy__title">{title}</h1>
+                <p class="caseStudy__note">{t('caseStudy.note')}</p>
+                {(goal || role) && (
+                    <dl class="projectPost__meta">
+                        {goal && <div class="projectPost__meta__item"><dt>{t('home.projects.goal')}</dt><dd>{goal}</dd></div>}
+                        {role && <div class="projectPost__meta__item"><dt>{t('home.projects.role')}</dt><dd>{role}</dd></div>}
+                    </dl>
+                )}
+            </header>
+            <div class="caseStudy__grid">
+                <section class="caseStudy__block">
+                    <h2 class="caseStudy__block__title">{t('caseStudy.context')}</h2>
+                    <p class="caseStudy__block__text">{context}</p>
+                </section>
+                <section class="caseStudy__block">
+                    <h2 class="caseStudy__block__title">{t('caseStudy.challenge')}</h2>
+                    <p class="caseStudy__block__text">{challenge}</p>
+                </section>
+                <section class="caseStudy__block caseStudy__block--wide">
+                    <h2 class="caseStudy__block__title">{t('caseStudy.contribution')}</h2>
+                    <ul class="caseStudy__block__list">
+                        {contribution.map((line) => <li>{line}</li>)}
+                    </ul>
+                </section>
+                {tools && tools.length > 0 && (
+                    <section class="caseStudy__block">
+                        <h2 class="caseStudy__block__title">{t('caseStudy.stack')}</h2>
+                        <ul class="caseStudy__tools">
+                            {tools.map((tool) => {
+                                const logo = logoFor(tool);
+                                return <li>{logo && <img src={logo} alt="" width="18" height="18" loading="lazy"/>}<span>{tool}</span></li>;
+                            })}
+                        </ul>
+                    </section>
+                )}
+                <section class="caseStudy__block">
+                    <h2 class="caseStudy__block__title">{t('caseStudy.outcome')}</h2>
+                    <p class="caseStudy__block__text">{outcome}</p>
+                </section>
+            </div>
+            {hasBody && (
+                <section class="caseStudy__body">
+                    <h2 class="caseStudy__block__title">{t('caseStudy.more')}</h2>
+                    <div class="caseStudy__body__content"><slot/></div>
+                </section>
+            )}
+            {gallery && gallery.length > 0 && (
+                <div class="caseStudy__gallery">
+                    {gallery.map((image) => <img src={image} alt={title} loading="lazy" class="caseStudy__gallery__img"/>)}
+                </div>
+            )}
+        </div>
+    </section>
+    <Contact/>
+</Layout>

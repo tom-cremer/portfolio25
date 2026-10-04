@@ -12,9 +12,11 @@ interface Props {
 	image?: string;
 	canonical?: string;
 	alternates?: Partial<Record<Lang, string>>;
+	jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const {title, description, image = '/blog-placeholder-1.jpg', canonical, alternates} = Astro.props;
+const {title, description, image = '/blog-placeholder-1.jpg', canonical, alternates, jsonLd} = Astro.props;
+const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const lang = getLang(Astro.currentLocale);
 const pathname = Astro.url.pathname;
 const absolute = (path: string) => new URL(withTrailingSlash(path), Astro.site).href;
@@ -50,6 +52,9 @@ const ogLocale = {fr: 'fr_BE', en: 'en_US'} as const;
 	<link rel="alternate" hreflang={l} href={absolute(path)} />
 ))}
 {alternateLinks.length > 1 && resolved.fr && <link rel="alternate" hreflang="x-default" href={absolute(resolved.fr)} />}
+{jsonLdItems.map((item) => (
+	<script is:inline type="application/ld+json" set:html={JSON.stringify(item).replace(/</g, '\\u003c')}/>
+))}
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>

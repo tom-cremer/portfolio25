@@ -69,3 +69,8 @@ const ogLocale = {fr: 'fr_BE', en: 'en_US'} as const;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Analytics (Umami, sans cookies) : uniquement en production -->
+{import.meta.env.PROD && (
+	<script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="03d3a368-47d1-42e3-80bc-d758c53426e5"></script>
+)}

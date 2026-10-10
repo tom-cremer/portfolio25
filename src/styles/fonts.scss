@@ -20,6 +20,7 @@ $bold-black: 900;
 
 
 // Font sizes
+$xxxs: 0.625rem; // 10px
 $xxs: 0.75rem;  // 12px
 $xs: 0.875rem;  // 14px
 $n: 1rem;       // 16px
@@ -38,6 +39,7 @@ $titleSize: 5.25rem; // 132px
 
 // Font families
 $textFont: Lexend, sans-serif;
+$monoFont: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
 @mixin title {
   font-family: $textFont;

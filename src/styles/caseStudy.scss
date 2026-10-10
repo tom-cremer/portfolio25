@@ -137,8 +137,25 @@
       code {
         padding: 1px 6px;
         border-radius: 4px;
-        background: $background-color;
+        font-family: $monoFont;
         font-size: .9em;
+      }
+
+      // Blocs de code (Shiki): le reset retire la police mono, et le style du code inline ne doit pas s'y appliquer
+      pre {
+        padding: 16px 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: $monoFont;
+        font-size: $xs;
+        line-height: 1.6;
+
+        code {
+          padding: 0;
+          border-radius: 0;
+          background: none;
+          font-size: inherit;
+        }
       }
     }
   }

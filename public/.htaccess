@@ -7,3 +7,13 @@ RewriteRule ^(.*)$ https://tomcremer.be/$1 [R=301,L]
 # Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://tomcremer.be/$1 [R=301,L]
+
+# Cache: HTML always revalidated, hashed Astro assets cached for good
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+    <If "%{REQUEST_URI} =~ m#^/_astro/#">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </If>
+</IfModule>

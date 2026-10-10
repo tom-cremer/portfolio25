@@ -6,7 +6,7 @@ personnel, tout en ayant la possibilité de rejoindre une ou plusieurs organisat
 flexible et complet, qui centralise la gestion des tâches, du temps et de la collaboration dans un environnement moderne
 et accessible."
 
-description2: "Horixt intègre plusieurs fonctionnalités essentielles : un gestionnaire de fichiers avec un système de
+description2: "Horixt intègre plusieurs fonctionnalités essentielles: un gestionnaire de fichiers avec un système de
 verrouillage/déverrouillage, un gestionnaire de tâches (to-dos) avec assignation, un module de prise de notes, ainsi
 qu’un time tracker directement lié aux projets et aux tâches. Côté design, j’ai opté pour une interface claire et
 professionnelle, basée sur des tons neutres avec des touches de bleu pour renforcer la lisibilité et donner une

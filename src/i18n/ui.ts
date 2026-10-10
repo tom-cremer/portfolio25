@@ -8,9 +8,9 @@ const fr = {
     'meta.home.title': 'Tom Cremer – Développeur Back-end & Full-stack | Portfolio',
     'meta.home.description': 'Tom Cremer, développeur back-end et full-stack en Belgique. WordPress en production, applications Laravel, projets web et mobiles.',
     'meta.about.title': 'À propos – Tom Cremer, Développeur Back-end & Full-stack',
-    'meta.about.description': 'Découvrez Tom Cremer, développeur back-end et full-stack en Belgique : parcours, passions et réponses aux questions fréquentes.',
+    'meta.about.description': 'Découvrez Tom Cremer, développeur back-end et full-stack en Belgique: parcours, passions et réponses aux questions fréquentes.',
     'meta.projects.title': 'Projets – Tom Cremer, Développeur Back-end & Full-stack',
-    'meta.projects.description': 'Les projets et études de cas de Tom Cremer, développeur back-end et full-stack en Belgique : applications Laravel, sites WordPress, application mobile Flutter.',
+    'meta.projects.description': 'Les projets et études de cas de Tom Cremer, développeur back-end et full-stack en Belgique: applications Laravel, sites WordPress, application mobile Flutter.',
     'meta.project.titleSuffix': '– Projet | Tom Cremer',
 
     // Navigation
@@ -54,11 +54,11 @@ const fr = {
     'home.stack.familiar': 'notions',
     'home.editorial.title': 'Solide côté serveur, soigné côté écran',
     'home.editorial.subtitle': 'Mon approche',
-    'home.editorial.textHtml': '<p>Je m\'occupe surtout du back-end : logique métier, données, intégrations. J\'aime autant comprendre pourquoi un site fonctionne que le rendre agréable à utiliser — et j\'apprends chaque jour, en équipe comme sur mes projets perso.</p>',
+    'home.editorial.textHtml': '<p>Je m\'occupe surtout du back-end: logique métier, données, intégrations. J\'aime autant comprendre pourquoi un site fonctionne que le rendre agréable à utiliser — et j\'apprends chaque jour, en équipe comme sur mes projets perso.</p>',
     'home.about.faqTitle': 'Questions fréquentes',
     'home.about.faqAll': 'Voir toute la FAQ',
     'home.about.title': 'En dehors du code',
-    'home.about.text': 'J\'aime comprendre comment les choses fonctionnent sous le capot : c\'est ce qui m\'attire vers le back-end. En dehors du code, je fais de l\'athlétisme et de la photographie.',
+    'home.about.text': 'J\'aime comprendre comment les choses fonctionnent sous le capot: c\'est ce qui m\'attire vers le back-end. En dehors du code, je fais de l\'athlétisme et de la photographie.',
     'home.about.more': 'En savoir plus',
     'projects.title': 'Mes Projets',
     'project.imageAlt': 'Illustration du projet {title}',
@@ -82,7 +82,7 @@ const fr = {
     'about.p1': 'Holà, moi c\'est Tom, développeur back-end avec un goût pour les défis, que ce soit derrière mon clavier ou sur la piste d\'athlétisme !',
     'about.p2': 'Je suppose que si vous êtes là, en train de lire ceci c\'est que vous voulez en apprendre plus sur moi… Bande de coquins va 😉',
     'about.p3': 'Blague à part, ce qui me passionne dans le web c\'est de pouvoir créer et sans aucune limite des sites tout aussi incroyables visuellement que logiquement, et surtout que ces sites soient accessibles partout et à n\'importe quel moment c\'est juste magique !',
-    'about.p4Html': 'Ma devise ? <i>“Les records sont faits pour être battus”</i> — Robert Downey Jr, alias Iron Man. Une phrase qui résume bien ma vision : toujours chercher à aller plus loin, à progresser, et à repousser mes propres limites.',
+    'about.p4Html': 'Ma devise ? <i>“Les records sont faits pour être battus”</i> — Robert Downey Jr, alias Iron Man. Une phrase qui résume bien ma vision: toujours chercher à aller plus loin, à progresser, et à repousser mes propres limites.',
     'about.faq.title': 'FAQ',
 } as const;
 

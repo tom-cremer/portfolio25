@@ -2,6 +2,7 @@
 kind: 'case-study'
 title: 'Carte Apple Wallet'
 tag: 'Backend'
+company: 'EPIC'
 goal: 'Permettre aux utilisateurs d''un client d''ajouter leur carte dans Apple Wallet, directement depuis son site.'
 role: 'Recherche technique et développement back-end de la génération du pass.'
 context: 'Un client d''EPIC souhaitait proposer à ses utilisateurs une carte à ajouter dans Apple Wallet. C''est le sujet sur lequel je me suis penché, de la documentation jusqu''au pass fonctionnel.'

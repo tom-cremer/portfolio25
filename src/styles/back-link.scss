@@ -1,0 +1,29 @@
+@use "colors" as *;
+@use "fonts" as *;
+
+// Retour vers la liste des projets, en haut des pages projet
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start; // reste à gauche dans les conteneurs centrés (projets classiques)
+  gap: 8px;
+  margin-bottom: 24px;
+  font-family: $textFont;
+  font-size: $xs;
+  font-weight: $medium;
+  color: $primary-color;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+
+  svg {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover, &:focus-visible {
+    color: $yellow;
+
+    svg {
+      transform: translateX(-3px);
+    }
+  }
+}

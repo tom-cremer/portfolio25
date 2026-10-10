@@ -7,28 +7,35 @@ import type {Lang} from '../../i18n/ui';
 
 interface Props {
     lang: Lang;
+    // Variante allégée en bas des pages projet: titre plus petit, sans le projet en cours
+    variant?: 'default' | 'compact';
+    exclude?: string;
+    limit?: number;
 }
 
-const {lang} = Astro.props;
+const {lang, variant = 'default', exclude, limit = 6} = Astro.props;
 const t = useTranslations(lang);
-const items = await getLatestEntries(lang);
+const items = await getLatestEntries(lang, limit, exclude);
+const isCompact = variant === 'compact';
 ---
 
-<section class="projets" id="projects">
+<section class={`projets${isCompact ? ' projets--compact' : ''}`} id={isCompact ? undefined : 'projects'}>
     <div class="wrapper wrapper--smaller projets__wrapper">
         <div class="projets__main">
             <div class="projets__main__contentContainer">
-                <h2 class="projets__main__contentContainer__title">{t('home.projects.title')}</h2>
-                <a href={localizePath('projects', lang)} title={t('home.projects.allTitle')}
-                   class="link link--yellow projets__main__contentContainer__button">
-                    <span>{t('home.projects.all')}</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                         aria-hidden="true">
-                        <path d="M15 3h6v6"/><path d="M10 14 21 3"/>
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    </svg>
-                </a>
+                <h2 class="projets__main__contentContainer__title">{t(isCompact ? 'project.more' : 'home.projects.title')}</h2>
+                {!isCompact && (
+                    <a href={localizePath('projects', lang)} title={t('home.projects.allTitle')}
+                       class="link link--yellow projets__main__contentContainer__button">
+                        <span>{t('home.projects.all')}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                             aria-hidden="true">
+                            <path d="M15 3h6v6"/><path d="M10 14 21 3"/>
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                        </svg>
+                    </a>
+                )}
             </div>
 
             <div class="glide projets__glide" data-glide>

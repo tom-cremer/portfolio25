@@ -1,6 +1,8 @@
 ---
 import type {CollectionEntry} from 'astro:content';
 import Layout from './Layout.astro';
+import BackLink from '../components/BackLink.astro';
+import LatestProjects from '../components/home/LatestProjects.astro';
 import Contact from '../components/Contact.astro';
 import Tag from '../components/Tag.astro';
 import {getLang, useTranslations} from '../i18n/utils';
@@ -12,26 +14,29 @@ type Props = Extract<CollectionEntry<'projets'>['data'], {kind: 'case-study'}> &
     canonical?: string;
     alternates?: Partial<Record<Lang, string>>;
     langPaths?: Partial<Record<Lang, string>>;
+    jsonLd?: Record<string, unknown>;
+    slug: string;
     hasBody?: boolean; // contenu Markdown passé en slot
 };
 
 const {
-    title, tag, context, challenge, contribution, outcome, tools, gallery, goal, role,
-    isFallback, canonical, alternates, langPaths, hasBody = false,
+    title, company, context, challenge, contribution, outcome, tools, gallery, goal, role,
+    isFallback, canonical, alternates, langPaths, jsonLd, slug, hasBody = false,
 } = Astro.props;
 const lang = getLang(Astro.currentLocale);
 const t = useTranslations(lang);
 ---
 
 <Layout title={`${title} ${t('meta.project.titleSuffix')}`} description={context} canonical={canonical}
-        alternates={alternates} langPaths={langPaths}>
+        alternates={alternates} langPaths={langPaths} jsonLd={jsonLd}>
     <section class="caseStudy" lang={isFallback ? 'fr' : undefined}>
         <div class="wrapper wrapper--smaller caseStudy__wrapper">
+            <BackLink lang={lang}/>
             {isFallback && <p class="lang-fallback" lang={lang}>{t('project.fallbackNotice')}</p>}
             <header class="caseStudy__header">
-                <Tag tag={tag} label={t('home.projects.caseStudy')}/>
+                <Tag tag="case-study" label={t('home.projects.caseStudy')}/>
                 <h1 class="caseStudy__title">{title}</h1>
-                <p class="caseStudy__note">{t('caseStudy.note')}</p>
+                {company && <p class="caseStudy__note">{t('caseStudy.note', {company})}</p>}
                 {(goal || role) && (
                     <dl class="projectPost__meta">
                         {goal && <div class="projectPost__meta__item"><dt>{t('home.projects.goal')}</dt><dd>{goal}</dd></div>}
@@ -83,5 +88,6 @@ const t = useTranslations(lang);
             )}
         </div>
     </section>
+    <LatestProjects lang={lang} variant="compact" exclude={slug} limit={4}/>
     <Contact/>
 </Layout>

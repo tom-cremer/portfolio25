@@ -2,6 +2,7 @@
 kind: 'case-study'
 title: 'Apple Wallet pass'
 tag: 'Backend'
+company: 'EPIC'
 goal: 'Let a client''s users add their card to Apple Wallet, straight from the client''s website.'
 role: 'Technical research and back-end development of the pass generation.'
 context: 'An EPIC client wanted to offer its users a card they could add to Apple Wallet. That''s the topic I took on, from reading the documentation to a working pass.'

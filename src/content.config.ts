@@ -41,6 +41,7 @@ const projets = defineCollection({
 		z.object({
 			kind: z.literal('case-study'),
 			...shared,
+			company: z.string().optional(),
 			context: z.string(),
 			challenge: z.string(),
 			contribution: z.array(z.string()).min(1),

@@ -31,17 +31,23 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 26
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Test
+        run: npm test
 
       - name: Compile Sass
         run: npx sass src/styles/main.scss src/styles/main.css --no-source-map
 
       - name: Build
         run: npm run build
+
+      - name: Check i18n
+        run: npm run check:i18n
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

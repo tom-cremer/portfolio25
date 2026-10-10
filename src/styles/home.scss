@@ -196,6 +196,15 @@
     background: $background-color;
     padding: 50px 0 80px;
 
+    // Variante en bas des pages projet: plus resserrée, titre plus petit
+    &--compact {
+        padding: 30px 0 60px;
+
+        .projets__main__contentContainer__title {
+            @include subtitle;
+        }
+    }
+
     &__wrapper {
     }
 

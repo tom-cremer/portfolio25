@@ -35,5 +35,5 @@ gallery:
   - '/assets/sitecv/portfolio.png'
   - '/assets/sitecv/home.png'
 
-pubDate: '25-06-2024'
+pubDate: '25-01-2024'
 ---

@@ -38,7 +38,7 @@ gallery:
   - '/assets/sef/news1.png'
   - '/assets/sef/how.png'
  
-pubDate: '10-05-2024'
+pubDate: '10-07-2024'
 ---
 
 

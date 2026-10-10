@@ -37,7 +37,7 @@ gallery:
   - '/assets/horixt/members.png'
 
 
-pubDate: '20-03-2024'
+pubDate: '20-06-2025'
 ---
 
 

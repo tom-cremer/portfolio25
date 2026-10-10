@@ -29,7 +29,7 @@ gallery:
   - '/assets/portfoliov1/card.png'
 
 
-pubDate: '15-05-2024'
+pubDate: '15-06-2024'
 ---
 
 

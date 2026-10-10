@@ -1,0 +1,21 @@
+---
+import {localizePath, useTranslations} from '../i18n/utils';
+import type {Lang} from '../i18n/ui';
+
+interface Props {
+    lang: Lang;
+}
+
+// Lien fixe vers la liste plutôt qu'un history.back(): fonctionne aussi en arrivant depuis Google ou LinkedIn
+const {lang} = Astro.props;
+const t = useTranslations(lang);
+---
+
+<a href={localizePath('projects', lang)} class="backLink">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 8L2 12L6 16"/>
+        <path d="M2 12H22"/>
+    </svg>
+    <span>{t('home.projects.all')}</span>
+</a>

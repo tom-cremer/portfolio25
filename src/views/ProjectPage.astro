@@ -3,7 +3,7 @@ import {render, type CollectionEntry} from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
 import CaseStudy from '../layouts/CaseStudy.astro';
 import {availableLangs, type Localized} from '../i18n/localize';
-import {localizePath} from '../i18n/utils';
+import {localizePath, useTranslations} from '../i18n/utils';
 import type {Lang} from '../i18n/ui';
 
 interface Props {
@@ -12,7 +12,8 @@ interface Props {
     entries: CollectionEntry<'projets'>[];
 }
 
-const {item, entries} = Astro.props;
+const {lang, item, entries} = Astro.props;
+const t = useTranslations(lang);
 // Contenu Markdown sous le frontmatter (affiché par les études de cas)
 const {Content} = await render(item.entry);
 const hasBody = Boolean(item.entry.body?.trim());
@@ -25,11 +26,26 @@ const alternates = item.isFallback
     : Object.fromEntries(available.map((l) => [l, pathFor(l)])) as Partial<Record<Lang, string>>;
 const canonical = item.isFallback ? pathFor('fr') : undefined;
 // Le sélecteur de langue : la page EN existe toujours (repli), la page FR seulement si le contenu FR existe.
+// Fil d'Ariane pour les moteurs de recherche (non affiché): Accueil › Projets › projet
+const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+        {name: t('nav.home'), path: localizePath('home', lang)},
+        {name: t('nav.projects'), path: localizePath('projects', lang)},
+        {name: item.entry.data.title, path: pathFor(lang)},
+    ].map(({name, path}, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name,
+        item: new URL(path, Astro.site).href,
+    })),
+};
 const langPaths = {fr: available.includes('fr') ? pathFor('fr') : undefined, en: pathFor('en')};
 ---
 
 {item.entry.data.kind === 'case-study'
     ? <CaseStudy {...item.entry.data} isFallback={item.isFallback} canonical={canonical} alternates={alternates}
-                 langPaths={langPaths} hasBody={hasBody}><Content/></CaseStudy>
+                 langPaths={langPaths} hasBody={hasBody} jsonLd={breadcrumbJsonLd} slug={item.slug}><Content/></CaseStudy>
     : <BlogPost {...item.entry.data} isFallback={item.isFallback} canonical={canonical} alternates={alternates}
-                langPaths={langPaths}/>}
+                langPaths={langPaths} jsonLd={breadcrumbJsonLd} slug={item.slug}/>}

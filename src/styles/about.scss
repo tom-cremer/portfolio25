@@ -42,6 +42,7 @@
                     margin: auto;
                     aspect-ratio: 2/3;
                     max-height: 400px;
+                    object-fit: cover; // recadre au lieu de déformer une photo dans un autre format
                 }
             }
 

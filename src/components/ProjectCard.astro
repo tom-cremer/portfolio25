@@ -3,6 +3,7 @@ import type {CollectionEntry} from 'astro:content';
 import {Image} from 'astro:assets';
 import Tag from './Tag.astro';
 import {localizePath, useTranslations} from '../i18n/utils';
+import {formatMonthYear} from '../data/l10n';
 import type {Localized} from '../i18n/localize';
 import type {Lang} from '../i18n/ui';
 
@@ -17,13 +18,21 @@ const data = item.entry.data;
 const isCaseStudy = data.kind === 'case-study';
 // Titre long : une taille de police en dessous pour laisser la place au tag
 const isLongTitle = data.title.length > 14;
+// Date locale (pas toISOString, qui passe en UTC et recule d'un jour)
+const pad = (n: number) => String(n).padStart(2, '0');
+const isoDate = `${data.pubDate.getFullYear()}-${pad(data.pubDate.getMonth() + 1)}-${pad(data.pubDate.getDate())}`;
+// Délais aléatoires (au build) pour que les cercles de chaque carte textuelle bougent différemment
+const blobDelays = [0, 1, 2].map(() => `${-(Math.random() * 25).toFixed(1)}s`);
 ---
 
 <a href={localizePath('projects', lang, item.slug)} title={data.title}
    class={`card-project ${isCaseStudy ? 'card-project--caseStudy' : ''}`}>
     <div class="card-project__contentContainer">
-        <h3 class={`card-project__contentContainer__title${isLongTitle ? ' card-project__contentContainer__title--long' : ''}`}>{data.title}</h3>
-        <Tag tag={data.tag} label={isCaseStudy ? t('home.projects.caseStudy') : undefined}/>
+        <div class="card-project__contentContainer__heading">
+            <h3 class={`card-project__contentContainer__title${isLongTitle ? ' card-project__contentContainer__title--long' : ''}`}>{data.title}</h3>
+            <time class="card-project__contentContainer__date" datetime={isoDate}>{formatMonthYear(data.pubDate, lang)}</time>
+        </div>
+        <Tag tag={isCaseStudy ? 'case-study' : data.tag} label={isCaseStudy ? t('home.projects.caseStudy') : undefined}/>
     </div>
     {data.heroImage ? (
         <div class="card-project__imageContainer">
@@ -32,7 +41,12 @@ const isLongTitle = data.title.length > 14;
         </div>
     ) : (
         <div class="card-project__imageContainer card-project__imageContainer--text">
-            <p>{data.kind === 'case-study' ? data.context : data.title}</p>
+            <div class="card-project__blobs" aria-hidden="true">
+                {blobDelays.map((delay) => <span style={`animation-delay: ${delay}`}></span>)}
+            </div>
+            <div class="card-project__glass">
+                <p data-card-clamp>{data.kind === 'case-study' ? data.context : data.title}</p>
+            </div>
         </div>
     )}
     <div class="card-project__buttonContainer">
@@ -42,3 +56,30 @@ const isLongTitle = data.title.length > 14;
         </svg>
     </div>
 </a>
+
+<script>
+    // Points de suspension sur le texte des cartes: -webkit-line-clamp ne fait pas
+    // contourner l'encoche (float) par le texte sur Safari, donc on coupe au mot près.
+    function clamp(p: HTMLElement) {
+        const words = (p.dataset.fullText ??= p.textContent?.trim() ?? '').split(/\s+/);
+        p.textContent = words.join(' ');
+        // Élément masqué (hauteur nulle): rien à mesurer
+        if (!p.clientHeight || p.scrollHeight <= p.clientHeight) return;
+
+        // Recherche du plus grand nombre de mots qui tient avec « … »
+        let low = 0;
+        let high = words.length;
+        while (low < high) {
+            const mid = Math.ceil((low + high) / 2);
+            p.textContent = `${words.slice(0, mid).join(' ')}…`;
+            if (p.scrollHeight <= p.clientHeight) low = mid;
+            else high = mid - 1;
+        }
+        p.textContent = `${words.slice(0, low).join(' ').replace(/[\s,;:.]+$/, '')}…`;
+    }
+
+    // Après le chargement de Lexend: la largeur des mots change avec la police
+    document.fonts.ready.then(() => {
+        document.querySelectorAll<HTMLElement>('[data-card-clamp]').forEach(clamp);
+    });
+</script>

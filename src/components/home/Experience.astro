@@ -15,10 +15,10 @@ const dot = 'M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.1217
 
 <section class="experience" id="experience">
     <div class="wrapper wrapper--text">
-        <h2 class="homeSection__title">{t('home.experience.title')}</h2>
-        <ol class="experience__list">
+        <h2 class="homeSection__title" data-reveal>{t('home.experience.title')}</h2>
+        <ol class="experience__list" data-reveal-stagger>
             {jobs.map((job) => (
-                <li class="experience__item experience__item--job">
+                <li class="experience__item experience__item--job" data-reveal>
                     <svg class="experience__dot" width="34" height="35" viewBox="0 0 34 35" aria-hidden="true"><path d={dot}/></svg>
                     <article class="experience__card">
                         <h3 class="experience__title">{localize(job.role, lang)} · {job.company}</h3>
@@ -35,7 +35,7 @@ const dot = 'M13.7909 2.12108C15.1854 -0.104004 18.8312 -0.103998 20.2246 2.1217
                 </li>
             ))}
             {education.map((entry) => (
-                <li class="experience__item experience__item--education">
+                <li class="experience__item experience__item--education" data-reveal>
                     <svg class="experience__dot" width="34" height="35" viewBox="0 0 34 35" aria-hidden="true"><path d={dot}/></svg>
                     <article class="experience__card">
                         <p class="experience__label">{t('home.experience.education')}</p>

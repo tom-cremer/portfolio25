@@ -13,10 +13,10 @@ const {title, subtitle, html, cta} = Astro.props;
 <section class="solutions">
     <div class="wrapper wrapper--smaller solutions__wrapper">
         <div class="solutions__main">
-            <div class="solutions__main__aside">
+            <div class="solutions__main__aside" data-reveal>
                 <h2 class="solutions__main__aside__title">{title}</h2>
             </div>
-            <div class="solutions__main__contentContainer">
+            <div class="solutions__main__contentContainer" data-reveal data-reveal-delay="120">
                 <h3 class="solutions__main__contentContainer__subtitle">{subtitle}</h3>
                 <div class="solutions__main__contentContainer__text" set:html={html}/>
                 {cta && (

@@ -16,14 +16,14 @@ const t = useTranslations(lang);
     <div class="wrapper wrapper--text welcome__wrapper">
         <div class="welcome__main">
             <div class="welcome__main__contentContainer">
-                <p class="welcome__main__contentContainer__jobs">
+                <p class="welcome__main__contentContainer__jobs" data-hero="tagline">
                     <span class="welcome__main__contentContainer__jobs__2">{t('home.hero.tagline')}</span>
                 </p>
-                <h1 class="welcome__main__contentContainer__title">Tom Cremer</h1>
-                <p class="welcome__main__contentContainer__text welcome__main__contentContainer__text--intro">
+                <h1 class="welcome__main__contentContainer__title" data-hero="title">Tom Cremer</h1>
+                <p class="welcome__main__contentContainer__text welcome__main__contentContainer__text--intro" data-hero="blur">
                     {t('home.hero.intro')}
                 </p>
-                <div class="welcome__main__contentContainer__ctas">
+                <div class="welcome__main__contentContainer__ctas" data-hero>
                     <a href="#projects" class="button welcome__main__contentContainer__ctas__primary">
                         {t('home.hero.ctaProjects')}
                     </a>
@@ -33,11 +33,11 @@ const t = useTranslations(lang);
             </div>
 
             <div class="welcome__main__secondary">
-                <div class="welcome__main__secondary__imageContainer">
+                <div class="welcome__main__secondary__imageContainer" data-hero="cartoon">
                     <Image class="welcome__main__secondary__imageContainer__img" src={TomCartoon}
-                           alt={t('home.heroAlt')}/>
+                           alt={t('home.heroAlt')} loading="eager" fetchpriority="high"/>
                 </div>
-                <div class="welcome__main__secondary__background">
+                <div class="welcome__main__secondary__background" data-hero="deco">
                     <div class="welcome__main__secondary__background__mask">
                         <div class="welcome__main__secondary__background__mask__left"></div>
                         <div class="welcome__main__secondary__background__mask__right"></div>
@@ -48,3 +48,11 @@ const t = useTranslations(lang);
         </div>
     </div>
 </section>
+<script is:inline>
+    (function () {
+        var hero = document.currentScript.previousElementSibling;
+        var start = function () { hero.classList.add('is-ready'); };
+        if (!document.fonts || !document.fonts.ready) return start();
+        Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1200); })]).then(start);
+    })();
+</script>

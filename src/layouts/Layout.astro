@@ -37,5 +37,12 @@ const {
 <Header langPaths={langPaths}/>
 <slot/>
 <Footer/>
+<script>
+    import {initReveal} from '../scripts/reveal';
+    import {initPixelReveal} from '../scripts/pixel-reveal';
+
+    initReveal();
+    initPixelReveal();
+</script>
 </body>
 </html>

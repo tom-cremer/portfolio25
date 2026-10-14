@@ -32,7 +32,7 @@ const faqJsonLd = {
     <section class="about">
         <div class="wrapper wrapper--smaller about__wrapper">
             <div class="about__main">
-                <div class="about__main__contentContainer">
+                <div class="about__main__contentContainer" data-reveal>
                     <h1 class="about__main__contentContainer__title">
                         {t('about.title')}
                     </h1>
@@ -41,9 +41,9 @@ const faqJsonLd = {
                 <div class="about__main__primary">
                     <div class="about__main__primary__imageContainer">
                         <img src="/assets/tom-about.jpg" alt={t('about.photoAlt')}
-                             class="about__main__primary__imageContainer__img">
+                             class="about__main__primary__imageContainer__img" data-pixel-reveal>
                     </div>
-                    <div class="about__main__primary__content">
+                    <div class="about__main__primary__content" data-reveal data-reveal-delay="120">
                         <p>{t('about.p1')}</p>
                         <p>{t('about.p2')}</p>
                         <p>{t('about.p3')}</p>
@@ -57,7 +57,7 @@ const faqJsonLd = {
 
     <section class="faq" id="faq" aria-label="FAQ">
         <div class="wrapper wrapper--smaller faq__wrapper">
-            <div class="faq__main">
+            <div class="faq__main" data-reveal>
                 <h2 class="faq__main__title">{t('about.faq.title')}</h2>
 
                 <FaqAccordion items={faqItems} id="faq-about"/>

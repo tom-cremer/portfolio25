@@ -22,7 +22,7 @@ const isCompact = variant === 'compact';
 <section class={`projets${isCompact ? ' projets--compact' : ''}`} id={isCompact ? undefined : 'projects'}>
     <div class="wrapper wrapper--smaller projets__wrapper">
         <div class="projets__main">
-            <div class="projets__main__contentContainer">
+            <div class="projets__main__contentContainer" data-reveal>
                 <h2 class="projets__main__contentContainer__title">{t(isCompact ? 'project.more' : 'home.projects.title')}</h2>
                 {!isCompact && (
                     <a href={localizePath('projects', lang)} title={t('home.projects.allTitle')}
@@ -38,7 +38,7 @@ const isCompact = variant === 'compact';
                 )}
             </div>
 
-            <div class="glide projets__glide" data-glide>
+            <div class="glide projets__glide" data-glide data-reveal data-reveal-delay="120">
                 <div class="glide__track" data-glide-el="track">
                     <ul class="glide__slides">
                         {items.map((item) => (

@@ -9,7 +9,7 @@ const t = useTranslations(lang);
 <section class="contact" id="contact">
     <div class="wrapper wrapper--smaller contact__wrapper">
         <div class="contact__main">
-            <div class="contact__main__primary">
+            <div class="contact__main__primary" data-reveal>
                 <h2 class="contact__main__primary__title" set:html={t('contact.titleHtml')}/>
                 <p class="contact__main__primary__text">
                     {t('contact.text')}
@@ -17,7 +17,7 @@ const t = useTranslations(lang);
 
 
             </div>
-            <div class="contact__main__secondary">
+            <div class="contact__main__secondary" data-reveal data-reveal-delay="120">
                 <div class="contact__main__secondary__buttonContainer">
                     <a href="mailto:contact@tomcremer.be" title=""
                        class="button contact__main__secondary__buttonContainer__button">

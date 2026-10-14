@@ -18,12 +18,12 @@ const teaser = faq.filter((item) => item.teaser)
 
 <section class="aboutTeaser">
     <div class="wrapper wrapper--smaller aboutTeaser__wrapper">
-        <div class="aboutTeaser__intro">
+        <div class="aboutTeaser__intro" data-reveal>
             <h2 class="aboutTeaser__title">{t('home.about.title')}</h2>
             <p class="aboutTeaser__text">{t('home.about.text')}</p>
             <a href={localizePath('about', lang)} class="link link--yellow aboutTeaser__link">{t('home.about.more')} →</a>
         </div>
-        <div class="aboutTeaser__faq">
+        <div class="aboutTeaser__faq" data-reveal data-reveal-delay="120">
             <h3 class="aboutTeaser__faqTitle">{t('home.about.faqTitle')}</h3>
             <FaqAccordion items={teaser} id="faq-home" openFirst/>
             <a href={`${localizePath('about', lang)}#faq`} class="link link--yellow aboutTeaser__link">{t('home.about.faqAll')} →</a>

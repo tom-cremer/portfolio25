@@ -9,6 +9,7 @@
 
 @use 'global';
 @use 'home';
+@use 'home/hero-intro';
 @use 'home/section';
 @use 'home/editorial';
 @use 'home/latest-projects';
@@ -27,3 +28,6 @@
 @use 'projectPost';
 @use 'caseStudy';
 @use 'back-link';
+
+@use 'reveal';
+@use 'pixel-reveal';

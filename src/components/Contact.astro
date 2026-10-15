@@ -55,18 +55,14 @@ const t = useTranslations(lang);
                 </form>
             </div>-->
         </div>
-        <div class="contact__background">
-            <div class="contact__background__mask">
-                <div class="contact__background__mask__left"></div>
-                <div class="contact__background__mask__right"></div>
-
-            </div>
-            <div class="contact__background__img"></div>
-        </div>
     </div>
-
+    <div class="contact__shapes" data-shapes aria-hidden="true"></div>
 </section>
 <script>
+    import {initShapesPhysics} from '../scripts/shapes-physics';
+
+    initShapesPhysics();
+
     if (typeof window !== 'undefined') {
         const button = document.querySelector('.contact__main__secondary__buttonContainer__button');
         const container = document.querySelector('.contact__main__secondary__buttonContainer');

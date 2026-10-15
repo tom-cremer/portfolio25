@@ -1238,7 +1238,13 @@ html.js .welcome:not(.is-ready) [data-hero] {
 }
 
 .contact {
-  padding: 35px 0 50px;
+  position: relative;
+  padding: 35px 0 75px;
+}
+@media (max-width: 500px) {
+  .contact {
+    padding-bottom: 100px;
+  }
 }
 .contact__wrapper {
   position: relative;
@@ -1316,55 +1322,26 @@ html.js .welcome:not(.is-ready) [data-hero] {
     padding: 8px 10%;
   }
 }
-.contact__background {
+.contact__shapes {
   position: absolute;
-  width: 100vw;
-  transform: translateX(-50%);
-  height: 195px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  inset: 0;
   overflow: hidden;
-  left: 50%;
-  bottom: 0;
+  pointer-events: none;
   z-index: 1;
 }
-.contact__background__mask {
+.contact__shapes__item {
   position: absolute;
-  width: 100%;
-  height: 195px;
-  /*  background: linear-gradient(45deg, $primary-color, lighten($primary-color, 90%), lighten($primary-color, 40%));
-    background-size: 300% 300%;
-    animation: moveColors 3s linear infinite;*/
-  /* Masque en forme de texte */
-  -webkit-mask-image: url("../assets/vector_pattern.png"); /* Ex : Logo PNG */
-  mask-image: url("../assets/vector_pattern.png");
+  top: 0;
+  left: 0;
+  overflow: visible;
+  will-change: transform;
 }
-.contact__background__mask__left {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, #215e5a, #3ffc8c, #215e5a, #215e5a);
-  background-size: 300% 300%;
-  animation: moveColors 3s ease-in-out infinite;
+.contact.is-grabbable {
+  cursor: grab;
 }
-.contact__background__mask__right {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, #215e5a, #3ffc8c, #215e5a, #215e5a);
-  background-size: 300% 300%;
-  animation: moveColors 3s ease-in-out infinite;
-  transform: rotate(180deg);
-  right: 0;
-  opacity: 1;
-}
-.contact__background__img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("../assets/vector_pattern.png");
-  opacity: 0.3;
+.contact.is-grabbing {
+  cursor: grabbing;
+  user-select: none;
 }
 
 html {

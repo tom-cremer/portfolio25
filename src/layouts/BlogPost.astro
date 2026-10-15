@@ -32,7 +32,7 @@ const t = useTranslations(lang);
     <div class="wrapper wrapper--smaller projectPost--wrapper">
         <div class="projectPost__main">
             <div class="projectPost__main__primary">
-                <div class="projectPost__main__primary__contentContainer">
+                <div class="projectPost__main__primary__contentContainer" data-reveal>
                     <BackLink lang={lang}/>
                     {isFallback && <p class="lang-fallback" lang={lang}>{t('project.fallbackNotice')}</p>}
                     <div class="projectPost__main__primary__contentContainer__tag">
@@ -74,16 +74,16 @@ const t = useTranslations(lang);
                         </div>
                     )}
                 </div>
-                <div class="projectPost__main__primary__container">
+                <div class="projectPost__main__primary__container" data-reveal>
                     <div class="projectPost__main__primary__container__text">
                         {description1}
                     </div>
                     <div class="projectPost__main__primary__container__imageContainer">
                         <img alt={SITE_TITLE} src={image1}
-                             class="projectPost__main__primary__container__imageContainer__img">
+                             class="projectPost__main__primary__container__imageContainer__img" data-pixel-reveal>
                     </div>
                 </div>
-                <div class="projectPost__main__primary__tools">
+                <div class="projectPost__main__primary__tools" data-reveal>
                     {tools && tools.map((tool) => (
                             <img src={`/assets/logos/${tool.toLowerCase()}.svg`} alt={tool}
                                  title={tool.charAt(0).toUpperCase() + tool.slice(1)}
@@ -91,10 +91,10 @@ const t = useTranslations(lang);
                             />
                     ))}
                 </div>
-                <div class="projectPost__main__primary__container">
+                <div class="projectPost__main__primary__container" data-reveal>
                     <div class="projectPost__main__primary__container__imageContainer">
                         <img alt={SITE_TITLE} src={image2}
-                             class="projectPost__main__primary__container__imageContainer__img">
+                             class="projectPost__main__primary__container__imageContainer__img" data-pixel-reveal>
                     </div>
                     <div class="projectPost__main__primary__container__text">
                         {description2}
@@ -102,18 +102,18 @@ const t = useTranslations(lang);
                 </div>
             </div>
             <div class="projectPost__main__secondary">
-                <div class="projectPost__main__secondary__contentContainer">
+                <div class="projectPost__main__secondary__contentContainer" data-reveal>
                     <h3 class="projectPost__main__secondary__contentContainer__title">
                         {t('project.gallery')}
                     </h3>
                 </div>
 
                 <div class="projectPost__main__secondary__galleryContainer">
-                    <div class="projectPost__main__secondary__galleryContainer__gallery">
+                    <div class="projectPost__main__secondary__galleryContainer__gallery" data-reveal-stagger>
                         {gallery && gallery.map((image) => (
-                                <div class="projectPost__main__secondary__galleryContainer__gallery__imageContainer">
+                                <div class="projectPost__main__secondary__galleryContainer__gallery__imageContainer" data-reveal>
                                     <img src={image} alt={title}
-                                         class="projectPost__main__secondary__galleryContainer__gallery__imageContainer__img"
+                                         class="projectPost__main__secondary__galleryContainer__gallery__imageContainer__img" data-pixel-reveal
                                     />
                                 </div>
                         ))}

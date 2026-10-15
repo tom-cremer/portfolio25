@@ -19,16 +19,16 @@ const projects = byNewest(await getLocalizedEntries('projets', lang));
     <section class="projects">
         <div class="wrapper wrapper--small2 projects__wrapper">
             <div class="projects__main">
-                <div class="projects__main__primary">
+                <div class="projects__main__primary" data-reveal>
                     <h1 class="projects__main__primary__title">
                         {t('projects.title')}
                     </h1>
                 </div>
                 <div class="projects__main__secondary">
                     <div class="projects__main__secondary__gridContainer">
-                        <div class="projects__main__secondary__gridContainer__grid">
+                        <div class="projects__main__secondary__gridContainer__grid" data-reveal-stagger>
                             {projects.map((item) => (
-                                    <ProjectCard lang={lang} item={item}/>
+                                    <div data-reveal><ProjectCard lang={lang} item={item}/></div>
                             ))}
                         </div>
                     </div>

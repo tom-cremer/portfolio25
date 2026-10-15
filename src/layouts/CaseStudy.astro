@@ -33,7 +33,7 @@ const t = useTranslations(lang);
         <div class="wrapper wrapper--smaller caseStudy__wrapper">
             <BackLink lang={lang}/>
             {isFallback && <p class="lang-fallback" lang={lang}>{t('project.fallbackNotice')}</p>}
-            <header class="caseStudy__header">
+            <header class="caseStudy__header" data-reveal>
                 <Tag tag="case-study" label={t('home.projects.caseStudy')}/>
                 <h1 class="caseStudy__title">{title}</h1>
                 {company && <p class="caseStudy__note">{t('caseStudy.note', {company})}</p>}
@@ -44,23 +44,23 @@ const t = useTranslations(lang);
                     </dl>
                 )}
             </header>
-            <div class="caseStudy__grid">
-                <section class="caseStudy__block">
+            <div class="caseStudy__grid" data-reveal-stagger>
+                <section class="caseStudy__block" data-reveal>
                     <h2 class="caseStudy__block__title">{t('caseStudy.context')}</h2>
                     <p class="caseStudy__block__text">{context}</p>
                 </section>
-                <section class="caseStudy__block">
+                <section class="caseStudy__block" data-reveal>
                     <h2 class="caseStudy__block__title">{t('caseStudy.challenge')}</h2>
                     <p class="caseStudy__block__text">{challenge}</p>
                 </section>
-                <section class="caseStudy__block caseStudy__block--wide">
+                <section class="caseStudy__block caseStudy__block--wide" data-reveal>
                     <h2 class="caseStudy__block__title">{t('caseStudy.contribution')}</h2>
                     <ul class="caseStudy__block__list">
                         {contribution.map((line) => <li>{line}</li>)}
                     </ul>
                 </section>
                 {tools && tools.length > 0 && (
-                    <section class="caseStudy__block">
+                    <section class="caseStudy__block" data-reveal>
                         <h2 class="caseStudy__block__title">{t('caseStudy.stack')}</h2>
                         <ul class="caseStudy__tools">
                             {tools.map((tool) => {
@@ -70,20 +70,24 @@ const t = useTranslations(lang);
                         </ul>
                     </section>
                 )}
-                <section class="caseStudy__block">
+                <section class="caseStudy__block" data-reveal>
                     <h2 class="caseStudy__block__title">{t('caseStudy.outcome')}</h2>
                     <p class="caseStudy__block__text">{outcome}</p>
                 </section>
             </div>
             {hasBody && (
-                <section class="caseStudy__body">
+                <section class="caseStudy__body" data-reveal>
                     <h2 class="caseStudy__block__title">{t('caseStudy.more')}</h2>
                     <div class="caseStudy__body__content"><slot/></div>
                 </section>
             )}
             {gallery && gallery.length > 0 && (
-                <div class="caseStudy__gallery">
-                    {gallery.map((image) => <img src={image} alt={title} loading="lazy" class="caseStudy__gallery__img"/>)}
+                <div class="caseStudy__gallery" data-reveal-stagger>
+                    {gallery.map((image) => (
+                        <div class="caseStudy__gallery__item" data-reveal>
+                            <img src={image} alt={title} loading="lazy" class="caseStudy__gallery__img" data-pixel-reveal/>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>

@@ -1,0 +1,21 @@
+// Révélation en mosaïque de pixels, pilotée par src/scripts/pixel-reveal.ts.
+// L'image reste dans le DOM (alt, SEO) ; elle est cachée le temps que le canvas joue l'animation.
+
+html.js img[data-pixel-reveal]:not(.is-pixel-revealed) {
+  opacity: 0;
+}
+
+.pixel-reveal__canvas {
+  position: absolute;
+  pointer-events: none; // durée du fondu : CONFIG.fadeOut dans pixel-reveal.ts
+
+  &.is-done {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  html.js img[data-pixel-reveal]:not(.is-pixel-revealed) {
+    opacity: 1;
+  }
+}

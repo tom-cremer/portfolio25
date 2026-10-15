@@ -166,7 +166,12 @@
     gap: 16px;
     margin-top: 40px;
 
+    &__item {
+      position: relative;
+    }
+
     &__img {
+      display: block;
       width: 100%;
       border-radius: 8px;
     }

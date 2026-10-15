@@ -24,13 +24,13 @@ const t = useTranslations(lang);
                 </div>
                 <div class="tools__main__primary__background__img"></div>
             </div>
-            <div class="tools__main__primary__contentContainer">
+            <div class="tools__main__primary__contentContainer" data-reveal>
                 <h2 class="tools__main__primary__contentContainer__title">{t('home.stack.title')}</h2>
             </div>
         </div>
-        <div class="techStack__grid">
+        <div class="techStack__grid" data-reveal-stagger>
             {stack.map((group) => (
-                <div class="techStack__group">
+                <div class="techStack__group" data-reveal>
                     <h3 class="techStack__groupTitle">{localize(group.title, lang)}</h3>
                     <ul class="techStack__items">
                         {group.items.map((item) => {

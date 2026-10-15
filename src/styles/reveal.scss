@@ -1,0 +1,40 @@
+// Apparition au scroll, pilotée par src/scripts/reveal.ts.
+// Masqué seulement sous html.js : sans JavaScript, le contenu reste visible.
+
+$reveal-ease: cubic-bezier(.22, 1, .36, 1);
+$reveal-distance: 24px;
+
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, $reveal-distance, 0);
+  transition: opacity .7s $reveal-ease, transform .7s $reveal-ease;
+
+  &[data-reveal="fade"] {
+    transform: none;
+  }
+
+  &[data-reveal="left"] {
+    transform: translate3d(-$reveal-distance, 0, 0);
+  }
+
+  &[data-reveal="right"] {
+    transform: translate3d($reveal-distance, 0, 0);
+  }
+
+  &[data-reveal="scale"] {
+    transform: scale(.96);
+  }
+
+  &.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

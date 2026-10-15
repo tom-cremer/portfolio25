@@ -17,6 +17,10 @@
     "@astrojs/sitemap": "^3.2.1",
     "@glidejs/glide": "^3.7.1",
     "astro": "^5.2.5",
+    "matter-js": "^0.20.0",
     "sass": "^1.84.0"
+  },
+  "devDependencies": {
+    "@types/matter-js": "^0.20.2"
   }
 }
